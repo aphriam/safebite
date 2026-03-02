@@ -31,4 +31,4 @@ def predict_food_allergy(request):
         "user_allergies_detected": user_allergies,
         "predicted_risk": risk,
         "confidence_percent": f"{probability}%"
-    })k
+    })
