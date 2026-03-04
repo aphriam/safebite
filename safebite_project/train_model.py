@@ -1,38 +1,20 @@
-import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
-import pickle
+import pandas as pd, numpy as np, joblib, warnings
+warnings.filterwarnings('ignore')
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import cross_val_score
 
-# Sample Training Data
-data = {
-    "text": [
-        "milk skin rash itching",
-        "peanuts breathing problem",
-        "dust mild sneezing",
-        "egg stomach pain",
-        "pollen headache",
-        "shrimp severe swelling"
-    ],
-    "severity": [
-        "Medium",
-        "High",
-        "Low",
-        "Medium",
-        "Low",
-        "High"
-    ]
-}
+df = pd.read_csv("dataset.csv")
+df["text_features"] = (df["item_name"].fillna("") + " " + df["ingredients"].fillna("") + " " + df["common_allergens"].fillna("") + " " + df["item_type"].fillna(""))
 
-df = pd.DataFrame(data)
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer(ngram_range=(1,2), max_features=3000, lowercase=True, sublinear_tf=True)),
+    ('clf', RandomForestClassifier(n_estimators=300, random_state=42, class_weight='balanced'))
+])
 
-vectorizer = CountVectorizer()
-X = vectorizer.fit_transform(df["text"])
-
-model = LogisticRegression()
-model.fit(X, df["severity"])
-
-# Save model
-pickle.dump(model, open("model.pkl", "wb"))
-pickle.dump(vectorizer, open("vectorizer.pkl", "wb"))
-
-print("Model trained and saved successfully!")
+pipeline.fit(df["text_features"], df["risk_level"])
+cv = cross_val_score(pipeline, df["text_features"], df["risk_level"], cv=5)
+print(f"CV Accuracy: {cv.mean()*100:.1f}% +/- {cv.std()*100:.1f}%")
+joblib.dump(pipeline, "allergy_model.pkl")
+print("Model saved!")
