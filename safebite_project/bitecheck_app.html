@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiteCheck — Allergy Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f1e8;
+  --surface: rgba(255,250,240,0.85);
+  --surface2: rgba(254, 240, 240, 0.7);
+  --accent: #d4a574;
+  --accent2: #b8935f;
+  --accent-dim: #f5e6d3;
+  --accent-glow: rgba(212,165,116,0.15);
+  --red: #e57373;
+  --yellow: #ffb74d;
+  --text: #5d4037;
+  --text-muted: #8d6e63;
+  --border: rgba(212,165,116,0.3);
+  --radius: 8px;
+  --sketch-border: 2px solid #8d6e63;
+  --glass-bg: rgba(255,255,255,0.25);
+  --glass-border: rgba(255,255,255,0.3);
+  --glass-shadow: 0 8px 32px rgba(31,38,135,0.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Patrick Hand',cursive;font-size:18px;line-height:1.6;overflow-x:hidden;min-height:100vh;background-image:radial-gradient(circle at 20% 80%, rgba(212,165,116,0.1) 0%, transparent 50%),radial-gradient(circle at 80% 20%, rgba(141,110,99,0.1) 0%, transparent 50%), url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23d4a574" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%238d6e63" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23d4a574" opacity="0.15"/><circle cx="10" cy="90" r="0.5" fill="%238d6e63" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>')}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+.hover-btn {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 25px;
+  border: var(--sketch-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 14px 32px;
+  font-weight: 600;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-width: 180px;
+  vertical-align: middle;
+  line-height: 1.4;
+  transform: rotate(-0.5deg);
+  box-shadow: var(--glass-shadow), 3px 3px 0px rgba(141,110,99,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.hover-btn .btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transform: translateX(3px);
+  transition: transform 0.38s ease, opacity 0.38s ease;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  color: var(--accent);
+}
+.hover-btn .btn-reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transform: translateX(70px);
+  opacity: 0;
+  transition: transform 0.38s ease, opacity 0.38s ease;
+  z-index: 10;
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.hover-btn .btn-reveal svg { width: 15px; height: 15px; flex-shrink: 0; stroke: #fff; transition: transform 0.3s ease; }
+.hover-btn .btn-blob {
+  position: absolute;
+  left: 22%; top: 40%;
+  height: 10px; width: 10px;
+  border-radius: 50%;
+  background: var(--accent2);
+  transition: left 0.38s ease, top 0.38s ease, height 0.38s ease, width 0.38s ease, border-radius 0.38s ease, transform 0.38s ease;
+  transform: scale(1);
+  z-index: 1;
+  pointer-events: none;
+}
+.hover-btn:hover { transform: rotate(0.5deg) translateY(-2px); box-shadow: 5px 5px 0px rgba(141,110,99,0.4), inset 0 1px 0 rgba(255,255,255,0.3); border-color: var(--accent2); background: var(--accent2); }
+.hover-btn:hover .btn-label { transform: translateX(60px); opacity: 0; }
+.hover-btn:hover .btn-reveal { transform: translateX(-4px); opacity: 1; }
+.hover-btn:hover .btn-reveal svg { transform: translateX(3px); }
+.hover-btn:hover .btn-blob { left:0%;top:0%;height:100%;width:100%;border-radius:0;transform:scale(1.8); }
+.hover-btn.ghost { background: var(--glass-bg); backdrop-filter: blur(8px); border-color: var(--text); color: var(--text); transform: rotate(-0.3deg); }
+.hover-btn.ghost .btn-label { color: var(--text); }
+.hover-btn.ghost .btn-blob { background: var(--accent); }
+.hover-btn.ghost .btn-reveal { color: #fff; }
+.hover-btn.ghost .btn-reveal svg { stroke: #fff; }
+.hover-btn.ghost:hover { border-color: var(--accent); background: var(--accent); transform: rotate(0.3deg) translateY(-2px); }
+.hover-btn.danger { background: var(--surface); border-color: var(--red); color: var(--red); min-width: unset; padding: 8px 16px; font-size: 0.9rem; transform: rotate(-0.2deg); }
+.hover-btn.danger .btn-label { color: var(--red); }
+.hover-btn.danger .btn-blob { background: var(--red); }
+.hover-btn.danger .btn-reveal { color: #fff; font-size: 0.9rem; }
+.hover-btn.danger .btn-reveal svg { stroke: #fff; width: 13px; height: 13px; }
+.hover-btn.danger:hover { border-color: var(--red); background: var(--red); transform: rotate(0.2deg) translateY(-1px); box-shadow: 3px 3px 0px rgba(229,115,115,0.4); }
+.hover-btn.full { width: 100%; border-radius: 10px; }
+.hover-btn.sm { padding: 8px 18px; font-size: 0.85rem; min-width: 100px; }
+.hover-btn:disabled, .hover-btn.disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+
+#auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#auth-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(226,125,96,0.08) 0%,transparent 70%)}
+.auth-card{background:var(--glass-bg);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:var(--sketch-border);border-radius:15px;padding:48px;width:100%;max-width:420px;position:relative;z-index:2;animation:handDrawn 0.8s ease both;box-shadow:var(--glass-shadow),8px 8px 0px rgba(141,110,99,0.2),inset 0 2px 0 rgba(255,255,255,0.4);transform:rotate(-0.8deg)}
+.auth-card::before{content:'';position:absolute;top:-2px;left:10%;right:10%;height:3px;background:var(--accent);border-radius:2px;transform:rotate(0.5deg)}
+.auth-logo{font-family:'Permanent Marker',cursive;font-weight:400;font-size:2.2rem;color:var(--accent);text-align:center;margin-bottom:8px;transform:rotate(-1deg);text-shadow:2px 2px 0px rgba(141,110,99,0.2);position:relative;display:inline-block}
+.auth-logo span{color:var(--text);position:relative;display:inline-block}
+.auth-sub{text-align:center;color:var(--text-muted);font-size:1rem;margin-bottom:32px;font-family:'Kalam',cursive;transform:rotate(0.3deg)}
+.auth-tabs{display:flex;background:var(--surface2);border:var(--sketch-border);border-radius:12px;padding:6px;margin-bottom:28px;gap:4px}
+.auth-tab{flex:1;padding:12px;border:none;background:transparent;color:var(--text-muted);font-family:'Caveat',cursive;font-size:1rem;font-weight:600;cursor:pointer;border-radius:8px;transition:all 0.2s;transform:rotate(-0.5deg)}
+.auth-tab.active{background:var(--accent);color:#fff;font-weight:700;transform:rotate(0.5deg);box-shadow:2px 2px 0px rgba(141,110,99,0.3)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:500;letter-spacing:0.3px}
+.form-input{width:100%;background:var(--glass-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:var(--sketch-border);border-radius:8px;padding:14px 18px;color:var(--text);font-family:'Patrick Hand',cursive;font-size:1rem;outline:none;transition:all 0.2s;transform:rotate(-0.2deg)}
+.form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);transform:rotate(0deg)}
+.auth-error{background:rgba(229,115,115,0.15);border:2px solid rgba(229,115,115,0.4);border-radius:8px;padding:12px 16px;font-size:0.9rem;color:var(--red);margin-top:12px;display:none;font-family:'Kalam',cursive;transform:rotate(0.3deg)}
+
+.auth-logo::before,.auth-logo::after,.auth-logo span::before,.auth-logo span::after{content:'★';position:absolute;font-size:12px;color:#ff6b9d;text-shadow:0 0 10px #ff6b9d,0 0 20px rgba(255,107,157,0.8);animation:sparkle 2s ease-in-out infinite;pointer-events:none;z-index:10;line-height:1}
+.auth-logo::before{top:-8px;left:-15px;animation-delay:0s}
+.auth-logo::after{top:-10px;right:-20px;animation-delay:0.5s}
+.auth-logo span::before{bottom:-8px;left:8px;animation-delay:1s}
+.auth-logo span::after{bottom:-10px;right:8px;animation-delay:1.5s}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(0.2) rotate(0deg)}50%{opacity:1;transform:scale(1.5) rotate(180deg)}}
+
+#app{display:none;min-height:100vh}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-right:var(--sketch-border);display:flex;flex-direction:column;z-index:50;padding:24px 0;transform:rotate(-0.3deg);box-shadow:var(--glass-shadow),4px 0 0px rgba(141,110,99,0.15)}
+.sidebar-logo{font-family:'Permanent Marker',cursive;font-weight:400;font-size:1.5rem;color:var(--accent);padding:0 24px 24px;border-bottom:var(--sketch-border);margin-bottom:16px;transform:rotate(0.5deg);text-shadow:1px 1px 0px rgba(141,110,99,0.2);position:relative;display:inline-block}
+.sidebar-logo span{color:var(--text);position:relative;display:inline-block}
+.sidebar-logo::before,.sidebar-logo::after,.sidebar-logo span::before{content:'★';position:absolute;font-size:10px;color:#ff6b9d;text-shadow:0 0 8px #ff6b9d;animation:sparkle 2s ease-in-out infinite;pointer-events:none;z-index:10;line-height:1}
+.sidebar-logo::before{top:-5px;left:-12px;animation-delay:0.3s}
+.sidebar-logo::after{top:-7px;right:-15px;animation-delay:0.8s}
+.sidebar-logo span::before{bottom:-5px;right:-8px;animation-delay:1.3s}
+.nav-item{display:flex;align-items:center;gap:12px;padding:14px 24px;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:'Caveat',cursive;font-size:1rem;font-weight:600;border-left:3px solid transparent;transform:rotate(-0.2deg)}
+.nav-item:hover{color:var(--text);background:var(--accent-dim);transform:rotate(0deg)}
+.nav-item.active{color:var(--accent);background:var(--accent-dim);border-left-color:var(--accent);transform:rotate(0.3deg)}
+.nav-icon{font-size:1.3rem;width:20px;text-align:center}
+.user-info{font-size:0.9rem;color:var(--text-muted);margin-bottom:2px;font-family:'Kalam',cursive}
+.user-name{font-weight:600;color:var(--text);font-size:1rem;margin-bottom:10px;font-family:'Patrick Hand',cursive}
+.sidebar-bottom{margin-top:auto;padding:16px 24px;border-top:var(--sketch-border)}
+
+.main{margin-left:260px;padding:32px;min-height:100vh}
+.page{display:none;animation:fadeUp 0.4s ease both}
+.page.active{display:block}
+.page-title{font-family:'Permanent Marker',cursive;font-weight:400;font-size:2rem;letter-spacing:-0.5px;margin-bottom:6px;color:var(--text);transform:rotate(-0.5deg)}
+.page-sub{color:var(--text-muted);font-size:1rem;margin-bottom:32px;font-family:'Kalam',cursive}
+
+.card{background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:var(--sketch-border);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:var(--glass-shadow),4px 4px 0px rgba(141,110,99,0.15),inset 0 1px 0 rgba(255,255,255,0.4);transform:rotate(-0.3deg)}
+.card-title{font-family:'Caveat',cursive;font-weight:700;font-size:1.2rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;color:var(--text)}
+
+/* ALLERGY SECTION HEADERS */
+.allergy-section{margin-bottom:24px}
+.allergy-section-title{font-family:'Caveat',cursive;font-weight:700;font-size:1.1rem;color:var(--text);padding:8px 14px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;gap:8px;transform:rotate(-0.3deg)}
+.allergy-section-food .allergy-section-title{background:rgba(129,199,132,0.15);border:2px solid rgba(129,199,132,0.3);color:#388e3c}
+.allergy-section-medicine .allergy-section-title{background:rgba(100,150,255,0.12);border:2px solid rgba(100,150,255,0.25);color:#3f6fd4}
+.allergy-section-other .allergy-section-title{background:rgba(255,183,77,0.15);border:2px solid rgba(255,183,77,0.3);color:#f57c00}
+
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--glass-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:var(--sketch-border);border-radius:10px;padding:20px;text-align:center;transition:all 0.2s;box-shadow:var(--glass-shadow),3px 3px 0px rgba(141,110,99,0.2);transform:rotate(-0.4deg)}
+.stat-card:hover{border-color:var(--accent);transform:rotate(0deg) translateY(-2px)}
+.stat-num{font-family:'Permanent Marker',cursive;font-size:2.2rem;font-weight:400;color:var(--accent);line-height:1}
+.stat-label{font-size:0.85rem;color:var(--text-muted);margin-top:4px;font-family:'Kalam',cursive}
+
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group-inline{margin-bottom:16px}
+.form-group-inline label{display:block;font-size:0.9rem;color:var(--text-muted);margin-bottom:6px;font-weight:600;font-family:'Kalam',cursive}
+.form-group-inline input,.form-group-inline select,.form-group-inline textarea{width:100%;background:var(--glass-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:var(--sketch-border);border-radius:8px;padding:12px 16px;color:var(--text);font-family:'Patrick Hand',cursive;font-size:1rem;outline:none;transition:all 0.2s}
+.form-group-inline input:focus,.form-group-inline select:focus,.form-group-inline textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.form-group-inline select option{background:var(--surface2)}
+.form-group-inline textarea{resize:vertical;min-height:80px}
+
+.result-box{border-radius:10px;padding:20px;margin-top:16px;display:none;box-shadow:var(--glass-shadow),3px 3px 0px rgba(141,110,99,0.2);transform:rotate(-0.2deg);backdrop-filter:blur(8px)}
+.result-high{background:rgba(229,115,115,0.25);border:2px solid rgba(229,115,115,0.4)}
+.result-medium{background:rgba(255,183,77,0.25);border:2px solid rgba(255,183,77,0.4)}
+.result-low{background:rgba(129,199,132,0.25);border:2px solid rgba(129,199,132,0.4)}
+.result-title{font-family:'Caveat',cursive;font-weight:700;font-size:1.3rem;margin-bottom:12px}
+.result-high .result-title{color:var(--red)}
+.result-medium .result-title{color:var(--yellow)}
+.result-low .result-title{color:#4caf50}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(141,110,99,0.1);font-size:0.9rem;font-family:'Patrick Hand',cursive}
+.result-row:last-child{border-bottom:none}
+.result-key{color:var(--text-muted)}
+.result-val{font-weight:500;text-align:right;max-width:60%}
+.tag{display:inline-block;padding:4px 12px;border-radius:50px;font-size:0.8rem;font-weight:600;margin:2px;font-family:'Kalam',cursive}
+.tag-red{background:rgba(229,115,115,0.2);color:var(--red)}
+.tag-yellow{background:rgba(255,183,77,0.2);color:#f57c00}
+.tag-green{background:rgba(129,199,132,0.2);color:#388e3c}
+.tag-blue{background:rgba(100,150,255,0.15);color:#5b8fff}
+
+.history-item{background:var(--glass-bg);backdrop-filter:blur(6px);border:var(--sketch-border);border-radius:10px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s;box-shadow:var(--glass-shadow),2px 2px 0px rgba(141,110,99,0.15);transform:rotate(-0.2deg)}
+.history-item:hover{border-color:var(--accent);transform:rotate(0deg) translateY(-1px)}
+.history-name{font-weight:600;font-size:1rem;margin-bottom:4px;color:var(--text);font-family:'Patrick Hand',cursive}
+.history-meta{font-size:0.85rem;color:var(--text-muted);font-family:'Kalam',cursive}
+.risk-pill{padding:4px 12px;border-radius:50px;font-size:0.8rem;font-weight:700;letter-spacing:0.5px;font-family:'Kalam',cursive}
+.risk-high{background:rgba(229,115,115,0.2);color:var(--red)}
+.risk-medium{background:rgba(255,183,77,0.2);color:#f57c00}
+.risk-low{background:rgba(129,199,132,0.2);color:#388e3c}
+
+.allergy-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.allergy-tag{display:flex;align-items:center;gap:6px;background:var(--glass-bg);backdrop-filter:blur(6px);border:var(--sketch-border);border-radius:50px;padding:6px 14px;font-size:0.9rem;color:var(--text);font-family:'Patrick Hand',cursive}
+.allergy-remove{background:none;border:none;color:var(--red);cursor:pointer;font-size:1.2rem;line-height:1;padding:0;transition:transform 0.2s}
+.allergy-remove:hover{transform:scale(1.2)}
+
+.loading{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:handWobble 1s ease-in-out infinite;margin-right:8px;vertical-align:middle}
+
+.interaction-item{background:rgba(229,115,115,0.25);border:2px solid rgba(229,115,115,0.3);border-radius:10px;padding:16px;margin-bottom:8px;font-family:'Patrick Hand',cursive}
+.interaction-safe{background:rgba(129,199,132,0.25);border:2px solid rgba(129,199,132,0.3);border-radius:10px;padding:18px;text-align:center;color:#388e3c;font-weight:600;font-family:'Caveat',cursive;font-size:1.1rem}
+
+.severity-badge{display:inline-block;padding:4px 14px;border-radius:50px;font-size:0.85rem;font-weight:700;font-family:'Kalam',cursive}
+.sev-mild{background:rgba(129,199,132,0.2);color:#388e3c}
+.sev-moderate{background:rgba(255,183,77,0.2);color:#f57c00}
+.sev-severe{background:rgba(229,115,115,0.2);color:var(--red)}
+.sev-critical{background:rgba(244,67,54,0.2);color:#d32f2f}
+
+.empty{text-align:center;padding:48px 24px;color:var(--text-muted);font-family:'Kalam',cursive}
+.empty-icon{font-size:2.8rem;margin-bottom:12px}
+.empty p{font-size:1rem}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--glass-bg);backdrop-filter:blur(12px);border:var(--sketch-border);border-radius:10px;padding:16px 22px;font-size:0.9rem;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;max-width:320px;color:var(--text);font-family:'Patrick Hand',cursive;box-shadow:var(--glass-shadow),3px 3px 0px rgba(141,110,99,0.2)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:rgba(129,199,132,0.5);color:#388e3c}
+.toast.error{border-color:rgba(229,115,115,0.5);color:var(--red)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes handWobble{0%,100%{transform:rotate(-2deg)}25%{transform:rotate(2deg)}50%{transform:rotate(-1deg)}75%{transform:rotate(1deg)}}
+@keyframes handDrawn{from{opacity:0;transform:scale(0.8) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(-0.8deg)}}
+
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .main{margin-left:0;padding:20px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .input-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">Bite<span>Check</span></div>
+    <div class="auth-sub">Your personal allergy assistant</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+    </div>
+    <div id="login-form">
+      <div class="form-group"><label>Username</label><input class="form-input" type="text" id="login-username" placeholder="Enter username"></div>
+      <div class="form-group"><label>Password</label><input class="form-input" type="password" id="login-password" placeholder="Enter password"></div>
+      <button class="hover-btn full" style="margin-top:8px" id="login-btn" onclick="handleLogin()">
+        <span class="btn-label">Login</span>
+        <span class="btn-reveal">Let's Go <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        <span class="btn-blob"></span>
+      </button>
+      <div class="auth-error" id="login-error"></div>
+    </div>
+    <div id="register-form" style="display:none">
+      <div class="form-group"><label>Username</label><input class="form-input" type="text" id="reg-username" placeholder="Choose username"></div>
+      <div class="form-group"><label>Email</label><input class="form-input" type="email" id="reg-email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Password</label><input class="form-input" type="password" id="reg-password" placeholder="Choose password"></div>
+      <button class="hover-btn full" style="margin-top:8px" id="reg-btn" onclick="handleRegister()">
+        <span class="btn-label">Create Account</span>
+        <span class="btn-reveal">Sign me up <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        <span class="btn-blob"></span>
+      </button>
+      <div class="auth-error" id="reg-error"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="sidebar">
+    <div class="sidebar-logo">Bite<span>Check</span></div>
+    <div class="nav-item active" onclick="showPage('dashboard', this)"><span class="nav-icon">🏠</span>Dashboard</div>
+    <div class="nav-item" onclick="showPage('food', this)"><span class="nav-icon">🍽️</span>Food Check</div>
+    <div class="nav-item" onclick="showPage('medicine', this)"><span class="nav-icon">💊</span>Medicine Check</div>
+    <div class="nav-item" onclick="showPage('interactions', this)"><span class="nav-icon">⚗️</span>Drug Interactions</div>
+    <div class="nav-item" onclick="showPage('symptoms', this)"><span class="nav-icon">🩺</span>Symptom Tracker</div>
+    <div class="nav-item" onclick="showPage('profile', this)"><span class="nav-icon">🧬</span>My Profile</div>
+    <div class="nav-item" onclick="showPage('history', this)"><span class="nav-icon">📋</span>History</div>
+    <div class="sidebar-bottom">
+      <div class="user-name" id="sidebar-username">—</div>
+      <div class="user-info">BiteCheck User</div>
+      <button class="hover-btn ghost full sm" style="border-radius:8px;min-width:unset;" onclick="handleLogout()">
+        <span class="btn-label">Logout</span>
+        <span class="btn-reveal">Bye! <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        <span class="btn-blob"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-title">Dashboard</div>
+      <div class="page-sub">Welcome back! Here's your health overview.</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num" id="stat-allergies">—</div><div class="stat-label">My Allergies</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-food">—</div><div class="stat-label">Food Checks</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-medicine">—</div><div class="stat-label">Medicine Checks</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-symptoms">—</div><div class="stat-label">Symptom Logs</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ Recent Symptoms</div>
+        <div id="recent-symptoms-list"><div class="empty"><div class="empty-icon">🩺</div><p>No symptoms logged yet</p></div></div>
+      </div>
+    </div>
+
+    <!-- FOOD CHECK -->
+    <div class="page" id="page-food">
+      <div class="page-title">Food Check</div>
+      <div class="page-sub">Check if a food item is safe based on your food allergy profile.</div>
+      <div class="card">
+        <div class="card-title">🔍 Check Food Item</div>
+        <div class="input-row">
+          <div class="form-group-inline"><label>Food Name</label><input type="text" id="food-name" placeholder="e.g. Peanut Butter Sandwich"></div>
+          <div class="form-group-inline"><label>Item Type</label><select id="food-type"><option value="food">Food</option><option value="drink">Drink</option><option value="snack">Snack</option></select></div>
+        </div>
+        <div class="form-group-inline"><label>Ingredients (optional but recommended)</label><input type="text" id="food-ingredients" placeholder="e.g. peanuts, wheat bread, butter, milk"></div>
+        <button class="hover-btn" id="food-btn" onclick="checkFood()">
+          <span class="btn-label">🔍 Check Food Safety</span>
+          <span class="btn-reveal">Analyze <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+        <div class="result-box" id="food-result"></div>
+      </div>
+    </div>
+
+    <!-- MEDICINE CHECK -->
+    <div class="page" id="page-medicine">
+      <div class="page-title">Medicine Check</div>
+      <div class="page-sub">Check if a medicine is safe based on your <strong>medicine allergy profile</strong>.</div>
+      <div class="card">
+        <div class="card-title">💊 Check Medicine</div>
+        <div class="input-row">
+          <div class="form-group-inline"><label>Medicine Name</label><input type="text" id="med-name" placeholder="e.g. Ibuprofen, Amoxicillin"></div>
+          <div class="form-group-inline"><label>Ingredients (optional)</label><input type="text" id="med-ingredients" placeholder="e.g. ibuprofen, cellulose"></div>
+        </div>
+        <button class="hover-btn" id="med-btn" onclick="checkMedicine()">
+          <span class="btn-label">💊 Check Medicine Safety</span>
+          <span class="btn-reveal">Analyze <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+        <div class="result-box" id="med-result"></div>
+      </div>
+    </div>
+
+    <!-- DRUG INTERACTIONS -->
+    <div class="page" id="page-interactions">
+      <div class="page-title">Drug Interactions</div>
+      <div class="page-sub">Check if your medicines are safe to take together.</div>
+      <div class="card">
+        <div class="card-title">⚗️ Check Interactions</div>
+        <div class="form-group-inline"><label>Add Medicines (press Enter after each)</label><input type="text" id="interaction-input" placeholder="Type medicine name and press Enter" onkeydown="addInteractionMed(event)"></div>
+        <div class="allergy-list" id="interaction-meds-list"></div><br>
+        <button class="hover-btn" id="interaction-btn" onclick="checkInteractions()" style="margin-top:8px">
+          <span class="btn-label">⚗️ Check Interactions</span>
+          <span class="btn-reveal">Check Now <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+        <div id="interaction-result" style="margin-top:16px;display:none"></div>
+      </div>
+    </div>
+
+    <!-- SYMPTOM TRACKER -->
+    <div class="page" id="page-symptoms">
+      <div class="page-title">Symptom Tracker</div>
+      <div class="page-sub">Log your symptoms and find possible allergens.</div>
+      <div class="card">
+        <div class="card-title">🩺 Log Symptoms</div>
+        <div class="form-group-inline"><label>Symptoms (press Enter after each)</label><input type="text" id="symptom-input" placeholder="e.g. hives, swelling, itching" onkeydown="addSymptom(event)"></div>
+        <div class="allergy-list" id="symptoms-list"></div>
+        <div class="input-row" style="margin-top:16px">
+          <div class="form-group-inline"><label>Current Medicines (press Enter after each)</label><input type="text" id="symptom-med-input" placeholder="e.g. Ibuprofen" onkeydown="addSymptomMed(event)"><div class="allergy-list" id="symptom-meds-list" style="margin-top:8px"></div></div>
+          <div class="form-group-inline"><label>Recent Foods Eaten</label><input type="text" id="symptom-foods" placeholder="e.g. peanut butter, milk, eggs"></div>
+        </div>
+        <div class="form-group-inline"><label>Notes</label><textarea id="symptom-notes" placeholder="Any additional notes about when symptoms started..."></textarea></div>
+        <button class="hover-btn" id="symptom-btn" onclick="logSymptoms()">
+          <span class="btn-label">🩺 Analyze Symptoms</span>
+          <span class="btn-reveal">Analyze Now <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+        <div class="result-box" id="symptom-result"></div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="page-title">My Profile</div>
+      <div class="page-sub">Manage your allergy profile. Add food and medicine allergies separately.</div>
+
+      <div class="card">
+        <div class="card-title">➕ Add New Allergy</div>
+        <div class="input-row">
+          <div class="form-group-inline">
+            <label>Allergen Name</label>
+            <input type="text" id="new-allergen" placeholder="e.g. peanuts, penicillin, shellfish">
+          </div>
+          <div class="form-group-inline">
+            <label>Type</label>
+            <select id="new-allergen-type">
+              <option value="food">🍽️ Food Allergy</option>
+              <option value="medicine">💊 Medicine Allergy</option>
+              <option value="other">🔬 Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="form-group-inline">
+            <label>Severity</label>
+            <select id="new-allergen-severity">
+              <option value="mild">Mild</option>
+              <option value="moderate">Moderate</option>
+              <option value="severe">Severe</option>
+              <option value="anaphylaxis">Anaphylaxis</option>
+            </select>
+          </div>
+          <div class="form-group-inline">
+            <label>Symptoms when exposed</label>
+            <input type="text" id="new-allergen-symptoms" placeholder="e.g. hives, swelling, rash">
+          </div>
+        </div>
+        <button class="hover-btn" onclick="addAllergy()">
+          <span class="btn-label">➕ Add Allergy</span>
+          <span class="btn-reveal">Save <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+      </div>
+
+      <!-- FOOD ALLERGIES SECTION -->
+      <div class="card allergy-section allergy-section-food">
+        <div class="allergy-section-title">🍽️ Food Allergies
+          <span style="font-size:0.85rem;font-weight:400;margin-left:auto;color:var(--text-muted)" id="food-allergy-count"></span>
+        </div>
+        <div class="page-sub" style="font-size:0.85rem;margin-bottom:12px">Used when checking food items</div>
+        <div id="food-allergies-list"><div class="empty" style="padding:20px"><div class="empty-icon">🍽️</div><p>No food allergies added yet</p></div></div>
+      </div>
+
+      <!-- MEDICINE ALLERGIES SECTION -->
+      <div class="card allergy-section allergy-section-medicine">
+        <div class="allergy-section-title">💊 Medicine Allergies
+          <span style="font-size:0.85rem;font-weight:400;margin-left:auto;color:var(--text-muted)" id="medicine-allergy-count"></span>
+        </div>
+        <div class="page-sub" style="font-size:0.85rem;margin-bottom:12px">Used when checking medicines</div>
+        <div id="medicine-allergies-list"><div class="empty" style="padding:20px"><div class="empty-icon">💊</div><p>No medicine allergies added yet</p></div></div>
+      </div>
+
+      <!-- OTHER ALLERGIES SECTION -->
+      <div class="card allergy-section allergy-section-other">
+        <div class="allergy-section-title">🔬 Other Allergies
+          <span style="font-size:0.85rem;font-weight:400;margin-left:auto;color:var(--text-muted)" id="other-allergy-count"></span>
+        </div>
+        <div id="other-allergies-list"><div class="empty" style="padding:20px"><div class="empty-icon">🔬</div><p>No other allergies added yet</p></div></div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="page" id="page-history">
+      <div class="page-title">History</div>
+      <div class="page-sub">Your past food and medicine checks.</div>
+
+      <!-- Search + Clear All Bar -->
+      <div class="card" style="padding:16px 24px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <input type="text" id="history-search" placeholder="🔍 Search food or medicine name..."
+            oninput="filterHistory()"
+            style="flex:1;min-width:200px;background:var(--glass-bg);border:var(--sketch-border);border-radius:8px;padding:10px 16px;color:var(--text);font-family:'Patrick Hand',cursive;font-size:1rem;outline:none">
+          <button class="hover-btn danger sm" onclick="clearAllHistory()" style="min-width:140px">
+            <span class="btn-label">🗑️ Clear All</span>
+            <span class="btn-reveal">Delete All
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+            </span>
+            <span class="btn-blob"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🍽️ Food Check History <span id="food-count" style="font-size:0.85rem;font-weight:400;color:var(--text-muted);margin-left:8px"></span></div>
+        <div id="food-history-list"><div class="empty"><div class="empty-icon">📋</div><p>No food checks yet</p></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">💊 Medicine Check History <span id="med-count" style="font-size:0.85rem;font-weight:400;color:var(--text-muted);margin-left:8px"></span></div>
+        <div id="med-history-list"><div class="empty"><div class="empty-icon">📋</div><p>No medicine checks yet</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'http://127.0.0.1:8000/api';
+let token = localStorage.getItem('sb_token') || '';
+let username = localStorage.getItem('sb_username') || '';
+
+async function apiFetch(endpoint, method='GET', body=null) {
+  const opts = { method, headers: { 'Content-Type': 'application/json', ...(token ? {'Authorization': `Token ${token}`} : {}) } };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(API + endpoint, opts);
+  return res.json();
+}
+
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+function setBtnLoading(btn, loading, defaultLabel) {
+  if (loading) { btn.classList.add('disabled'); btn.querySelector('.btn-label').innerHTML = `<span class="loading"></span>Loading...`; }
+  else { btn.classList.remove('disabled'); btn.querySelector('.btn-label').innerHTML = defaultLabel; }
+}
+
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1)));
+  document.getElementById('login-form').style.display = tab==='login'?'block':'none';
+  document.getElementById('register-form').style.display = tab==='register'?'block':'none';
+}
+
+async function handleLogin() {
+  const u = document.getElementById('login-username').value.trim();
+  const p = document.getElementById('login-password').value.trim();
+  if (!u || !p) return showError('login-error', 'Fill in all fields');
+  const btn = document.getElementById('login-btn');
+  setBtnLoading(btn, true, 'Login');
+  const res = await apiFetch('/auth/login/', 'POST', {username:u, password:p});
+  setBtnLoading(btn, false, 'Login');
+  if (res.token) {
+    token = res.token; username = res.username;
+    localStorage.setItem('sb_token', token); localStorage.setItem('sb_username', username);
+    initApp();
+  } else { showError('login-error', res.error || 'Login failed'); }
+}
+
+async function handleRegister() {
+  const u = document.getElementById('reg-username').value.trim();
+  const e = document.getElementById('reg-email').value.trim();
+  const p = document.getElementById('reg-password').value.trim();
+  if (!u || !p) return showError('reg-error', 'Fill in all fields');
+  const btn = document.getElementById('reg-btn');
+  setBtnLoading(btn, true, 'Create Account');
+  const res = await apiFetch('/auth/register/', 'POST', {username:u, email:e, password:p});
+  setBtnLoading(btn, false, 'Create Account');
+  if (res.token) {
+    token = res.token; username = res.username;
+    localStorage.setItem('sb_token', token); localStorage.setItem('sb_username', username);
+    initApp();
+  } else { showError('reg-error', res.error || 'Registration failed'); }
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.style.display = 'block';
+  setTimeout(() => el.style.display='none', 4000);
+}
+
+async function handleLogout() {
+  await apiFetch('/auth/logout/', 'POST');
+  token = ''; username = '';
+  localStorage.removeItem('sb_token'); localStorage.removeItem('sb_username');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+}
+
+function initApp() {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('sidebar-username').textContent = username;
+  loadDashboard(); loadProfile(); loadHistory();
+}
+
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`page-${name}`).classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+async function loadDashboard() {
+  const data = await apiFetch('/dashboard/');
+  if (!data.username) return;
+  document.getElementById('stat-allergies').textContent = data.total_allergies;
+  document.getElementById('stat-food').textContent = data.total_food_checks;
+  document.getElementById('stat-medicine').textContent = data.total_medicine_checks;
+  document.getElementById('stat-symptoms').textContent = data.total_symptom_logs;
+  const el = document.getElementById('recent-symptoms-list');
+  if (data.recent_symptoms && data.recent_symptoms.length > 0) {
+    el.innerHTML = data.recent_symptoms.map(s => `
+      <div class="history-item">
+        <div><div class="history-name">${s.symptoms.join(', ')}</div><div class="history-meta">${formatDate(s.created_at)}</div></div>
+        <span class="severity-badge sev-${s.overall_severity}">${s.overall_severity.toUpperCase()}</span>
+      </div>`).join('');
+  }
+}
+
+async function checkFood() {
+  const name = document.getElementById('food-name').value.trim();
+  const ingredients = document.getElementById('food-ingredients').value.trim();
+  const type = document.getElementById('food-type').value;
+  if (!name) return showToast('Enter a food name!', 'error');
+  const btn = document.getElementById('food-btn');
+  setBtnLoading(btn, true, '🔍 Check Food Safety');
+  const res = await apiFetch('/predict/', 'POST', {item_name:name, ingredients, item_type:type});
+  setBtnLoading(btn, false, '🔍 Check Food Safety');
+  const el = document.getElementById('food-result');
+  const risk = res.risk_level;
+  el.className = `result-box result-${risk}`;
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="result-title">${res.recommendation}</div>
+    <div class="result-row"><span class="result-key">Risk Level</span><span class="result-val"><span class="risk-pill risk-${risk}">${risk.toUpperCase()}</span></span></div>
+    <div class="result-row"><span class="result-key">Confidence</span><span class="result-val">${res.confidence_percent}</span></div>
+    <div class="result-row"><span class="result-key">Allergens Detected</span><span class="result-val">${res.allergens_detected?.map(a=>`<span class="tag tag-red">${a}</span>`).join('')||'None'}</span></div>
+    <div class="result-row"><span class="result-key">Matched Your Allergies</span><span class="result-val">${res.matched_your_allergies?.map(a=>`<span class="tag tag-red">${a}</span>`).join('')||'<span class="tag tag-green">None</span>'}</span></div>
+    ${res.safer_alternatives?.length ? `<div class="result-row"><span class="result-key">Safer Alternatives</span><span class="result-val">${res.safer_alternatives.map(a=>`<span class="tag tag-green">${a.alternative}</span>`).join('')}</span></div>` : ''}
+  `;
+  loadDashboard(); loadHistory();
+}
+
+async function checkMedicine() {
+  const name = document.getElementById('med-name').value.trim();
+  const ingredients = document.getElementById('med-ingredients').value.trim();
+  if (!name) return showToast('Enter a medicine name!', 'error');
+  const btn = document.getElementById('med-btn');
+  setBtnLoading(btn, true, '💊 Check Medicine Safety');
+  const res = await apiFetch('/medicine/check/', 'POST', {medicine_name:name, ingredients});
+  setBtnLoading(btn, false, '💊 Check Medicine Safety');
+  const el = document.getElementById('med-result');
+  const risk = res.risk_level;
+  el.className = `result-box result-${risk}`;
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="result-title">${res.recommendation}</div>
+    <div class="result-row"><span class="result-key">Risk Level</span><span class="result-val"><span class="risk-pill risk-${risk}">${risk.toUpperCase()}</span></span></div>
+    <div class="result-row"><span class="result-key">Found in Database</span><span class="result-val">${res.found_in_database ? '✅ Yes' : '❌ No'}</span></div>
+    <div class="result-row"><span class="result-key">Drug Class</span><span class="result-val">${res.drug_class||'Unknown'}</span></div>
+    <div class="result-row"><span class="result-key">Allergens Found</span><span class="result-val">${res.allergens_found?.map(a=>`<span class="tag tag-red">${a}</span>`).join('')||'None'}</span></div>
+    <div class="result-row"><span class="result-key">Matched Your Med Allergies</span><span class="result-val">${res.matched_your_allergies?.map(a=>`<span class="tag tag-red">${a}</span>`).join('')||'<span class="tag tag-green">None</span>'}</span></div>
+    <div class="result-row"><span class="result-key">Side Effects</span><span class="result-val">${res.side_effects||'None listed'}</span></div>
+    ${res.alternative_medicines?.length ? `<div class="result-row"><span class="result-key">Alternatives</span><span class="result-val">${res.alternative_medicines.map(a=>`<span class="tag tag-green">${a}</span>`).join('')}</span></div>` : ''}
+  `;
+  loadDashboard(); loadHistory();
+}
+
+let interactionMeds = [];
+function addInteractionMed(e) {
+  if (e.key !== 'Enter') return;
+  const val = document.getElementById('interaction-input').value.trim();
+  if (!val) return;
+  interactionMeds.push(val); document.getElementById('interaction-input').value = '';
+  renderInteractionMeds();
+}
+function renderInteractionMeds() {
+  document.getElementById('interaction-meds-list').innerHTML = interactionMeds.map((m,i) => `<div class="allergy-tag">${m}<button class="allergy-remove" onclick="removeInteractionMed(${i})">×</button></div>`).join('');
+}
+function removeInteractionMed(i) { interactionMeds.splice(i,1); renderInteractionMeds(); }
+
+async function checkInteractions() {
+  if (interactionMeds.length < 2) return showToast('Add at least 2 medicines!', 'error');
+  const btn = document.getElementById('interaction-btn');
+  setBtnLoading(btn, true, '⚗️ Check Interactions');
+  const res = await apiFetch('/medicine/interactions/', 'POST', {medicines: interactionMeds});
+  setBtnLoading(btn, false, '⚗️ Check Interactions');
+  const el = document.getElementById('interaction-result');
+  el.style.display = 'block';
+  if (res.safe) {
+    el.innerHTML = `<div class="interaction-safe">✅ No dangerous interactions found!</div>`;
+  } else {
+    el.innerHTML = `
+      <div style="margin-bottom:12px;font-weight:600;color:var(--red)">🚨 ${res.total_interactions} dangerous interaction(s) found!</div>
+      ${res.interactions.map(i => `<div class="interaction-item"><div style="font-weight:600;margin-bottom:4px">${i.medicine_1} + ${i.medicine_2}</div><div style="font-size:0.85rem;color:var(--text-muted)">${i.advice}</div></div>`).join('')}
+    `;
+  }
+}
+
+let symptoms = [], symptomMeds = [];
+function addSymptom(e) {
+  if (e.key !== 'Enter') return;
+  const val = document.getElementById('symptom-input').value.trim();
+  if (!val) return; symptoms.push(val); document.getElementById('symptom-input').value = ''; renderSymptoms();
+}
+function renderSymptoms() {
+  document.getElementById('symptoms-list').innerHTML = symptoms.map((s,i) => `<div class="allergy-tag">${s}<button class="allergy-remove" onclick="removeSymptom(${i})">×</button></div>`).join('');
+}
+function removeSymptom(i) { symptoms.splice(i,1); renderSymptoms(); }
+function addSymptomMed(e) {
+  if (e.key !== 'Enter') return;
+  const val = document.getElementById('symptom-med-input').value.trim();
+  if (!val) return; symptomMeds.push(val); document.getElementById('symptom-med-input').value = ''; renderSymptomMeds();
+}
+function renderSymptomMeds() {
+  document.getElementById('symptom-meds-list').innerHTML = symptomMeds.map((m,i) => `<div class="allergy-tag">${m}<button class="allergy-remove" onclick="removeSymptomMed(${i})">×</button></div>`).join('');
+}
+function removeSymptomMed(i) { symptomMeds.splice(i,1); renderSymptomMeds(); }
+
+async function logSymptoms() {
+  if (symptoms.length === 0) return showToast('Add at least one symptom!', 'error');
+  const btn = document.getElementById('symptom-btn');
+  setBtnLoading(btn, true, '🩺 Analyze Symptoms');
+  const res = await apiFetch('/symptoms/log/', 'POST', {symptoms, current_medicines:symptomMeds, recent_foods:document.getElementById('symptom-foods').value, notes:document.getElementById('symptom-notes').value});
+  setBtnLoading(btn, false, '🩺 Analyze Symptoms');
+  const el = document.getElementById('symptom-result');
+  const sev = res.overall_severity;
+  el.className = `result-box result-${sev==='low'||sev==='mild'?'low':sev==='moderate'?'medium':'high'}`;
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="result-title">${res.recommendation}</div>
+    <div class="result-row"><span class="result-key">Severity</span><span class="result-val"><span class="severity-badge sev-${sev}">${sev.toUpperCase()}</span></span></div>
+    ${res.confirmed_from_profile?.length ? `<div class="result-row"><span class="result-key">⚠️ Matched Your Profile</span><span class="result-val">${res.confirmed_from_profile.map(a=>`<span class="tag tag-red">${a}</span>`).join('')}</span></div>` : ''}
+    ${res.allergens_in_foods?.length ? `<div class="result-row"><span class="result-key">🍽️ Allergens in Recent Foods</span><span class="result-val">${res.allergens_in_foods.map(a=>`<span class="tag tag-yellow">${a}</span>`).join('')}</span></div>` : ''}
+    <div class="result-row"><span class="result-key">Possible Triggers</span><span class="result-val">${res.possible_allergens?.map(a=>`<span class="tag tag-yellow">${a}</span>`).join('')||'None identified'}</span></div>
+    ${res.medicine_warnings?.length ? `<div class="result-row"><span class="result-key">💊 Medicine Warnings</span><span class="result-val">${res.medicine_warnings.map(w=>`<span class="tag tag-red">${w.warning}</span>`).join('')}</span></div>` : ''}
+    <div class="result-row"><span class="result-key">Next Steps</span><span class="result-val" style="text-align:left">${res.next_steps?.map(s=>`<div>• ${s}</div>`).join('')}</span></div>
+  `;
+  loadDashboard();
+}
+
+// ─── PROFILE — split into food / medicine / other ──────────
+function renderAllergyItem(a) {
+  return `
+    <div class="history-item">
+      <div>
+        <div class="history-name">${a.allergen_name}</div>
+        <div class="history-meta">${a.symptoms||'No symptoms listed'}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="risk-pill risk-${a.severity==='anaphylaxis'||a.severity==='severe'?'high':a.severity==='moderate'?'medium':'low'}">${a.severity.toUpperCase()}</span>
+        <button class="hover-btn danger" onclick="deleteAllergy(${a.id})">
+          <span class="btn-label">Remove</span>
+          <span class="btn-reveal">Delete <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg></span>
+          <span class="btn-blob"></span>
+        </button>
+      </div>
+    </div>`;
+}
+
+async function loadProfile() {
+  const data = await apiFetch('/profile/');
+  if (!data.allergies) return;
+
+  const food     = data.allergies.filter(a => a.item_type === 'food');
+  const medicine = data.allergies.filter(a => a.item_type === 'medicine');
+  const other    = data.allergies.filter(a => a.item_type === 'other' || !['food','medicine'].includes(a.item_type));
+
+  // Food section
+  document.getElementById('food-allergy-count').textContent = `${food.length} allergen${food.length!==1?'s':''}`;
+  document.getElementById('food-allergies-list').innerHTML = food.length
+    ? food.map(renderAllergyItem).join('')
+    : '<div class="empty" style="padding:20px"><div class="empty-icon">🍽️</div><p>No food allergies added yet<br><small>Add one above with Type = Food</small></p></div>';
+
+  // Medicine section
+  document.getElementById('medicine-allergy-count').textContent = `${medicine.length} allergen${medicine.length!==1?'s':''}`;
+  document.getElementById('medicine-allergies-list').innerHTML = medicine.length
+    ? medicine.map(renderAllergyItem).join('')
+    : '<div class="empty" style="padding:20px"><div class="empty-icon">💊</div><p>No medicine allergies added yet<br><small>Add one above with Type = Medicine</small></p></div>';
+
+  // Other section
+  document.getElementById('other-allergy-count').textContent = `${other.length} allergen${other.length!==1?'s':''}`;
+  document.getElementById('other-allergies-list').innerHTML = other.length
+    ? other.map(renderAllergyItem).join('')
+    : '<div class="empty" style="padding:20px"><div class="empty-icon">🔬</div><p>No other allergies added yet</p></div>';
+}
+
+async function addAllergy() {
+  const name = document.getElementById('new-allergen').value.trim();
+  if (!name) return showToast('Enter an allergen name!', 'error');
+  const res = await apiFetch('/profile/add-allergy/', 'POST', {
+    allergen_name: name,
+    item_type: document.getElementById('new-allergen-type').value,
+    severity: document.getElementById('new-allergen-severity').value,
+    symptoms: document.getElementById('new-allergen-symptoms').value
+  });
+  if (res.message) {
+    showToast('Allergy added! ✅');
+    document.getElementById('new-allergen').value = '';
+    document.getElementById('new-allergen-symptoms').value = '';
+    loadProfile(); loadDashboard();
+  } else { showToast(res.error || 'Failed to add allergy', 'error'); }
+}
+
+async function deleteAllergy(id) {
+  const res = await apiFetch(`/profile/delete-allergy/${id}/`, 'DELETE');
+  if (res.message) { showToast('Allergy removed!'); loadProfile(); loadDashboard(); }
+}
+
+// ─── HISTORY ─────────────────────────────────────────────
+let _allFoodHistory = [];
+let _allMedHistory  = [];
+
+async function loadHistory() {
+  const food = await apiFetch('/history/?limit=100');
+  const med  = await apiFetch('/medicine/history/?limit=100');
+
+  _allFoodHistory = food.history || [];
+  _allMedHistory  = med.history  || [];
+
+  renderFoodHistory(_allFoodHistory);
+  renderMedHistory(_allMedHistory);
+}
+
+function renderFoodHistory(items) {
+  const el = document.getElementById('food-history-list');
+  const count = document.getElementById('food-count');
+  if (count) count.textContent = items.length ? `${items.length} item${items.length!==1?'s':''}` : '';
+  if (items.length === 0) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><p>No food checks found</p></div>';
+    return;
+  }
+  el.innerHTML = items.map(h => `
+    <div class="history-item">
+      <div>
+        <div class="history-name">${h.item_name}</div>
+        <div class="history-meta">${formatDate(h.created_at)}</div>
+      </div>
+      <span class="risk-pill risk-${h.risk_level}">${h.risk_level.toUpperCase()}</span>
+    </div>`).join('');
+}
+
+function renderMedHistory(items) {
+  const el = document.getElementById('med-history-list');
+  const count = document.getElementById('med-count');
+  if (count) count.textContent = items.length ? `${items.length} item${items.length!==1?'s':''}` : '';
+  if (items.length === 0) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><p>No medicine checks found</p></div>';
+    return;
+  }
+  el.innerHTML = items.map(h => `
+    <div class="history-item">
+      <div>
+        <div class="history-name">${h.medicine_name}</div>
+        <div class="history-meta">${h.drug_class||'Unknown'} · ${formatDate(h.created_at)}</div>
+      </div>
+      <span class="risk-pill risk-${h.risk_level}">${h.risk_level.toUpperCase()}</span>
+    </div>`).join('');
+}
+
+function filterHistory() {
+  const query = document.getElementById('history-search').value.trim().toLowerCase();
+  if (!query) {
+    renderFoodHistory(_allFoodHistory);
+    renderMedHistory(_allMedHistory);
+    return;
+  }
+  const filteredFood = _allFoodHistory.filter(h =>
+    h.item_name.toLowerCase().includes(query)
+  );
+  const filteredMed = _allMedHistory.filter(h =>
+    h.medicine_name.toLowerCase().includes(query)
+  );
+  renderFoodHistory(filteredFood);
+  renderMedHistory(filteredMed);
+}
+
+async function clearAllHistory() {
+  if (!confirm('Are you sure you want to delete ALL history? This cannot be undone.')) return;
+  const res1 = await apiFetch('/history/clear/', 'DELETE');
+  const res2 = await apiFetch('/medicine/history/clear/', 'DELETE');
+  showToast('All history cleared! 🗑️');
+  _allFoodHistory = [];
+  _allMedHistory  = [];
+  renderFoodHistory([]);
+  renderMedHistory([]);
+  loadDashboard();
+}
+
+if (token) { initApp(); }
+else { document.getElementById('auth-screen').style.display = 'flex'; }
+</script>
+</body>
+</html>

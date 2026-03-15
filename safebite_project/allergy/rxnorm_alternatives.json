@@ -1,0 +1,133 @@
+{
+  "NSAID": [
+    "Paracetamol/Acetaminophen",
+    "Tramadol (consult doctor)",
+    "Celecoxib (consult doctor)"
+  ],
+  "Penicillin Antibiotic": [
+    "Azithromycin",
+    "Erythromycin",
+    "Ciprofloxacin (consult doctor)"
+  ],
+  "Cephalosporin Antibiotic": [
+    "Azithromycin",
+    "Doxycycline (consult doctor)"
+  ],
+  "Macrolide Antibiotic": [
+    "Ciprofloxacin",
+    "Doxycycline",
+    "Amoxicillin (if not penicillin allergic)"
+  ],
+  "Fluoroquinolone Antibiotic": [
+    "Amoxicillin",
+    "Azithromycin",
+    "Doxycycline (consult doctor)"
+  ],
+  "Sulfonamide Antibiotic": [
+    "Ciprofloxacin",
+    "Amoxicillin",
+    "Doxycycline (consult doctor)"
+  ],
+  "Tetracycline Antibiotic": [
+    "Azithromycin",
+    "Amoxicillin (consult doctor)"
+  ],
+  "Antibiotic": [
+    "Consult doctor for class-specific alternatives"
+  ],
+  "Opioid Analgesic": [
+    "Paracetamol",
+    "Ibuprofen (if not NSAID allergic)",
+    "Tramadol (consult doctor)"
+  ],
+  "Analgesic": [
+    "Paracetamol",
+    "Ibuprofen (if not NSAID allergic)"
+  ],
+  "Antihistamine": [
+    "Levocetirizine",
+    "Loratadine",
+    "Fexofenadine",
+    "Desloratadine"
+  ],
+  "Statin": [
+    "Rosuvastatin",
+    "Pravastatin",
+    "Ezetimibe (consult doctor)"
+  ],
+  "PPI": [
+    "Pantoprazole",
+    "Lansoprazole",
+    "Ranitidine (consult doctor)"
+  ],
+  "Antidepressant": [
+    "Consult psychiatrist for alternatives"
+  ],
+  "SSRI Antidepressant": [
+    "Consult psychiatrist for alternatives"
+  ],
+  "SNRI Antidepressant": [
+    "Consult psychiatrist for alternatives"
+  ],
+  "TCA Antidepressant": [
+    "Consult psychiatrist for alternatives"
+  ],
+  "Anticonvulsant": [
+    "Consult neurologist for alternatives"
+  ],
+  "Antidiabetic": [
+    "Consult doctor for diabetes management"
+  ],
+  "Antihypertensive": [
+    "Consult cardiologist for alternatives"
+  ],
+  "ACE Inhibitor": [
+    "ARB (Losartan, Valsartan)",
+    "Consult doctor"
+  ],
+  "ARB": [
+    "ACE Inhibitor",
+    "Calcium Channel Blocker (consult doctor)"
+  ],
+  "Beta Blocker": [
+    "Calcium Channel Blocker",
+    "Consult doctor"
+  ],
+  "Calcium Channel Blocker": [
+    "Beta Blocker",
+    "ACE Inhibitor (consult doctor)"
+  ],
+  "Anticoagulant": [
+    "Consult doctor \u2014 anticoagulants need careful substitution"
+  ],
+  "Direct Oral Anticoagulant": [
+    "Consult doctor \u2014 warfarin or alternative DOAC"
+  ],
+  "Antipsychotic": [
+    "Consult psychiatrist for alternatives"
+  ],
+  "Bronchodilator": [
+    "Different bronchodilator class (consult doctor)"
+  ],
+  "Respiratory": [
+    "Consult pulmonologist for alternatives"
+  ],
+  "Antifungal": [
+    "Consult doctor for antifungal alternatives"
+  ],
+  "Antiviral": [
+    "Consult doctor for antiviral alternatives"
+  ],
+  "Steroid": [
+    "Consult doctor \u2014 steroids need careful substitution"
+  ],
+  "Supplement": [
+    "Consult dietician for alternatives"
+  ],
+  "Thyroid Hormone": [
+    "Consult endocrinologist"
+  ],
+  "Other": [
+    "Consult your doctor for safe alternatives"
+  ]
+}

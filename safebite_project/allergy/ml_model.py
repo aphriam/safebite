@@ -1,136 +1,132 @@
 """
-SafeBite ML Model
-Hybrid approach: Allergen keyword matching + TF-IDF Random Forest
+BiteCheck — Personalised ML Model v4
+======================================
+Allergens detected purely from keyword dictionary.
+Risk calculated from user's personal profile at runtime.
 """
+
 import joblib
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / "allergy_model.pkl"
 
-# Load trained model, but keep service alive even if the artifact is missing/corrupt.
+# ─── LOAD MODEL ──────────────────────────────────────────────
+_data              = joblib.load(BASE_DIR / "allergy_model.pkl")
+_allergen_keywords = _data['allergen_keywords']
+_alternatives      = _data['alternatives']
+
+# ─── LOAD USDA ALLERGENS ──────────────────────────────────────
 try:
-    model = joblib.load(MODEL_PATH)
-except Exception:
-    model = None
+    import json as _json
+    with open(BASE_DIR / "usda_allergens.json") as _f:
+        _usda = _json.load(_f)
+    for _k, _v in _usda.items():
+        if _k in _allergen_keywords:
+            existing = _allergen_keywords[_k]
+            _allergen_keywords[_k] = existing + [w for w in _v if w not in existing]
+        else:
+            _allergen_keywords[_k] = _v
+    print(f"[BiteCheck] USDA allergens loaded into ml_model: {len(_allergen_keywords)} categories")
+except:
+    pass
 
-# -----------------------------------------
-# ALLERGEN KEYWORD DATABASE
-# -----------------------------------------
-ALLERGEN_KEYWORDS = {
-    "peanuts":    ["peanut", "groundnut", "arachis"],
-    "tree nuts":  ["almond", "cashew", "walnut", "pistachio", "hazelnut",
-                   "macadamia", "pecan", "brazil nut", "pine nut"],
-    "shellfish":  ["shrimp", "prawn", "crab", "lobster", "crayfish",
-                   "scallop", "clam", "oyster", "mussel"],
-    "fish":       ["fish", "salmon", "tuna", "cod", "tilapia", "anchovy",
-                   "sardine", "halibut", "trout", "mackerel"],
-    "dairy":      ["milk", "cream", "butter", "cheese", "yogurt",
-                   "whey", "lactose", "casein", "ghee"],
-    "eggs":       ["egg", "albumin", "mayonnaise", "mayo", "meringue"],
-    "gluten":     ["wheat", "flour", "gluten", "bread", "pasta", "rye",
-                   "barley", "spelt", "semolina", "oat", "cereal"],
-    "soy":        ["soy", "soya", "tofu", "tempeh", "edamame", "miso"],
-    "sesame":     ["sesame", "tahini"],
-    "penicillin": ["penicillin", "amoxicillin", "ampicillin"],
-    "nsaid":      ["ibuprofen", "aspirin", "naproxen", "loxoprofen"],
-    "sulfa":      ["sulfa", "sulfamethoxazole"],
-    "latex":      ["latex", "rubber"],
-}
-
-# Safe alternatives for common allergens
-ALTERNATIVES = {
-    "peanuts":    "Sunflower seed butter, pumpkin seed butter",
-    "tree nuts":  "Sunflower seeds, pumpkin seeds, hemp seeds",
-    "shellfish":  "White fish, tofu, chicken",
-    "fish":       "Chicken, tofu, lentils, chickpeas",
-    "dairy":      "Oat milk, coconut milk, almond milk, soy milk",
-    "eggs":       "Flax egg, chia egg, aquafaba",
-    "gluten":     "Rice flour, almond flour, corn tortilla, rice pasta",
-    "soy":        "Coconut aminos, chickpeas, lentils",
-    "sesame":     "Pumpkin seed oil, flaxseed",
-    "penicillin": "Consult your doctor for alternative antibiotics",
-    "nsaid":      "Paracetamol/Acetaminophen (consult doctor)",
-    "sulfa":      "Consult your doctor for alternatives",
-    "latex":      "Nitrile or vinyl gloves",
-}
+# ─── LOAD USDA FOOD ALTERNATIVES ─────────────────────────────
+try:
+    with open(BASE_DIR / "usda_food_alternatives.json") as _f:
+        _usda_alts = _json.load(_f)
+    _alternatives.update(_usda_alts)
+    print(f"[BiteCheck] USDA food alternatives loaded: {len(_alternatives)} allergens")
+except:
+    pass
 
 
-def detect_allergens(text):
-    """Return list of allergens found in text."""
-    text_lower = text.lower()
-    found = []
-    for allergen, keywords in ALLERGEN_KEYWORDS.items():
-        if any(kw in text_lower for kw in keywords):
-            found.append(allergen)
-    return found
+# ─── DETECT ALLERGENS ────────────────────────────────────────
+def detect_allergens(item_name, ingredients):
+    """Detect allergens purely from keyword matching."""
+    text = f"{str(item_name).lower()} {str(ingredients).lower()}"
+    return [allergen for allergen, keywords in _allergen_keywords.items()
+            if any(kw in text for kw in keywords)]
 
 
-def predict_risk(ingredient_text, user_allergies=None):
+# ─── MAIN PREDICT FUNCTION ───────────────────────────────────
+def predict_risk(ingredient_text, user_allergies=None, item_name=''):
     """
-    Hybrid risk prediction combining:
-    1. ML model (TF-IDF + Random Forest)
-    2. Allergen keyword detection
-    3. Personal allergy profile matching
-
-    Returns:
-        risk (str): 'high', 'medium', or 'low'
-        confidence (float): 0-100
-        allergens_found (list): allergens detected in text
-        matched_allergens (list): allergens matching user profile
-        alternatives (list): suggested safer alternatives
+    Personalised risk prediction.
+    HIGH   → allergen matches user's profile
+    MEDIUM → food has allergens but none match user's profile
+    LOW    → no allergens detected
     """
 
-    # Step 1: ML Prediction (fallback when model is unavailable)
-    if model is not None:
-        ml_pred = model.predict([ingredient_text])[0]
-        ml_proba = model.predict_proba([ingredient_text])[0]
-        ml_confidence = round(max(ml_proba) * 100, 1)
-    else:
-        ml_pred = "medium"
-        ml_confidence = 0.0
+    # Step 1: Detect allergens from ingredients
+    allergens_detected = detect_allergens(item_name, ingredient_text)
 
-    # Step 2: Allergen detection
-    allergens_found = detect_allergens(ingredient_text)
-
-    # Step 3: Personal allergy matching
-    matched_allergens = []
-    personal_boost = 0
+    # Step 2: Match against user's personal profile
+    matched = []
     if user_allergies:
         user_lower = [a.strip().lower() for a in user_allergies]
-        for allergen in allergens_found:
-            if allergen in user_lower:
-                matched_allergens.append(allergen)
-                personal_boost += 30
+        for detected in allergens_detected:
+            for user_allergen in user_lower:
+                if (detected == user_allergen or
+                        detected in user_allergen or
+                        user_allergen in detected):
+                    if detected not in matched:
+                        matched.append(detected)
+                    break
 
-    # Step 4: Compute hybrid score
-    base_score = {"high": 85, "medium": 50, "low": 15}.get(ml_pred, 50)
-    allergen_boost = len(allergens_found) * 10
-    final_score = min(base_score + allergen_boost + personal_boost, 100)
+    # Step 3: Personalised risk decision
+    if not user_allergies:
+        risk       = 'medium' if allergens_detected else 'low'
+        confidence = 40
+        recommendation = (
+            "⚠️ Please set up your allergy profile for personalised results! "
+            + (f"This item contains: {', '.join(allergens_detected)}"
+               if allergens_detected else "No common allergens detected.")
+        )
 
-    # Step 5: Final risk level
-    if final_score >= 70 or matched_allergens:
-        risk = "high"
-    elif final_score >= 40 or allergens_found:
-        risk = "medium"
+    elif matched:
+        risk       = 'high'
+        confidence = min(75 + len(matched) * 10, 100)
+        recommendation = (
+            f"🚨 AVOID! This contains {', '.join(matched)} "
+            f"which you are allergic to."
+        )
+
+    elif allergens_detected:
+        risk       = 'medium'
+        confidence = 65
+        recommendation = (
+            f"⚠️ CAUTION — Contains {', '.join(allergens_detected)}. "
+            f"Not in your allergy profile, but verify your profile is complete."
+        )
+
     else:
-        risk = "low"
+        risk       = 'low'
+        confidence = 90
+        recommendation = "✅ SAFE — No known allergens detected."
 
-    # Step 6: Suggest alternatives
-    suggested_alternatives = []
-    for allergen in (matched_allergens or allergens_found):
-        if allergen in ALTERNATIVES:
-            suggested_alternatives.append({
-                "allergen": allergen,
-                "alternative": ALTERNATIVES[allergen]
+    # Step 4: Safer alternatives
+    alternatives = []
+    for allergen in (matched or allergens_detected):
+        if allergen in _alternatives:
+            alternatives.append({
+                'allergen':    allergen,
+                'alternative': _alternatives[allergen]
             })
 
     return {
-        "risk": risk,
-        "confidence": round(final_score, 1),
-        "ml_prediction": ml_pred,
-        "ml_confidence": ml_confidence,
-        "allergens_found": allergens_found,
-        "matched_allergens": matched_allergens,
-        "alternatives": suggested_alternatives,
+        'risk':                   risk,
+        'confidence':             confidence,
+        'confidence_percent':     f"{confidence}%",
+        'allergens_detected':     allergens_detected,
+        'matched_your_allergies': matched,
+        'recommendation':         recommendation,
+        'safer_alternatives':     alternatives,
+        'is_personalised':        True,
+        # Legacy keys for views.py compatibility
+        'ml_prediction':          risk,
+        'ml_confidence':          confidence,
+        'allergens_found':        allergens_detected,
+        'matched_allergens':      matched,
+        'alternatives':           alternatives,
+        'risk_level':             risk,
     }

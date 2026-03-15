@@ -1,97 +1,59 @@
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 
-from .medicine_module import (
-    analyze_symptoms,
-    check_drug_interactions,
-    check_medicine_allergens,
-    search_medicine,
+from .models import (
+    UserAllergyProfile, UserAllergy, PredictionHistory,
+    MedicineCheckHistory, DrugInteractionHistory, SymptomLog
 )
 from .ml_model import predict_risk
-from .models import (
-    DrugInteractionHistory,
-    MedicineCheckHistory,
-    PredictionHistory,
-    SymptomLog,
-    UserAllergy,
-    UserAllergyProfile,
+from .medicine_module import (
+    check_medicine_allergens,
+    check_drug_interactions,
+    analyze_symptoms,
+    search_medicine
 )
 
 
-def _safe_limit(raw_value, default=20, low=1, high=100):
-    try:
-        value = int(raw_value if raw_value is not None else default)
-    except (TypeError, ValueError):
-        return None
-    return max(low, min(value, high))
-
-
-def _coerce_prediction_result(result):
-    """Support both dict output and legacy tuple output from patched tests."""
-    if isinstance(result, dict):
-        return result
-
-    if isinstance(result, (list, tuple)) and len(result) >= 2:
-        risk = result[0]
-        confidence = result[1]
-        return {
-            'risk': risk,
-            'confidence': confidence,
-            'ml_prediction': risk,
-            'ml_confidence': confidence,
-            'allergens_found': [],
-            'matched_allergens': [],
-            'alternatives': [],
-        }
-
-    return {
-        'risk': 'medium',
-        'confidence': 50.0,
-        'ml_prediction': 'medium',
-        'ml_confidence': 50.0,
-        'allergens_found': [],
-        'matched_allergens': [],
-        'alternatives': [],
-    }
-
+# ═══════════════════════════════════════════
+# AUTH
+# ═══════════════════════════════════════════
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):
-    username = (request.data.get('username') or '').strip()
+    username = request.data.get('username')
     password = request.data.get('password')
-    email = (request.data.get('email') or '').strip()
+    email = request.data.get('email', '')
 
     if not username or not password:
         return Response({'error': 'Username and password required'}, status=400)
-
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Username already taken'}, status=400)
 
     user = User.objects.create_user(username=username, password=password, email=email)
-    UserAllergyProfile.objects.get_or_create(user=user)
+    UserAllergyProfile.objects.create(user=user)
     token, _ = Token.objects.get_or_create(user=user)
 
-    return Response({'message': 'Account created successfully', 'token': token.key, 'username': user.username}, status=201)
+    return Response({
+        'message': 'Account created successfully',
+        'token': token.key,
+        'username': user.username
+    }, status=201)
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_view(request):
-    username = (request.data.get('username') or '').strip()
+    username = request.data.get('username')
     password = request.data.get('password')
-
-    if not username or not password:
-        return Response({'error': 'Username and password required'}, status=400)
-
     user = authenticate(username=username, password=password)
     if not user:
         return Response({'error': 'Invalid credentials'}, status=401)
-
     token, _ = Token.objects.get_or_create(user=user)
     return Response({'token': token.key, 'username': user.username})
 
@@ -99,70 +61,54 @@ def login_view(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def logout_view(request):
-    Token.objects.filter(user=request.user).delete()
+    request.user.auth_token.delete()
     return Response({'message': 'Logged out successfully'})
 
+
+# ═══════════════════════════════════════════
+# ALLERGY PROFILE
+# ═══════════════════════════════════════════
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_profile(request):
     profile, _ = UserAllergyProfile.objects.get_or_create(user=request.user)
-
-    allergies = []
-    for allergy in profile.allergies.all().values(
+    allergies = profile.allergies.all().values(
         'id', 'allergen_name', 'item_type', 'symptoms', 'severity', 'notes', 'created_at'
-    ):
-        allergy['allergy_name'] = allergy['allergen_name']
-        allergies.append(allergy)
-
+    )
     return Response({
         'username': request.user.username,
         'email': request.user.email,
-        'allergies': allergies,
-        'total_allergies': profile.allergies.count(),
+        'allergies': list(allergies),
+        'total_allergies': profile.allergies.count()
     })
 
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def add_allergy(request):
-    allergen_name = ((request.data.get('allergen_name') or request.data.get('allergy_name')) or '').strip()
-    item_type = (request.data.get('item_type') or 'food').strip().lower()
-    severity = (request.data.get('severity') or 'mild').strip().lower()
-
+    allergen_name = request.data.get('allergen_name')
     if not allergen_name:
         return Response({'error': 'allergen_name is required'}, status=400)
-
-    valid_item_types = {choice[0] for choice in UserAllergy.ITEM_TYPE_CHOICES}
-    if item_type not in valid_item_types:
-        return Response({'error': f"item_type must be one of: {', '.join(sorted(valid_item_types))}"}, status=400)
-
-    valid_severities = {choice[0] for choice in UserAllergy.SEVERITY_CHOICES}
-    if severity not in valid_severities:
-        return Response({'error': f"severity must be one of: {', '.join(sorted(valid_severities))}"}, status=400)
 
     profile, _ = UserAllergyProfile.objects.get_or_create(user=request.user)
     allergy = UserAllergy.objects.create(
         profile=profile,
         allergen_name=allergen_name,
-        item_type=item_type,
-        symptoms=(request.data.get('symptoms') or '').strip(),
-        severity=severity,
-        notes=(request.data.get('notes') or '').strip(),
+        item_type=request.data.get('item_type', 'food'),
+        symptoms=request.data.get('symptoms', ''),
+        severity=request.data.get('severity', 'mild'),
+        notes=request.data.get('notes', '')
     )
-
     return Response({
-        'id': allergy.id,
-        'allergy_name': allergy.allergen_name,
         'message': 'Allergy added successfully',
         'allergy': {
             'id': allergy.id,
             'allergen_name': allergy.allergen_name,
-            'allergy_name': allergy.allergen_name,
             'item_type': allergy.item_type,
             'severity': allergy.severity,
             'symptoms': allergy.symptoms,
-        },
+        }
     }, status=201)
 
 
@@ -178,12 +124,16 @@ def delete_allergy(request, allergy_id):
         return Response({'error': 'Allergy not found'}, status=404)
 
 
+# ═══════════════════════════════════════════
+# FOOD PREDICTION
+# ═══════════════════════════════════════════
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def predict_food_allergy(request):
-    item_name = (request.data.get('item_name') or '').strip()
-    ingredients = (request.data.get('ingredients') or '').strip()
-    item_type = (request.data.get('item_type') or 'food').strip().lower()
+    item_name = request.data.get('item_name', '')
+    ingredients = request.data.get('ingredients', '')
+    item_type = request.data.get('item_type', 'food')
 
     if not ingredients and not item_name:
         return Response({'error': 'item_name or ingredients required'}, status=400)
@@ -192,16 +142,12 @@ def predict_food_allergy(request):
 
     try:
         profile = UserAllergyProfile.objects.get(user=request.user)
-        user_allergies = list(profile.allergies.values_list('allergen_name', flat=True))
+        # Only use FOOD allergies for food check
+        user_allergies = list(profile.allergies.filter(item_type='food').values_list('allergen_name', flat=True))
     except UserAllergyProfile.DoesNotExist:
         user_allergies = []
 
-    raw_result = predict_risk(full_text, user_allergies)
-    result = _coerce_prediction_result(raw_result)
-
-    if not result.get('matched_allergens') and user_allergies:
-        text_lower = full_text.lower()
-        result['matched_allergens'] = [a for a in user_allergies if a and a.lower() in text_lower]
+    result = predict_risk(full_text, user_allergies, item_name=item_name)
 
     PredictionHistory.objects.create(
         user=request.user,
@@ -218,70 +164,51 @@ def predict_food_allergy(request):
     return Response({
         'item_name': item_name,
         'risk_level': result['risk'],
-        'predicted_risk': result['risk'],
         'confidence_percent': f"{result['confidence']}%",
         'allergens_detected': result['allergens_found'],
-        'user_allergies_detected': result['matched_allergens'],
         'matched_your_allergies': result['matched_allergens'],
         'safer_alternatives': result['alternatives'],
         'ml_model_prediction': result['ml_prediction'],
         'recommendation': (
-            'HIGH RISK - Avoid this item!' if result['risk'] == 'high' else
-            'MEDIUM RISK - Consume with caution.' if result['risk'] == 'medium' else
-            'LOW RISK - Appears safe for you.'
-        ),
+            '🚨 HIGH RISK — Avoid this item!' if result['risk'] == 'high' else
+            '⚠️ MEDIUM RISK — Consume with caution.' if result['risk'] == 'medium' else
+            '✅ LOW RISK — Appears safe for you.'
+        )
     })
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def prediction_history(request):
-    limit = _safe_limit(request.query_params.get('limit', 20))
-    if limit is None:
-        return Response({'error': 'limit must be an integer'}, status=400)
-
-    risk_filter = request.query_params.get('risk')
-    valid_risks = {choice[0] for choice in PredictionHistory.RISK_CHOICES}
-
-    qs = PredictionHistory.objects.filter(user=request.user)
-    if risk_filter:
-        risk_filter = risk_filter.strip().lower()
-        if risk_filter not in valid_risks:
-            return Response({'error': f"risk must be one of: {', '.join(sorted(valid_risks))}"}, status=400)
-        qs = qs.filter(risk_level=risk_filter)
-
-    history = qs[:limit].values(
-        'id', 'item_name', 'item_type', 'risk_level',
-        'confidence', 'allergens_found', 'matched_allergens', 'alternatives', 'created_at'
-    )
-
-    return Response({'total': qs.count(), 'history': list(history)})
-
-
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def clear_history(request):
-    count, _ = PredictionHistory.objects.filter(user=request.user).delete()
-    return Response({'message': f'Deleted {count} records'})
-
+# ═══════════════════════════════════════════
+# MEDICINE CHECKER
+# ═══════════════════════════════════════════
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def check_medicine(request):
-    medicine_name = (request.data.get('medicine_name') or '').strip()
-    ingredients = (request.data.get('ingredients') or '').strip()
+    """
+    Check if a medicine is safe based on user's allergy profile.
+
+    Request:
+    {
+        "medicine_name": "Ibuprofen",
+        "ingredients": "ibuprofen, cellulose"  // optional
+    }
+    """
+    medicine_name = request.data.get('medicine_name')
+    ingredients = request.data.get('ingredients', '')
 
     if not medicine_name:
         return Response({'error': 'medicine_name is required'}, status=400)
 
     try:
         profile = UserAllergyProfile.objects.get(user=request.user)
-        user_allergies = list(profile.allergies.values_list('allergen_name', flat=True))
+        # Only use MEDICINE allergies for medicine check
+        user_allergies = list(profile.allergies.filter(item_type='medicine').values_list('allergen_name', flat=True))
     except UserAllergyProfile.DoesNotExist:
         user_allergies = []
 
     result = check_medicine_allergens(medicine_name, ingredients, user_allergies)
 
+    # Save to history
     MedicineCheckHistory.objects.create(
         user=request.user,
         medicine_name=medicine_name,
@@ -292,7 +219,7 @@ def check_medicine(request):
         allergens_found=result['allergens_found'],
         matched_allergens=result['matched_your_allergies'],
         alternative_medicines=result['alternative_medicines'],
-        side_effects=result.get('side_effects', ''),
+        side_effects=result.get('side_effects', '')
     )
 
     return Response(result)
@@ -301,34 +228,48 @@ def check_medicine(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def medicine_history(request):
-    limit = _safe_limit(request.query_params.get('limit', 20))
-    if limit is None:
-        return Response({'error': 'limit must be an integer'}, status=400)
-
-    qs = MedicineCheckHistory.objects.filter(user=request.user)
-    checks = qs[:limit].values(
-        'id', 'medicine_name', 'drug_class', 'risk_level', 'allergens_found',
-        'matched_allergens', 'alternative_medicines', 'side_effects', 'created_at'
+    """Get user's medicine check history."""
+    limit = int(request.query_params.get('limit', 20))
+    checks = MedicineCheckHistory.objects.filter(user=request.user)[:limit].values(
+        'id', 'medicine_name', 'drug_class', 'risk_level',
+        'allergens_found', 'matched_allergens', 'alternative_medicines',
+        'side_effects', 'created_at'
     )
-    return Response({'total': qs.count(), 'history': list(checks)})
+    return Response({
+        'total': MedicineCheckHistory.objects.filter(user=request.user).count(),
+        'history': list(checks)
+    })
 
+
+# ═══════════════════════════════════════════
+# DRUG INTERACTION CHECKER
+# ═══════════════════════════════════════════
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def drug_interaction_check(request):
+    """
+    Check interactions between multiple medicines.
+
+    Request:
+    {
+        "medicines": ["Ibuprofen", "Warfarin", "Aspirin"]
+    }
+    """
     medicines = request.data.get('medicines', [])
 
-    if not isinstance(medicines, list) or len(medicines) < 2:
+    if not medicines or len(medicines) < 2:
         return Response({'error': 'Please provide at least 2 medicines'}, status=400)
 
     result = check_drug_interactions(medicines)
 
+    # Save to history
     DrugInteractionHistory.objects.create(
         user=request.user,
         medicines_checked=medicines,
         interactions_found=result['interactions'],
         total_interactions=result['total_interactions'],
-        is_safe=result['safe'],
+        is_safe=result['safe']
     )
 
     return Response(result)
@@ -337,19 +278,26 @@ def drug_interaction_check(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def interaction_history(request):
-    limit = _safe_limit(request.query_params.get('limit', 20))
-    if limit is None:
-        return Response({'error': 'limit must be an integer'}, status=400)
-
+    """Get user's drug interaction check history."""
+    limit = int(request.query_params.get('limit', 20))
     history = DrugInteractionHistory.objects.filter(user=request.user)[:limit].values(
-        'id', 'medicines_checked', 'total_interactions', 'interactions_found', 'is_safe', 'created_at'
+        'id', 'medicines_checked', 'total_interactions',
+        'interactions_found', 'is_safe', 'created_at'
     )
     return Response({'history': list(history)})
 
 
+# ═══════════════════════════════════════════
+# MEDICINE SEARCH
+# ═══════════════════════════════════════════
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def search_medicine_info(request):
+    """
+    Search medicine info from database.
+    GET /api/medicine/search/?name=Ibuprofen
+    """
     name = request.query_params.get('name')
     if not name:
         return Response({'error': 'name query parameter required'}, status=400)
@@ -360,9 +308,24 @@ def search_medicine_info(request):
     return Response({'found': False, 'message': f'Medicine "{name}" not found in database'})
 
 
+# ═══════════════════════════════════════════
+# SYMPTOM TRACKER
+# ═══════════════════════════════════════════
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def log_symptoms(request):
+    """
+    Log and analyze symptoms.
+
+    Request:
+    {
+        "symptoms": ["hives", "swelling", "itching"],
+        "current_medicines": ["Ibuprofen", "Amoxicillin"],
+        "recent_foods": "peanut butter sandwich, milk",
+        "notes": "Started after lunch"
+    }
+    """
     symptoms = request.data.get('symptoms', [])
     current_medicines = request.data.get('current_medicines', [])
     recent_foods = request.data.get('recent_foods', '')
@@ -371,8 +334,15 @@ def log_symptoms(request):
     if not symptoms:
         return Response({'error': 'symptoms list is required'}, status=400)
 
-    result = analyze_symptoms(symptoms, current_medicines)
+    try:
+        profile = UserAllergyProfile.objects.get(user=request.user)
+        user_allergies = list(profile.allergies.values_list("allergen_name", flat=True))
+    except UserAllergyProfile.DoesNotExist:
+        user_allergies = []
 
+    result = analyze_symptoms(symptoms, current_medicines, recent_foods, user_allergies)
+
+    # Save to history
     SymptomLog.objects.create(
         user=request.user,
         symptoms=symptoms,
@@ -381,38 +351,79 @@ def log_symptoms(request):
         overall_severity=result['overall_severity'],
         possible_allergens=result['possible_allergens'],
         medicine_warnings=result['medicine_warnings'],
-        notes=notes,
+        notes=notes
     )
 
     return Response({
-        'symptoms': symptoms,
-        'overall_severity': result['overall_severity'],
-        'possible_allergens': result['possible_allergens'],
-        'medicine_warnings': result['medicine_warnings'],
-        'recommendation': result['recommendation'],
-        'next_steps': result['next_steps'],
-        'recent_foods_noted': recent_foods,
+        'symptoms':               symptoms,
+        'overall_severity':       result['overall_severity'],
+        'possible_allergens':     result['possible_allergens'],
+        'confirmed_from_profile': result['confirmed_from_profile'],
+        'allergens_in_foods':     result['allergens_in_foods'],
+        'medicine_warnings':      result['medicine_warnings'],
+        'recommendation':         result['recommendation'],
+        'next_steps':             result['next_steps'],
+        'recent_foods_noted':     recent_foods,
     })
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def symptom_history(request):
-    limit = _safe_limit(request.query_params.get('limit', 20))
-    if limit is None:
-        return Response({'error': 'limit must be an integer'}, status=400)
-
-    qs = SymptomLog.objects.filter(user=request.user)
-    logs = qs[:limit].values(
+    """Get user's symptom log history."""
+    limit = int(request.query_params.get('limit', 20))
+    logs = SymptomLog.objects.filter(user=request.user)[:limit].values(
         'id', 'symptoms', 'overall_severity', 'possible_allergens',
         'medicine_warnings', 'recent_foods', 'notes', 'created_at'
     )
-    return Response({'total': qs.count(), 'logs': list(logs)})
+    return Response({
+        'total': SymptomLog.objects.filter(user=request.user).count(),
+        'logs': list(logs)
+    })
 
+
+# ═══════════════════════════════════════════
+# FOOD HISTORY
+# ═══════════════════════════════════════════
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def prediction_history(request):
+    limit = int(request.query_params.get('limit', 20))
+    risk_filter = request.query_params.get('risk', None)
+    qs = PredictionHistory.objects.filter(user=request.user)
+    if risk_filter:
+        qs = qs.filter(risk_level=risk_filter)
+    history = qs[:limit].values(
+        'id', 'item_name', 'item_type', 'risk_level',
+        'confidence', 'allergens_found', 'matched_allergens',
+        'alternatives', 'created_at'
+    )
+    return Response({'total': qs.count(), 'history': list(history)})
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def clear_history(request):
+    count, _ = PredictionHistory.objects.filter(user=request.user).delete()
+    return Response({'message': f'Deleted {count} records'})
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def clear_medicine_history(request):
+    count, _ = MedicineCheckHistory.objects.filter(user=request.user).delete()
+    return Response({'message': f'Deleted {count} medicine records'})
+
+
+# ═══════════════════════════════════════════
+# DASHBOARD SUMMARY
+# ═══════════════════════════════════════════
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def dashboard(request):
+    """Get a full summary of user's SafeBite activity."""
     profile, _ = UserAllergyProfile.objects.get_or_create(user=request.user)
 
     return Response({
@@ -424,7 +435,7 @@ def dashboard(request):
         'total_symptom_logs': SymptomLog.objects.filter(user=request.user).count(),
         'high_risk_foods': PredictionHistory.objects.filter(user=request.user, risk_level='high').count(),
         'high_risk_medicines': MedicineCheckHistory.objects.filter(user=request.user, risk_level='high').count(),
-        'recent_symptoms': list(
-            SymptomLog.objects.filter(user=request.user).values('symptoms', 'overall_severity', 'created_at')[:3]
-        ),
+        'recent_symptoms': SymptomLog.objects.filter(user=request.user).values(
+            'symptoms', 'overall_severity', 'created_at'
+        )[:3],
     })

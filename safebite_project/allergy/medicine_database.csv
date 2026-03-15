@@ -1,31 +1,1009 @@
-medicine_name,generic_name,ingredients,allergens,drug_class,interactions,side_effects
-Ibuprofen,Ibuprofen,"ibuprofen, cellulose, cornstarch, sodium lauryl sulfate","nsaid, aspirin sensitive","NSAID","warfarin, aspirin, lithium, methotrexate","stomach pain, nausea, dizziness"
-Paracetamol,Acetaminophen,"acetaminophen, cellulose, starch, povidone","none","Analgesic","warfarin, alcohol","liver damage at high doses"
-Aspirin,Acetylsalicylic Acid,"acetylsalicylic acid, cellulose, starch","nsaid, salicylate","NSAID/Antiplatelet","warfarin, ibuprofen, naproxen, methotrexate","bleeding, stomach ulcers"
-Amoxicillin,Amoxicillin,"amoxicillin trihydrate, gelatin, magnesium stearate","penicillin, gelatin","Penicillin Antibiotic","warfarin, methotrexate, oral contraceptives","rash, diarrhea, nausea"
-Penicillin V,Phenoxymethylpenicillin,"penicillin V potassium, cellulose","penicillin","Penicillin Antibiotic","warfarin, methotrexate","rash, diarrhea, allergic reaction"
-Cetirizine,Cetirizine HCl,"cetirizine hydrochloride, lactose, cellulose","lactose","Antihistamine","alcohol, CNS depressants","drowsiness, dry mouth"
-Loratadine,Loratadine,"loratadine, lactose, starch","lactose","Antihistamine","ketoconazole, erythromycin","headache, dry mouth"
-Metformin,Metformin HCl,"metformin hydrochloride, povidone, magnesium stearate","none","Antidiabetic","alcohol, contrast dye, iodine","nausea, diarrhea, lactic acidosis"
-Atorvastatin,Atorvastatin Calcium,"atorvastatin calcium, cellulose, lactose","lactose","Statin","erythromycin, clarithromycin, warfarin","muscle pain, liver problems"
-Omeprazole,Omeprazole,"omeprazole, gelatin, sucrose","gelatin, sucrose","Proton Pump Inhibitor","clopidogrel, methotrexate, warfarin","headache, nausea, diarrhea"
-Warfarin,Warfarin Sodium,"warfarin sodium, lactose, starch","lactose","Anticoagulant","aspirin, ibuprofen, naproxen, amoxicillin, atorvastatin, omeprazole","bleeding, bruising"
-Lisinopril,Lisinopril,"lisinopril, calcium phosphate, mannitol","none","ACE Inhibitor","potassium supplements, NSAIDs, lithium","dry cough, dizziness, high potassium"
-Metoprolol,Metoprolol Tartrate,"metoprolol tartrate, cellulose, starch","none","Beta Blocker","verapamil, diltiazem, clonidine","fatigue, dizziness, slow heart rate"
-Amlodipine,Amlodipine Besylate,"amlodipine besylate, cellulose, calcium phosphate","none","Calcium Channel Blocker","simvastatin, cyclosporine","swelling, flushing, headache"
-Erythromycin,Erythromycin,"erythromycin stearate, cellulose, lactose","lactose, macrolide","Macrolide Antibiotic","atorvastatin, warfarin, digoxin, theophylline","nausea, vomiting, diarrhea"
-Ciprofloxacin,Ciprofloxacin HCl,"ciprofloxacin hydrochloride, cellulose, starch","quinolone","Fluoroquinolone Antibiotic","antacids, warfarin, theophylline","nausea, diarrhea, tendon problems"
-Tramadol,Tramadol HCl,"tramadol hydrochloride, cellulose, starch","opioid","Opioid Analgesic","MAO inhibitors, SSRIs, alcohol","nausea, dizziness, constipation"
-Codeine,Codeine Phosphate,"codeine phosphate, lactose, starch","opioid, lactose","Opioid Analgesic","MAO inhibitors, alcohol, benzodiazepines","drowsiness, constipation, nausea"
-Diazepam,Diazepam,"diazepam, lactose, starch","lactose","Benzodiazepine","alcohol, opioids, antihistamines","drowsiness, dizziness, dependence"
-Sulfamethoxazole,Co-trimoxazole,"sulfamethoxazole, trimethoprim, lactose, starch","sulfa, lactose","Sulfonamide Antibiotic","warfarin, methotrexate, phenytoin","rash, nausea, kidney problems"
-Naproxen,Naproxen Sodium,"naproxen sodium, cellulose, magnesium stearate","nsaid","NSAID","warfarin, aspirin, lithium","stomach pain, ulcers, kidney issues"
-Insulin Glargine,Insulin,"insulin glargine, zinc, metacresol","none","Insulin","alcohol, beta blockers, ACE inhibitors","hypoglycemia, injection site reactions"
-Prednisolone,Prednisolone,"prednisolone, lactose, starch","lactose","Corticosteroid","NSAIDs, warfarin, insulin","weight gain, high blood sugar, immune suppression"
-Fluoxetine,Fluoxetine HCl,"fluoxetine hydrochloride, cellulose, starch","none","SSRI Antidepressant","MAO inhibitors, tramadol, lithium","nausea, insomnia, sexual dysfunction"
-Salbutamol,Albuterol,"salbutamol sulfate, lactose","lactose","Bronchodilator","beta blockers, digoxin, MAO inhibitors","tremor, palpitations, headache"
-Montelukast,Montelukast Sodium,"montelukast sodium, cellulose, lactose","lactose","Leukotriene Inhibitor","phenobarbital, rifampicin","headache, stomach pain, mood changes"
-Azithromycin,Azithromycin,"azithromycin dihydrate, cellulose, lactose","lactose, macrolide","Macrolide Antibiotic","antacids, warfarin, digoxin","nausea, diarrhea, stomach pain"
-Pantoprazole,Pantoprazole Sodium,"pantoprazole sodium, cellulose, mannitol","none","Proton Pump Inhibitor","methotrexate, warfarin, clopidogrel","headache, diarrhea, nausea"
-Hydroxyzine,Hydroxyzine HCl,"hydroxyzine hydrochloride, lactose, cellulose","lactose","Antihistamine/Anxiolytic","alcohol, opioids, CNS depressants","drowsiness, dry mouth, dizziness"
-Levocetirizine,Levocetirizine HCl,"levocetirizine hydrochloride, cellulose","none","Antihistamine","alcohol, ritonavir","drowsiness, dry mouth, headache"
+medicine_name,generic_name,drug_class,ingredients,interactions,side_effects
+Ibuprofen,Ibuprofen,NSAID,"ibuprofen, cellulose, cornstarch, sodium lauryl sulfate","warfarin, aspirin, lithium, methotrexate","stomach pain, nausea, dizziness"
+Paracetamol,Acetaminophen,Analgesic,"acetaminophen, cellulose, starch, povidone","warfarin, alcohol",liver damage at high doses
+Aspirin,Acetylsalicylic Acid,NSAID/Antiplatelet,"acetylsalicylic acid, cellulose, starch","warfarin, ibuprofen, naproxen, methotrexate","bleeding, stomach ulcers"
+Amoxicillin,Amoxicillin,Penicillin Antibiotic,"amoxicillin trihydrate, gelatin, magnesium stearate","warfarin, methotrexate, oral contraceptives","rash, diarrhea, nausea"
+Penicillin V,Phenoxymethylpenicillin,Penicillin Antibiotic,"penicillin V potassium, cellulose","warfarin, methotrexate","rash, diarrhea, allergic reaction"
+Cetirizine,Cetirizine HCl,Antihistamine,"cetirizine hydrochloride, lactose, cellulose","alcohol, CNS depressants","drowsiness, dry mouth"
+Loratadine,Loratadine,Antihistamine,"loratadine, lactose, starch","ketoconazole, erythromycin","headache, dry mouth"
+Metformin,Metformin HCl,Antidiabetic,"metformin hydrochloride, povidone, magnesium stearate","alcohol, contrast dye, iodine","nausea, diarrhea, lactic acidosis"
+Atorvastatin,Atorvastatin Calcium,Statin,"atorvastatin calcium, cellulose, lactose","erythromycin, clarithromycin, warfarin","muscle pain, liver problems"
+Omeprazole,Omeprazole,Proton Pump Inhibitor,"omeprazole, gelatin, sucrose","clopidogrel, methotrexate, warfarin","headache, nausea, diarrhea"
+Warfarin,Warfarin Sodium,Anticoagulant,"warfarin sodium, lactose, starch","aspirin, ibuprofen, naproxen, amoxicillin, atorvastatin, omeprazole","bleeding, bruising"
+Lisinopril,Lisinopril,ACE Inhibitor,"lisinopril, calcium phosphate, mannitol","potassium supplements, NSAIDs, lithium","dry cough, dizziness, high potassium"
+Metoprolol,Metoprolol Tartrate,Beta Blocker,"metoprolol tartrate, cellulose, starch","verapamil, diltiazem, clonidine","fatigue, dizziness, slow heart rate"
+Amlodipine,Amlodipine Besylate,Calcium Channel Blocker,"amlodipine besylate, cellulose, calcium phosphate","simvastatin, cyclosporine","swelling, flushing, headache"
+Erythromycin,Erythromycin,Macrolide Antibiotic,"erythromycin stearate, cellulose, lactose","atorvastatin, warfarin, digoxin, theophylline","nausea, vomiting, diarrhea"
+Ciprofloxacin,Ciprofloxacin HCl,Fluoroquinolone Antibiotic,"ciprofloxacin hydrochloride, cellulose, starch","antacids, warfarin, theophylline","nausea, diarrhea, tendon problems"
+Tramadol,Tramadol HCl,Opioid Analgesic,"tramadol hydrochloride, cellulose, starch","MAO inhibitors, SSRIs, alcohol","nausea, dizziness, constipation"
+Codeine,Codeine Phosphate,Opioid Analgesic,"codeine phosphate, lactose, starch","MAO inhibitors, alcohol, benzodiazepines","drowsiness, constipation, nausea"
+Diazepam,Diazepam,Benzodiazepine,"diazepam, lactose, starch","alcohol, opioids, antihistamines","drowsiness, dizziness, dependence"
+Sulfamethoxazole,Co-trimoxazole,Sulfonamide Antibiotic,"sulfamethoxazole, trimethoprim, lactose, starch","warfarin, methotrexate, phenytoin","rash, nausea, kidney problems"
+Naproxen,Naproxen Sodium,NSAID,"naproxen sodium, cellulose, magnesium stearate","warfarin, aspirin, lithium","stomach pain, ulcers, kidney issues"
+Insulin Glargine,Insulin,Insulin,"insulin glargine, zinc, metacresol","alcohol, beta blockers, ACE inhibitors","hypoglycemia, injection site reactions"
+Prednisolone,Prednisolone,Corticosteroid,"prednisolone, lactose, starch","NSAIDs, warfarin, insulin","weight gain, high blood sugar, immune suppression"
+Fluoxetine,Fluoxetine HCl,SSRI Antidepressant,"fluoxetine hydrochloride, cellulose, starch","MAO inhibitors, tramadol, lithium","nausea, insomnia, sexual dysfunction"
+Salbutamol,Albuterol,Bronchodilator,"salbutamol sulfate, lactose","beta blockers, digoxin, MAO inhibitors","tremor, palpitations, headache"
+Montelukast,Montelukast Sodium,Leukotriene Inhibitor,"montelukast sodium, cellulose, lactose","phenobarbital, rifampicin","headache, stomach pain, mood changes"
+Azithromycin,Azithromycin,Macrolide Antibiotic,"azithromycin dihydrate, cellulose, lactose","antacids, warfarin, digoxin","nausea, diarrhea, stomach pain"
+Pantoprazole,Pantoprazole Sodium,Proton Pump Inhibitor,"pantoprazole sodium, cellulose, mannitol","methotrexate, warfarin, clopidogrel","headache, diarrhea, nausea"
+Hydroxyzine,Hydroxyzine HCl,Antihistamine/Anxiolytic,"hydroxyzine hydrochloride, lactose, cellulose","alcohol, opioids, CNS depressants","drowsiness, dry mouth, dizziness"
+Levocetirizine,Levocetirizine HCl,Antihistamine,"levocetirizine hydrochloride, cellulose","alcohol, ritonavir","drowsiness, dry mouth, headache"
+Lepirudin,Lepirudin,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Cetuximab,Cetuximab,Anticancer,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",consult prescribing information
+Dornase alfa,Dornase alfa,Respiratory,active pharmaceutical ingredient,,"rash, fever, pain"
+Denileukin diftitox,Denileukin diftitox,Anticancer,active pharmaceutical ingredient,"DB06770, DB12532, DB00281, DB09107, DB08987 (see DrugBank for full list)",consult prescribing information
+Etanercept,Etanercept,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Bivalirudin,Bivalirudin,Antihypertensive,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Leuprolide,Leuprolide,Supplement,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00825 (see DrugBank for full list)",consult prescribing information
+Peginterferon alfa-2a,Peginterferon alfa-2a,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","pain, hypertension"
+Alteplase,Alteplase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",bleeding
+Sermorelin,Sermorelin,Antidiabetic,active pharmaceutical ingredient,,consult prescribing information
+Interferon alfa-n1,Interferon alfa-n1,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Darbepoetin alfa,Darbepoetin alfa,Antiviral,active pharmaceutical ingredient,"DB01873, DB03946, DB00928, DB12083, DB12036 (see DrugBank for full list)",consult prescribing information
+Urokinase,Urokinase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB00682, DB08953, DB00928 (see DrugBank for full list)",bleeding
+Goserelin,Goserelin,Hormone,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00825 (see DrugBank for full list)",consult prescribing information
+Reteplase,Reteplase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Erythropoietin,Erythropoietin,Antiviral,active pharmaceutical ingredient,"DB01873, DB03946, DB00928, DB12083, DB12036 (see DrugBank for full list)",consult prescribing information
+Salmon calcitonin,Salmon calcitonin,Antidiabetic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB08953, DB00928 (see DrugBank for full list)",consult prescribing information
+Interferon alfa-n3,Interferon alfa-n3,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Pegfilgrastim,Pegfilgrastim,Anticancer,active pharmaceutical ingredient,"DB00022, DB09329, DB00570, DB11641, DB08904 (see DrugBank for full list)",pain
+Sargramostim,Sargramostim,Anticancer,active pharmaceutical ingredient,"DB00290, DB00541, DB05168, DB11641, DB00570 (see DrugBank for full list)",consult prescribing information
+Peginterferon alfa-2b,Peginterferon alfa-2b,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","pain, hypertension"
+Asparaginase Escherichia coli,Asparaginase Escherichia coli,Anticancer,active pharmaceutical ingredient,"DB08984, DB06770, DB13396, DB12532, DB01583 (see DrugBank for full list)",consult prescribing information
+Thyrotropin alfa,Thyrotropin alfa,Antidiabetic,active pharmaceutical ingredient,"DB08953, DB14652, DB00682, DB09381, DB00656 (see DrugBank for full list)",consult prescribing information
+"Antihemophilic factor, human recombinant","Antihemophilic factor, human recombinant",Supplement,active pharmaceutical ingredient,"DB14055, DB00682, DB09255, DB06754, DB09259 (see DrugBank for full list)",consult prescribing information
+Anakinra,Anakinra,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Gramicidin D,Gramicidin D,Antibiotic,active pharmaceutical ingredient,"DB06770, DB14055, DB00682, DB12235, DB12532 (see DrugBank for full list)",consult prescribing information
+Human immunoglobulin G,Human immunoglobulin G,Supplement,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",consult prescribing information
+Anistreplase,Anistreplase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Insulin human,Insulin human,Antidiabetic,active pharmaceutical ingredient,"DB01194, DB00328, DB08953, DB14652, DB01208 (see DrugBank for full list)",consult prescribing information
+Tenecteplase,Tenecteplase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Menotropins,Menotropins,Diuretic,active pharmaceutical ingredient,,consult prescribing information
+Interferon gamma-1b,Interferon gamma-1b,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Interferon alfa-2a,Interferon alfa-2a,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Desmopressin,Desmopressin,Antidiabetic,water,"DB13821, DB01345, DB00328, DB08953, DB00928 (see DrugBank for full list)",consult prescribing information
+Coagulation factor VIIa Recombinant Human,Coagulation factor VIIa Recombinant Human,Supplement,active pharmaceutical ingredient,"DB14055, DB00682, DB09255, DB06754, DB09259 (see DrugBank for full list)",bleeding
+Oprelvekin,Oprelvekin,Anticancer,active pharmaceutical ingredient,,consult prescribing information
+Palifermin,Palifermin,Anticancer,active pharmaceutical ingredient,"DB00328, DB09259, DB06754, DB00022, DB00322 (see DrugBank for full list)",consult prescribing information
+Glucagon,Glucagon,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB00682, DB09262, DB14055, DB00392 (see DrugBank for full list)","nausea, vomiting"
+Aldesleukin,Aldesleukin,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Botulinum toxin type B,Botulinum toxin type B,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Omalizumab,Omalizumab,Antihistamine,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",hypotension
+Lutropin alfa,Lutropin alfa,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Lyme disease vaccine (recombinant OspA),Lyme disease vaccine (recombinant OspA),Statin,active pharmaceutical ingredient,,consult prescribing information
+Insulin lispro,Insulin lispro,Antidiabetic,active pharmaceutical ingredient,"DB01194, DB00328, DB08953, DB14652, DB01208 (see DrugBank for full list)",nausea
+Insulin glargine,Insulin glargine,Antidiabetic,active pharmaceutical ingredient,"DB01194, DB00328, DB08953, DB14652, DB01208 (see DrugBank for full list)",nausea
+Collagenase clostridium histolyticum,Collagenase clostridium histolyticum,Other,active pharmaceutical ingredient,"DB14055, DB00682, DB09255, DB06754, DB09259 (see DrugBank for full list)",consult prescribing information
+Rasburicase,Rasburicase,Anticancer,active pharmaceutical ingredient,"DB00482, DB01021, DB00316, DB01435, DB00233 (see DrugBank for full list)",consult prescribing information
+Cetrorelix,Cetrorelix,Antidiabetic,active pharmaceutical ingredient,,consult prescribing information
+Adalimumab,Adalimumab,Anticancer,active pharmaceutical ingredient,"DB08880, DB14905, DB00682, DB06474, DB11959 (see DrugBank for full list)",consult prescribing information
+Somatotropin,Somatotropin,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB14652, DB09381, DB00887, DB09198 (see DrugBank for full list)",consult prescribing information
+Imiglucerase,Imiglucerase,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Abciximab,Abciximab,Diuretic,active pharmaceutical ingredient,"DB05209, DB13821, DB14905, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Drotrecogin alfa,Drotrecogin alfa,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Gemtuzumab ozogamicin,Gemtuzumab ozogamicin,Antibiotic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Alpha-1-proteinase inhibitor,Alpha-1-proteinase inhibitor,Supplement,active pharmaceutical ingredient,"DB12409, DB13192, DB13244, DB11608, DB13151 (see DrugBank for full list)",consult prescribing information
+Pegaspargase,Pegaspargase,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00928, DB15274, DB15091 (see DrugBank for full list)",consult prescribing information
+Interferon beta-1a,Interferon beta-1a,Anticancer,active pharmaceutical ingredient,"DB00682, DB00730, DB00188, DB00697, DB00398 (see DrugBank for full list)",consult prescribing information
+Pegademase,Pegademase,Supplement,active pharmaceutical ingredient,"DB00022, DB09329, DB08904, DB09107, DB00019 (see DrugBank for full list)",consult prescribing information
+Albumin human,Albumin human,Respiratory,water,,"nausea, vomiting, fever, hypotension, tachycardia"
+Eptifibatide,Eptifibatide,Other,active pharmaceutical ingredient,"DB00328, DB00682, DB00928, DB08953, DB13400 (see DrugBank for full list)",consult prescribing information
+Infliximab,Infliximab,Diuretic,active pharmaceutical ingredient,"DB08880, DB14905, DB00682, DB06474, DB00887 (see DrugBank for full list)",consult prescribing information
+Follitropin,Follitropin,Hormone,active pharmaceutical ingredient,"DB01149, DB04849, DB08953, DB11800, DB00476 (see DrugBank for full list)","nausea, headache"
+Vasopressin,Vasopressin,Antihypertensive,active pharmaceutical ingredient,"DB01149, DB00328, DB08953, DB09259, DB06754 (see DrugBank for full list)",consult prescribing information
+Interferon beta-1b,Interferon beta-1b,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Interferon alfacon-1,Interferon alfacon-1,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Hyaluronidase (ovine),Hyaluronidase (ovine),Other,active pharmaceutical ingredient,"DB11556, DB14652, DB14026, DB13760, DB15335 (see DrugBank for full list)",consult prescribing information
+Insulin pork,Insulin pork,Antidiabetic,active pharmaceutical ingredient,"DB01194, DB00328, DB08953, DB00682, DB01208 (see DrugBank for full list)",consult prescribing information
+Trastuzumab,Trastuzumab,Gastrointestinal,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Rituximab,Rituximab,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Basiliximab,Basiliximab,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Muromonab,Muromonab,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Digoxin Immune Fab (Ovine),Digoxin Immune Fab (Ovine),Other,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",consult prescribing information
+Ibritumomab tiuxetan,Ibritumomab tiuxetan,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Daptomycin,Daptomycin,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","vomiting, diarrhea"
+Tositumomab,Tositumomab,Antibiotic,active pharmaceutical ingredient,"DB08880, DB14905, DB00682, DB06474, DB00887 (see DrugBank for full list)",consult prescribing information
+Pegvisomant,Pegvisomant,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB00682, DB08953, DB14652, DB14649 (see DrugBank for full list)",consult prescribing information
+Botulinum toxin type A,Botulinum toxin type A,Other,active pharmaceutical ingredient,"DB08953, DB14652, DB14028, DB14719, DB12710 (see DrugBank for full list)",weakness
+Pancrelipase,Pancrelipase,Other,starch,"DB11417, DB14520, DB09507, DB12208, DB11210 (see DrugBank for full list)",diarrhea
+Streptokinase,Streptokinase,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB04899, DB08953, DB00682 (see DrugBank for full list)",consult prescribing information
+Alemtuzumab,Alemtuzumab,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Alglucerase,Alglucerase,Other,active pharmaceutical ingredient,,consult prescribing information
+Capromab pendetide,Capromab pendetide,Diuretic,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",consult prescribing information
+Laronidase,Laronidase,Other,active pharmaceutical ingredient,,consult prescribing information
+Cyclosporine,Cyclosporine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB13456 (see DrugBank for full list)",consult prescribing information
+Alefacept,Alefacept,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00928, DB15274, DB15091 (see DrugBank for full list)",consult prescribing information
+Urofollitropin,Urofollitropin,Diuretic,active pharmaceutical ingredient,,consult prescribing information
+Efalizumab,Efalizumab,Antibiotic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Choriogonadotropin alfa,Choriogonadotropin alfa,Hormone,active pharmaceutical ingredient,,consult prescribing information
+Antithymocyte immunoglobulin (rabbit),Antithymocyte immunoglobulin (rabbit),Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Filgrastim,Filgrastim,Anticancer,active pharmaceutical ingredient,"DB00290, DB00541, DB05168, DB11641, DB00570 (see DrugBank for full list)",consult prescribing information
+Coagulation Factor IX (Recombinant),Coagulation Factor IX (Recombinant),Supplement,active pharmaceutical ingredient,"DB14055, DB00682, DB09255, DB06754, DB09259 (see DrugBank for full list)",consult prescribing information
+Becaplermin,Becaplermin,Antidiabetic,active pharmaceutical ingredient,,consult prescribing information
+Agalsidase beta,Agalsidase beta,Other,active pharmaceutical ingredient,"DB00798, DB00608, DB15874, DB01118 (see DrugBank for full list)",consult prescribing information
+Octreotide,Octreotide,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB00825, DB01208, DB13760 (see DrugBank for full list)",consult prescribing information
+Interferon alfa-2b,Interferon alfa-2b,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Abarelix,Abarelix,Hormone,active pharmaceutical ingredient,,consult prescribing information
+Oxytocin,Oxytocin,Antidiabetic,active pharmaceutical ingredient,"DB00825, DB01208, DB00656, DB11891, DB00610 (see DrugBank for full list)",tachycardia
+Natalizumab,Natalizumab,Diuretic,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Enfuvirtide,Enfuvirtide,Antiviral,active pharmaceutical ingredient,"DB10805, DB12768, DB00503, DB11003, DB14443 (see DrugBank for full list)",consult prescribing information
+Palivizumab,Palivizumab,Antiviral,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",consult prescribing information
+Daclizumab,Daclizumab,Antiviral,active pharmaceutical ingredient,"DB05209, DB08880, DB00328, DB14905, DB00928 (see DrugBank for full list)",consult prescribing information
+Bevacizumab,Bevacizumab,Diuretic,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB09381, DB06647 (see DrugBank for full list)",hypertension
+Pyridoxal phosphate,Pyridoxal phosphate,Statin,active pharmaceutical ingredient,,consult prescribing information
+Cyanocobalamin,Cyanocobalamin,Diuretic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","diarrhea, swelling"
+Histidine,Histidine,Antihistamine,active pharmaceutical ingredient,,consult prescribing information
+Ademetionine,Ademetionine,NSAID,active pharmaceutical ingredient,"DB06770, DB00675, DB00316, DB00347, DB01159 (see DrugBank for full list)",consult prescribing information
+Pyruvic acid,Pyruvic acid,Supplement,active pharmaceutical ingredient,,diarrhea
+Phenylalanine,Phenylalanine,Diuretic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",pain
+Biotin,Biotin,Supplement,water,,consult prescribing information
+Choline,Choline,Statin,active pharmaceutical ingredient,"DB01004, DB00983, DB06637, DB00331, DB00668 (see DrugBank for full list)",consult prescribing information
+Lysine,Lysine,Antiviral,active pharmaceutical ingredient,,consult prescribing information
+Arginine,Arginine,Supplement,active pharmaceutical ingredient,,"nausea, diarrhea"
+Ascorbic acid,Ascorbic acid,Antidiabetic,active pharmaceutical ingredient,"DB12235, DB13386, DB15335, DB00290, DB01082 (see DrugBank for full list)",consult prescribing information
+Aspartic acid,Aspartic acid,Other,active pharmaceutical ingredient,,diarrhea
+Ornithine,Ornithine,Supplement,active pharmaceutical ingredient,,consult prescribing information
+L-Glutamine,L-Glutamine,Supplement,active pharmaceutical ingredient,DB00581 (see DrugBank for full list),constipation
+Adenosine phosphate,Adenosine phosphate,NSAID,active pharmaceutical ingredient,,consult prescribing information
+alpha-Linolenic acid,alpha-Linolenic acid,Supplement,active pharmaceutical ingredient,DB09053 (see DrugBank for full list),consult prescribing information
+Serine,Serine,Diuretic,active pharmaceutical ingredient,,consult prescribing information
+Methionine,Methionine,Diuretic,active pharmaceutical ingredient,DB01235 (see DrugBank for full list),"nausea, vomiting, headache"
+Tyrosine,Tyrosine,Antidepressant,active pharmaceutical ingredient,DB01235 (see DrugBank for full list),consult prescribing information
+Calcitriol,Calcitriol,Statin,active pharmaceutical ingredient,"DB00682, DB14652, DB08953, DB12095, DB14649 (see DrugBank for full list)","nausea, vomiting, headache, weakness"
+Lutein,Lutein,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Cystine,Cystine,NSAID,active pharmaceutical ingredient,,nausea
+Succinic acid,Succinic acid,Supplement,water,"DB08880, DB00328, DB01004, DB01583, DB00213 (see DrugBank for full list)",consult prescribing information
+Riboflavin,Riboflavin,Diuretic,active pharmaceutical ingredient,"DB00328, DB00693, DB09008, DB00863, DB04348 (see DrugBank for full list)",consult prescribing information
+N-Acetylglucosamine,N-Acetylglucosamine,Other,active pharmaceutical ingredient,,diarrhea
+Glutamic acid,Glutamic acid,Antipsychotic,active pharmaceutical ingredient,"DB00852, DB12080, DB09480, DB13108, DB01579 (see DrugBank for full list)",headache
+Glutathione,Glutathione,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Phosphatidyl serine,Phosphatidyl serine,Statin,active pharmaceutical ingredient,,consult prescribing information
+Glycine,Glycine,Antipsychotic,gelatin,"DB13401, DB01396, DB13537, DB00390, DB00511 (see DrugBank for full list)",consult prescribing information
+Calcifediol,Calcifediol,Antidiabetic,active pharmaceutical ingredient,"DB14652, DB01070, DB15566, DB00169, DB14649 (see DrugBank for full list)","diarrhea, headache, drowsiness, constipation, pain"
+Creatine,Creatine,Diuretic,active pharmaceutical ingredient,,consult prescribing information
+Leucine,Leucine,Other,active pharmaceutical ingredient,,consult prescribing information
+Tryptophan,Tryptophan,Antidepressant,active pharmaceutical ingredient,"DB00682, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)","diarrhea, insomnia, fever"
+Cysteine,Cysteine,Other,active pharmaceutical ingredient,,consult prescribing information
+Thiamine,Thiamine,Antidiabetic,water,"DB01043, DB01004, DB00988, DB00983, DB06637 (see DrugBank for full list)",consult prescribing information
+Ergocalciferol,Ergocalciferol,Diuretic,active pharmaceutical ingredient,"DB14652, DB01070, DB15566, DB00169, DB14649 (see DrugBank for full list)",consult prescribing information
+Dihomo-gamma-linolenic acid,Dihomo-gamma-linolenic acid,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Citrulline,Citrulline,Supplement,water,"DB08880, DB00328, DB01004, DB01583, DB00213 (see DrugBank for full list)",consult prescribing information
+Threonine,Threonine,Other,gelatin,,consult prescribing information
+NADH,NADH,Other,active pharmaceutical ingredient,,insomnia
+Folic acid,Folic acid,Anticonvulsant,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Icosapent,Icosapent,Statin,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)",consult prescribing information
+Valine,Valine,Antibiotic,active pharmaceutical ingredient,,consult prescribing information
+Vitamin A,Vitamin A,Respiratory,active pharmaceutical ingredient,"DB12474, DB12235, DB01083, DB12112, DB13981 (see DrugBank for full list)",consult prescribing information
+Vitamin E,Vitamin E,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB08953, DB12095, DB13400, DB06679 (see DrugBank for full list)",consult prescribing information
+Pyridoxine,Pyridoxine,Statin,water,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","diarrhea, weakness"
+Lipoic acid,Lipoic acid,Supplement,active pharmaceutical ingredient,"DB01149, DB00328, DB08953, DB11210, DB00476 (see DrugBank for full list)",consult prescribing information
+Isoleucine,Isoleucine,Other,active pharmaceutical ingredient,,consult prescribing information
+Aspartame,Aspartame,Supplement,sucrose,"DB00328, DB14649, DB00887, DB00437, DB09008 (see DrugBank for full list)",diarrhea
+Cholecalciferol,Cholecalciferol,Statin,active pharmaceutical ingredient,"DB08953, DB14652, DB12095, DB14649, DB06272 (see DrugBank for full list)","nausea, headache, fatigue, weakness"
+Menadione,Menadione,Supplement,active pharmaceutical ingredient,"DB12409, DB13192, DB13244, DB01083, DB11608 (see DrugBank for full list)",consult prescribing information
+ATP,ATP,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Adenine,Adenine,Diuretic,active pharmaceutical ingredient,"DB01076, DB00328, DB12893, DB00916, DB00586 (see DrugBank for full list)",consult prescribing information
+Asparagine,Asparagine,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Pravastatin,Pravastatin,Statin,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14649, DB00887 (see DrugBank for full list)",consult prescribing information
+Fluvoxamine,Fluvoxamine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Valsartan,Valsartan,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB04899, DB00825, DB01345 (see DrugBank for full list)",consult prescribing information
+Ramipril,Ramipril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)","hypotension, bradycardia"
+Masoprocol,Masoprocol,Anticancer,active pharmaceutical ingredient,"DB06770, DB12532, DB00281, DB09107, DB08987 (see DrugBank for full list)",dizziness
+Flunisolide,Flunisolide,NSAID,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Baclofen,Baclofen,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Amphetamine,Amphetamine,Other,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB04272, DB00178 (see DrugBank for full list)",consult prescribing information
+Pentagastrin,Pentagastrin,Gastrointestinal,active pharmaceutical ingredient,DB05381 (see DrugBank for full list),consult prescribing information
+Nicotine,Nicotine,Other,active pharmaceutical ingredient,"DB12095, DB00219, DB00887, DB00610, DB00916 (see DrugBank for full list)","nausea, vomiting, diarrhea, dizziness, pain, weakness"
+Cevimeline,Cevimeline,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Lorazepam,Lorazepam,Anticancer,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Esmolol,Esmolol,Other,active pharmaceutical ingredient,"DB10713, DB00887, DB11891, DB00178, DB00204 (see DrugBank for full list)","hypotension, bradycardia"
+Bortezomib,Bortezomib,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB09198 (see DrugBank for full list)",consult prescribing information
+Ethchlorvynol,Ethchlorvynol,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Carbidopa,Carbidopa,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Phentermine,Phentermine,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB13760, DB12095, DB13400 (see DrugBank for full list)",fatigue
+Indecainide,Indecainide,Other,active pharmaceutical ingredient,,"nausea, vomiting, hypotension, tachycardia, bradycardia"
+Vidarabine,Vidarabine,Antibiotic,active pharmaceutical ingredient,DB00437 (see DrugBank for full list),consult prescribing information
+Betaxolol,Betaxolol,Other,active pharmaceutical ingredient,"DB10713, DB08880, DB00682, DB00887, DB09198 (see DrugBank for full list)","hypotension, hypertension, bradycardia"
+Fluconazole,Fluconazole,Antifungal,active pharmaceutical ingredient,"DB00682, DB13456, DB00887, DB06196, DB11891 (see DrugBank for full list)",consult prescribing information
+Troglitazone,Troglitazone,Antidiabetic,active pharmaceutical ingredient,"DB06786, DB08880, DB00328, DB00682, DB08953 (see DrugBank for full list)",consult prescribing information
+Oseltamivir,Oseltamivir,Antiviral,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Hydroxocobalamin,Hydroxocobalamin,Diuretic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Caffeine,Caffeine,Analgesic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00682, DB01208 (see DrugBank for full list)",consult prescribing information
+Succinylcholine,Succinylcholine,Other,active pharmaceutical ingredient,"DB09275, DB14719, DB00887, DB01560, DB01545 (see DrugBank for full list)",weakness
+Sildenafil,Sildenafil,Hormone,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB04899, DB08953 (see DrugBank for full list)",consult prescribing information
+Dofetilide,Dofetilide,Other,active pharmaceutical ingredient,"DB01873, DB11459, DB00682, DB00825, DB01208 (see DrugBank for full list)",consult prescribing information
+Pyrimethamine,Pyrimethamine,Other,active pharmaceutical ingredient,"DB01076, DB13420, DB14055, DB00537, DB01004 (see DrugBank for full list)",consult prescribing information
+Reserpine,Reserpine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB00887, DB01560 (see DrugBank for full list)",hypertension
+Ticlopidine,Ticlopidine,Other,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB06251 (see DrugBank for full list)",bleeding
+Trospium,Trospium,Analgesic,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Adapalene,Adapalene,Other,active pharmaceutical ingredient,"DB00936, DB11085 (see DrugBank for full list)",consult prescribing information
+Midodrine,Midodrine,Other,active pharmaceutical ingredient,"DB00328, DB00825, DB13400, DB00219, DB00656 (see DrugBank for full list)",hypertension
+Torasemide,Torasemide,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",hypotension
+Citalopram,Citalopram,Antidepressant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB11891 (see DrugBank for full list)","nausea, vomiting, dizziness, tachycardia"
+Eletriptan,Eletriptan,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB09198 (see DrugBank for full list)",hypertension
+Bethanidine,Bethanidine,Antihypertensive,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00219, DB00887 (see DrugBank for full list)",hypertension
+Moxifloxacin,Moxifloxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)","vomiting, diarrhea"
+Oxyphenonium,Oxyphenonium,Gastrointestinal,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Nelfinavir,Nelfinavir,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB11891 (see DrugBank for full list)",consult prescribing information
+Isoetharine,Isoetharine,Respiratory,active pharmaceutical ingredient,"DB00328, DB14652, DB13400, DB14649, DB00219 (see DrugBank for full list)","nausea, headache, tachycardia"
+Glimepiride,Glimepiride,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB00682, DB01208, DB14652 (see DrugBank for full list)",consult prescribing information
+Diflorasone,Diflorasone,Other,active pharmaceutical ingredient,"DB00331, DB09199, DB13675, DB13467, DB00951 (see DrugBank for full list)",consult prescribing information
+Indinavir,Indinavir,Antiviral,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB13760, DB08953 (see DrugBank for full list)",consult prescribing information
+Gadodiamide,Gadodiamide,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Guanadrel,Guanadrel,Antihypertensive,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)","diarrhea, headache, dizziness, fatigue, drowsiness, constipation"
+Lovastatin,Lovastatin,Antidiabetic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB08953 (see DrugBank for full list)",consult prescribing information
+Enflurane,Enflurane,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Cefotiam,Cefotiam,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB01345, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Pregabalin,Pregabalin,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",dizziness
+Temazepam,Temazepam,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",insomnia
+Aminosalicylic acid,Aminosalicylic acid,Other,active pharmaceutical ingredient,"DB00328, DB00682, DB13400, DB00887, DB09198 (see DrugBank for full list)",consult prescribing information
+Reboxetine,Reboxetine,Antidepressant,active pharmaceutical ingredient,"DB00682, DB08953, DB14028, DB12095, DB14719 (see DrugBank for full list)",consult prescribing information
+Milrinone,Milrinone,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",hypotension
+Pipobroman,Pipobroman,Anticancer,active pharmaceutical ingredient,"DB06770, DB12532, DB00281, DB09107, DB08987 (see DrugBank for full list)",consult prescribing information
+Butabarbital,Butabarbital,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)","insomnia, hypotension, tachycardia"
+Nevirapine,Nevirapine,Antiviral,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB08953, DB12095 (see DrugBank for full list)","nausea, vomiting, headache, rash, fatigue, insomnia"
+Oxiconazole,Oxiconazole,Antifungal,active pharmaceutical ingredient,"DB14881, DB08864, DB00243, DB06077, DB14583 (see DrugBank for full list)",rash
+Alclometasone,Alclometasone,NSAID,active pharmaceutical ingredient,"DB12095, DB00331, DB09199, DB13675, DB13467 (see DrugBank for full list)",rash
+Butalbital,Butalbital,Analgesic,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB13259 (see DrugBank for full list)","drowsiness, hypotension"
+Cladribine,Cladribine,Diuretic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Ranolazine,Ranolazine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB11891 (see DrugBank for full list)","nausea, vomiting, dizziness"
+Mesalazine,Mesalazine,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Benzatropine,Benzatropine,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Ziprasidone,Ziprasidone,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB12095, DB14719, DB13456 (see DrugBank for full list)","nausea, vomiting, headache, dizziness"
+Methysergide,Methysergide,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)","headache, dizziness, tachycardia"
+Cabergoline,Cabergoline,Hormone,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)",consult prescribing information
+Idoxuridine,Idoxuridine,Antibiotic,active pharmaceutical ingredient,,consult prescribing information
+Dapsone,Dapsone,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB08953 (see DrugBank for full list)",consult prescribing information
+Terconazole,Terconazole,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Phenytoin,Phenytoin,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Medrysone,Medrysone,Other,active pharmaceutical ingredient,"DB12095, DB00331, DB09199, DB13675, DB13467 (see DrugBank for full list)",consult prescribing information
+Doxycycline,Doxycycline,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB09275, DB00928 (see DrugBank for full list)",consult prescribing information
+Diethylstilbestrol,Diethylstilbestrol,Hormone,active pharmaceutical ingredient,"DB14905, DB08880, DB00682, DB12095, DB06474 (see DrugBank for full list)","nausea, vomiting, bleeding"
+Lymecycline,Lymecycline,Antibiotic,active pharmaceutical ingredient,"DB09275, DB00682, DB09124, DB04272, DB13259 (see DrugBank for full list)",consult prescribing information
+Clotrimazole,Clotrimazole,Antifungal,active pharmaceutical ingredient,"DB14055, DB00682, DB15685, DB13451, DB11791 (see DrugBank for full list)",consult prescribing information
+Calcium acetate,Calcium acetate,Supplement,active pharmaceutical ingredient,"DB00537, DB01208, DB01070, DB09238, DB01583 (see DrugBank for full list)","nausea, vomiting, constipation"
+Sulfanilamide,Sulfanilamide,Antibiotic,active pharmaceutical ingredient,"DB05115, DB06770, DB12235, DB12532, DB00281 (see DrugBank for full list)","rash, swelling"
+Cycloserine,Cycloserine,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB09275, DB13420, DB13523 (see DrugBank for full list)","headache, dizziness, drowsiness"
+Anagrelide,Anagrelide,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00825, DB01208 (see DrugBank for full list)","vomiting, hypotension, tachycardia"
+Carmustine,Carmustine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",nausea
+Sulfisoxazole,Sulfisoxazole,Hormone,active pharmaceutical ingredient,"DB06786, DB00328, DB08953, DB00825, DB01208 (see DrugBank for full list)",consult prescribing information
+Crotamiton,Crotamiton,Other,active pharmaceutical ingredient,,consult prescribing information
+Dicoumarol,Dicoumarol,Anticoagulant,active pharmaceutical ingredient,"DB08880, DB00682, DB13456, DB09198, DB06251 (see DrugBank for full list)",consult prescribing information
+Cefmenoxime,Cefmenoxime,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Ropinirole,Ropinirole,Other,active pharmaceutical ingredient,"DB08880, DB08953, DB04899, DB01208, DB14028 (see DrugBank for full list)","nausea, vomiting, dizziness, drowsiness, pain"
+Chlorotrianisene,Chlorotrianisene,Hormone,active pharmaceutical ingredient,"DB05209, DB14905, DB00682, DB06474, DB06647 (see DrugBank for full list)","nausea, vomiting, bleeding"
+Isradipine,Isradipine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB13456, DB00887, DB06196 (see DrugBank for full list)","hypotension, tachycardia"
+Diatrizoate,Diatrizoate,Other,water,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Betazole,Betazole,Antihistamine,active pharmaceutical ingredient,,consult prescribing information
+Topiramate,Topiramate,Anticonvulsant,active pharmaceutical ingredient,"DB01194, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Cefmetazole,Cefmetazole,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Olmesartan,Olmesartan,Antihypertensive,active pharmaceutical ingredient,"DB01345, DB00328, DB04899, DB00825, DB13400 (see DrugBank for full list)","hypotension, tachycardia, bradycardia"
+Amsacrine,Amsacrine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Theophylline,Theophylline,Diuretic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00682, DB14652 (see DrugBank for full list)",consult prescribing information
+Argatroban,Argatroban,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",bleeding
+Liothyronine,Liothyronine,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Disopyramide,Disopyramide,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",tachycardia
+Lidocaine,Lidocaine,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Pamidronic acid,Pamidronic acid,Supplement,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","fever, hypotension"
+Clemastine,Clemastine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)",consult prescribing information
+Acarbose,Acarbose,Antidiabetic,"starch, sucrose","DB00328, DB08953, DB14652, DB01208, DB14649 (see DrugBank for full list)",consult prescribing information
+Venlafaxine,Venlafaxine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Conjugated estrogens,Conjugated estrogens,Diuretic,water,"DB08880, DB14905, DB00682, DB12095, DB06474 (see DrugBank for full list)","nausea, vomiting, bleeding"
+Travoprost,Travoprost,Other,active pharmaceutical ingredient,"DB00328, DB09238, DB13400, DB11720, DB08952 (see DrugBank for full list)",consult prescribing information
+Amcinonide,Amcinonide,Other,active pharmaceutical ingredient,"DB12095, DB00331, DB09199, DB13675, DB13467 (see DrugBank for full list)",swelling
+Atomoxetine,Atomoxetine,Statin,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB11891, DB00178 (see DrugBank for full list)",consult prescribing information
+Bleomycin,Bleomycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, fever"
+Chlorambucil,Chlorambucil,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Etomidate,Etomidate,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",pain
+Raltitrexed,Raltitrexed,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","bleeding, fever, pain, weakness"
+Etonogestrel,Etonogestrel,Hormone,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB14652 (see DrugBank for full list)",consult prescribing information
+Morphine,Morphine,Analgesic,active pharmaceutical ingredient,"DB08880, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","pain, bradycardia"
+Ropivacaine,Ropivacaine,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Bupivacaine,Bupivacaine,Other,active pharmaceutical ingredient,"DB12095, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)",pain
+Dapiprazole,Dapiprazole,Other,active pharmaceutical ingredient,"DB00181, DB11732, DB14881, DB00346, DB00924 (see DrugBank for full list)",consult prescribing information
+Penciclovir,Penciclovir,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB15131, DB09198, DB00382 (see DrugBank for full list)","nausea, headache, dizziness, pain"
+Tenofovir disoproxil,Tenofovir disoproxil,Antiviral,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Flucloxacillin,Flucloxacillin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB01208, DB14649, DB12457 (see DrugBank for full list)",consult prescribing information
+Tranexamic acid,Tranexamic acid,Other,active pharmaceutical ingredient,"DB06266, DB04839, DB00009, DB14738, DB06679 (see DrugBank for full list)","rash, hypotension"
+Ertapenem,Ertapenem,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",nausea
+Desogestrel,Desogestrel,Hormone,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB08953, DB12095 (see DrugBank for full list)",nausea
+Mitomycin,Mitomycin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","nausea, vomiting"
+Talbutal,Talbutal,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","drowsiness, hypotension"
+Bexarotene,Bexarotene,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB08953 (see DrugBank for full list)",consult prescribing information
+Ibutilide,Ibutilide,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00825 (see DrugBank for full list)",consult prescribing information
+Vindesine,Vindesine,Anticancer,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Chlorthalidone,Chlorthalidone,Antihypertensive,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Pentobarbital,Pentobarbital,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)","drowsiness, insomnia"
+Valproic acid,Valproic acid,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",headache
+Capreomycin,Capreomycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Zolmitriptan,Zolmitriptan,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB01560, DB09198 (see DrugBank for full list)",consult prescribing information
+Acetaminophen,Acetaminophen,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Gefitinib,Gefitinib,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB14652, DB13760, DB08953 (see DrugBank for full list)",consult prescribing information
+Piperacillin,Piperacillin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Dihydroergotamine,Dihydroergotamine,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)","headache, pain"
+Amitriptyline,Amitriptyline,Antidepressant,active pharmaceutical ingredient,"DB08880, DB09275, DB00682, DB12095, DB14719 (see DrugBank for full list)",pain
+Floxuridine,Floxuridine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)","nausea, vomiting, diarrhea, bleeding"
+Tolcapone,Tolcapone,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Fluorometholone,Fluorometholone,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Nitroprusside,Nitroprusside,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB01066 (see DrugBank for full list)",hypotension
+Calcium glucoheptonate,Calcium glucoheptonate,Supplement,active pharmaceutical ingredient,"DB00537, DB01208, DB01070, DB09238, DB01583 (see DrugBank for full list)",drowsiness
+Hydromorphone,Hydromorphone,Analgesic,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",pain
+Indomethacin,Indomethacin,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, headache, dizziness, fever, pain"
+Ethambutol,Ethambutol,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Ipratropium,Ipratropium,Respiratory,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Methadone,Methadone,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","nausea, vomiting, hypotension, bradycardia"
+Olanzapine,Olanzapine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB14719, DB00887, DB01560, DB09198 (see DrugBank for full list)",hypotension
+Atenolol,Atenolol,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00887, DB09198, DB00178, DB00204 (see DrugBank for full list)",consult prescribing information
+Nitrofural,Nitrofural,Other,active pharmaceutical ingredient,,consult prescribing information
+Pimecrolimus,Pimecrolimus,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB00290, DB00022, DB00322 (see DrugBank for full list)",consult prescribing information
+Pyrazinamide,Pyrazinamide,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, rash, fever"
+Metixene,Metixene,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",tachycardia
+Terfenadine,Terfenadine,Antihistamine,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)","nausea, headache"
+Diltiazem,Diltiazem,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Protriptyline,Protriptyline,Antidepressant,active pharmaceutical ingredient,"DB09275, DB00682, DB14719, DB01560, DB09198 (see DrugBank for full list)","headache, dizziness, rash, insomnia, hypotension"
+Aminohippuric acid,Aminohippuric acid,Diuretic,active pharmaceutical ingredient,"DB01076, DB08880, DB00328, DB01004, DB06637 (see DrugBank for full list)",consult prescribing information
+Alfuzosin,Alfuzosin,Diuretic,active pharmaceutical ingredient,"DB01873, DB11459, DB08953, DB00825, DB01208 (see DrugBank for full list)",hypotension
+Trimethadione,Trimethadione,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)","nausea, dizziness, drowsiness"
+Nitisinone,Nitisinone,Other,active pharmaceutical ingredient,,consult prescribing information
+Clobazam,Clobazam,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Minoxidil,Minoxidil,Antihypertensive,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)","dizziness, hypotension"
+Megestrol acetate,Megestrol acetate,Supplement,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",bleeding
+Tioguanine,Tioguanine,Diuretic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","nausea, vomiting, hypotension"
+Methylergometrine,Methylergometrine,Hormone,active pharmaceutical ingredient,"DB01873, DB11459, DB00328, DB00682, DB08953 (see DrugBank for full list)","nausea, vomiting, headache, hypotension, hypertension"
+Buclizine,Buclizine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)","nausea, vomiting, dizziness"
+Aztreonam,Aztreonam,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Chlorzoxazone,Chlorzoxazone,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache, dizziness, drowsiness"
+Aminoglutethimide,Aminoglutethimide,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14652, DB14649, DB12457, DB13259 (see DrugBank for full list)","nausea, vomiting, dizziness, fatigue, hypotension"
+Mefloquine,Mefloquine,Other,active pharmaceutical ingredient,"DB00682, DB14652, DB01208, DB00825, DB08953 (see DrugBank for full list)",consult prescribing information
+Sulfadiazine,Sulfadiazine,Supplement,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Sapropterin,Sapropterin,Supplement,active pharmaceutical ingredient,"DB00080, DB00203, DB11800, DB06695, DB00188 (see DrugBank for full list)",consult prescribing information
+Vinorelbine,Vinorelbine,Anticancer,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Anidulafungin,Anidulafungin,Antifungal,active pharmaceutical ingredient,"DB03410, DB13136, DB00682, DB14055, DB00946 (see DrugBank for full list)",consult prescribing information
+Clozapine,Clozapine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB14719 (see DrugBank for full list)",consult prescribing information
+Sucralfate,Sucralfate,Gastrointestinal,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",pain
+Grepafloxacin,Grepafloxacin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB00825 (see DrugBank for full list)",consult prescribing information
+Doxylamine,Doxylamine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)","rash, fever, swelling"
+Levonorgestrel,Levonorgestrel,Hormone,active pharmaceutical ingredient,"DB00682, DB14652, DB08953, DB12095, DB14649 (see DrugBank for full list)","nausea, bleeding"
+Norepinephrine,Norepinephrine,Diuretic,active pharmaceutical ingredient,"DB01345, DB00328, DB14652, DB13400, DB14649 (see DrugBank for full list)",consult prescribing information
+Cidofovir,Cidofovir,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Mirtazapine,Mirtazapine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",consult prescribing information
+Meprobamate,Meprobamate,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",drowsiness
+Thiethylperazine,Thiethylperazine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB00887, DB01560 (see DrugBank for full list)",hypotension
+Timolol,Timolol,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB00887, DB06196, DB11891 (see DrugBank for full list)","headache, dizziness, bradycardia"
+Treprostinil,Treprostinil,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB11891, DB09198 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache, hypotension"
+Colestipol,Colestipol,Statin,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB06272, DB00887 (see DrugBank for full list)",consult prescribing information
+Trihexyphenidyl,Trihexyphenidyl,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Palonosetron,Palonosetron,Anticancer,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","nausea, vomiting"
+Dydrogesterone,Dydrogesterone,Supplement,active pharmaceutical ingredient,"DB01149, DB14055, DB09255, DB00682, DB06754 (see DrugBank for full list)",consult prescribing information
+Mexiletine,Mexiletine,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB00825, DB08953, DB12095 (see DrugBank for full list)","nausea, hypotension, bradycardia"
+Dexrazoxane,Dexrazoxane,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Tacrine,Tacrine,Respiratory,active pharmaceutical ingredient,"DB08880, DB00682, DB14652, DB15131, DB14649 (see DrugBank for full list)","nausea, vomiting, weakness, hypotension, bradycardia"
+Oxyphencyclimine,Oxyphencyclimine,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Triamterene,Triamterene,Diuretic,water,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, hypertension"
+Valrubicin,Valrubicin,Antibiotic,active pharmaceutical ingredient,"DB14967, DB06770, DB12532, DB00281, DB09107 (see DrugBank for full list)",consult prescribing information
+Procyclidine,Procyclidine,Antipsychotic,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Phenylephrine,Phenylephrine,Respiratory,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB14028, DB13400 (see DrugBank for full list)","headache, hypertension, bradycardia"
+Carbimazole,Carbimazole,Antidiabetic,active pharmaceutical ingredient,"DB08953, DB00682, DB00887, DB00656, DB00610 (see DrugBank for full list)",consult prescribing information
+Digoxin,Digoxin,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB13456, DB00887, DB06196 (see DrugBank for full list)","nausea, vomiting"
+Sulpiride,Sulpiride,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB01560, DB11891 (see DrugBank for full list)","vomiting, hypotension, tachycardia"
+Profenamine,Profenamine,Other,active pharmaceutical ingredient,"DB08953, DB14652, DB14028, DB14719, DB12710 (see DrugBank for full list)",drowsiness
+Nimodipine,Nimodipine,Antihypertensive,active pharmaceutical ingredient,"DB12095, DB00887, DB11891, DB09198, DB00178 (see DrugBank for full list)",hypotension
+Beclomethasone dipropionate,Beclomethasone dipropionate,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB01208 (see DrugBank for full list)",consult prescribing information
+Carisoprodol,Carisoprodol,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",pain
+Progesterone,Progesterone,Supplement,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB08953 (see DrugBank for full list)",consult prescribing information
+Phenylpropanolamine,Phenylpropanolamine,Respiratory,active pharmaceutical ingredient,"DB00328, DB14652, DB13400, DB14649, DB08329 (see DrugBank for full list)",tachycardia
+Sorafenib,Sorafenib,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",diarrhea
+Zoledronic acid,Zoledronic acid,Supplement,active pharmaceutical ingredient,"DB13821, DB00328, DB00887, DB06647, DB00742 (see DrugBank for full list)",consult prescribing information
+Griseofulvin,Griseofulvin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB11800, DB00564, DB00188 (see DrugBank for full list)",headache
+Nisoldipine,Nisoldipine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",hypertension
+Eszopiclone,Eszopiclone,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Ceruletide,Ceruletide,Gastrointestinal,active pharmaceutical ingredient,,consult prescribing information
+Alprazolam,Alprazolam,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Dexbrompheniramine,Dexbrompheniramine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)",weakness
+Gentian violet cation,Gentian violet cation,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Ardeparin,Ardeparin,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB08953, DB00825 (see DrugBank for full list)",bleeding
+Loxapine,Loxapine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB08953, DB09275, DB14028, DB14719 (see DrugBank for full list)",consult prescribing information
+Remoxipride,Remoxipride,Antipsychotic,active pharmaceutical ingredient,"DB08953, DB09275, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Mupirocin,Mupirocin,Antibiotic,active pharmaceutical ingredient,"DB06770, DB14055, DB00682, DB12235, DB12532 (see DrugBank for full list)",consult prescribing information
+Carbamoylcholine,Carbamoylcholine,Other,active pharmaceutical ingredient,"DB00392, DB04808, DB08952, DB01400, DB13503 (see DrugBank for full list)","nausea, hypotension"
+Rosiglitazone,Rosiglitazone,NSAID,active pharmaceutical ingredient,"DB08880, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Pramipexole,Pramipexole,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Acetohexamide,Acetohexamide,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB00682, DB01208, DB14652 (see DrugBank for full list)","nausea, drowsiness, weakness"
+Ampicillin,Ampicillin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Metocurine iodide,Metocurine iodide,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14652, DB14028, DB14719, DB12710 (see DrugBank for full list)",hypotension
+Phenoxymethylpenicillin,Phenoxymethylpenicillin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB00537, DB01208, DB04808 (see DrugBank for full list)","nausea, vomiting"
+Secobarbital,Secobarbital,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)","drowsiness, pain"
+Miglustat,Miglustat,Antihistamine,active pharmaceutical ingredient,,consult prescribing information
+Promazine,Promazine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB14719 (see DrugBank for full list)","drowsiness, constipation"
+Spironolactone,Spironolactone,Diuretic,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","nausea, vomiting, diarrhea, dizziness, rash, drowsiness"
+Methylphenidate,Methylphenidate,Statin,active pharmaceutical ingredient,"DB00328, DB00682, DB13760, DB13400, DB12710 (see DrugBank for full list)","vomiting, headache, hypertension, tachycardia"
+Methocarbamol,Methocarbamol,NSAID,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, drowsiness, hypotension"
+Hyoscyamine,Hyoscyamine,Diuretic,active pharmaceutical ingredient,"DB14719, DB01560, DB11891, DB01545, DB13841 (see DrugBank for full list)","nausea, vomiting, headache, dizziness, fever, hypotension"
+Zolpidem,Zolpidem,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)","dizziness, drowsiness"
+Famciclovir,Famciclovir,Antiviral,active pharmaceutical ingredient,"DB10805, DB12768, DB11003, DB14443, DB10343 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache, dizziness, fatigue"
+Triprolidine,Triprolidine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)","drowsiness, weakness, hypotension, hypertension, tachycardia"
+Streptozocin,Streptozocin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","nausea, vomiting"
+Carboprost tromethamine,Carboprost tromethamine,Hormone,active pharmaceutical ingredient,"DB12708, DB00696, DB01253, DB00929, DB00107 (see DrugBank for full list)","nausea, vomiting, diarrhea, hypertension"
+Cefpiramide,Cefpiramide,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Lindane,Lindane,Other,active pharmaceutical ingredient,"DB06637, DB01156 (see DrugBank for full list)",consult prescribing information
+Trifluridine,Trifluridine,Antiviral,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Prochlorperazine,Prochlorperazine,Antipsychotic,active pharmaceutical ingredient,"DB09275, DB12095, DB14719, DB01560, DB11891 (see DrugBank for full list)",consult prescribing information
+Cyproheptadine,Cyproheptadine,Antihistamine,active pharmaceutical ingredient,"DB00682, DB14719, DB01560, DB11891, DB01545 (see DrugBank for full list)",consult prescribing information
+Nitric Oxide,Nitric Oxide,Respiratory,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB04899 (see DrugBank for full list)",hypertension
+Bendroflumethiazide,Bendroflumethiazide,Antihypertensive,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Allopurinol,Allopurinol,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB01345, DB00682, DB00328 (see DrugBank for full list)","pain, swelling"
+Ceftazidime,Ceftazidime,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Cerivastatin,Cerivastatin,Statin,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB08953 (see DrugBank for full list)",consult prescribing information
+Trimethoprim,Trimethoprim,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, headache, dizziness"
+Gemcitabine,Gemcitabine,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Entecavir,Entecavir,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB15131, DB09198, DB00382 (see DrugBank for full list)",consult prescribing information
+Betamethasone,Betamethasone,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",hypertension
+Teniposide,Teniposide,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB13456 (see DrugBank for full list)",consult prescribing information
+Epirubicin,Epirubicin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",bleeding
+Chloramphenicol,Chloramphenicol,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Loracarbef,Loracarbef,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache, dizziness, rash"
+Lansoprazole,Lansoprazole,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB08953, DB12095 (see DrugBank for full list)","nausea, diarrhea, constipation, pain"
+Dipivefrin,Dipivefrin,Diuretic,active pharmaceutical ingredient,"DB01021, DB00983, DB13812, DB02568, DB11919 (see DrugBank for full list)",consult prescribing information
+Droperidol,Droperidol,Antipsychotic,active pharmaceutical ingredient,"DB09275, DB14719, DB01560, DB11891, DB01545 (see DrugBank for full list)",consult prescribing information
+Levothyroxine,Levothyroxine,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB14652, DB13760, DB00682 (see DrugBank for full list)","diarrhea, tachycardia"
+Framycetin,Framycetin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Meperidine,Meperidine,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",constipation
+Cefalotin,Cefalotin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Prazosin,Prazosin,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB04899, DB13400, DB14649 (see DrugBank for full list)",drowsiness
+Imipramine,Imipramine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB09275, DB00682, DB12095, DB14719 (see DrugBank for full list)",constipation
+Acitretin,Acitretin,Other,active pharmaceutical ingredient,"DB12474, DB12235, DB15561, DB13981, DB00313 (see DrugBank for full list)",headache
+Verteporfin,Verteporfin,Anticancer,active pharmaceutical ingredient,"DB00553, DB16183, DB06659, DB04854, DB05428 (see DrugBank for full list)",consult prescribing information
+Nabumetone,Nabumetone,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, drowsiness, pain"
+Methscopolamine bromide,Methscopolamine bromide,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, vomiting, headache, dizziness, drowsiness"
+Sodium tetradecyl sulfate,Sodium tetradecyl sulfate,Other,active pharmaceutical ingredient,,consult prescribing information
+Ketorolac,Ketorolac,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, headache, pain"
+Enoxacin,Enoxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)",consult prescribing information
+Quinine,Quinine,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Tenoxicam,Tenoxicam,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",pain
+Dronabinol,Dronabinol,Anticancer,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)","hypotension, tachycardia"
+Hexylcaine,Hexylcaine,Other,active pharmaceutical ingredient,,headache
+Methohexital,Methohexital,Other,active pharmaceutical ingredient,"DB08953, DB00682, DB04899, DB14028, DB09124 (see DrugBank for full list)","rash, pain"
+Chlordiazepoxide,Chlordiazepoxide,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",weakness
+Duloxetine,Duloxetine,Antidepressant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)","vomiting, hypertension, tachycardia"
+Chlorpromazine,Chlorpromazine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB14719 (see DrugBank for full list)",fever
+Rimantadine,Rimantadine,Antiviral,active pharmaceutical ingredient,"DB10805, DB12768, DB11003, DB14443, DB10343 (see DrugBank for full list)",consult prescribing information
+Amikacin,Amikacin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Lenalidomide,Lenalidomide,NSAID,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Raloxifene,Raloxifene,Statin,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14649, DB15690 (see DrugBank for full list)",consult prescribing information
+Celecoxib,Celecoxib,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)","bleeding, drowsiness, pain"
+Gallamine triethiodide,Gallamine triethiodide,Other,active pharmaceutical ingredient,"DB14719, DB00887, DB01560, DB01545, DB13841 (see DrugBank for full list)",tachycardia
+Brimonidine,Brimonidine,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB13400, DB12710, DB14719 (see DrugBank for full list)","vomiting, hypotension"
+Dicloxacillin,Dicloxacillin,Antibiotic,active pharmaceutical ingredient,"DB00682, DB01208, DB12457, DB13259, DB09570 (see DrugBank for full list)","nausea, rash, fever"
+Nabilone,Nabilone,Anticancer,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Pefloxacin,Pefloxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)",rash
+Altretamine,Altretamine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Sotalol,Sotalol,Other,active pharmaceutical ingredient,"DB10713, DB00887, DB11891, DB09198, DB00178 (see DrugBank for full list)","hypotension, tachycardia, bradycardia"
+Buspirone,Buspirone,Antidepressant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Miglitol,Miglitol,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB14652, DB01208, DB14649 (see DrugBank for full list)",diarrhea
+Fosinopril,Fosinopril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB00887, DB06196, DB00178 (see DrugBank for full list)",hypotension
+Cefotaxime,Cefotaxime,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Entacapone,Entacapone,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, diarrhea, dizziness, constipation, pain, hypotension"
+Zidovudine,Zidovudine,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB08953 (see DrugBank for full list)","nausea, vomiting, headache, fatigue"
+Darifenacin,Darifenacin,Hormone,active pharmaceutical ingredient,"DB12095, DB14719, DB01560, DB01545, DB13841 (see DrugBank for full list)",consult prescribing information
+Oxycodone,Oxycodone,Analgesic,active pharmaceutical ingredient,"DB12095, DB14719, DB00887, DB01560, DB01545 (see DrugBank for full list)","hypotension, bradycardia"
+Phenindione,Phenindione,Anticoagulant,active pharmaceutical ingredient,"DB08880, DB00682, DB13456, DB06251, DB00970 (see DrugBank for full list)",consult prescribing information
+Flutamide,Flutamide,Hormone,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Tolmetin,Tolmetin,NSAID,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)","nausea, vomiting, drowsiness, pain"
+Cimetidine,Cimetidine,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Haloperidol,Haloperidol,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB01194, DB09275, DB00682, DB12095 (see DrugBank for full list)",consult prescribing information
+Ritonavir,Ritonavir,Antiviral,active pharmaceutical ingredient,"DB08880, DB01194, DB00682, DB12095, DB13456 (see DrugBank for full list)",consult prescribing information
+Levallorphan,Levallorphan,Analgesic,active pharmaceutical ingredient,"DB09049, DB01565, DB06738, DB09174, DB01459 (see DrugBank for full list)",consult prescribing information
+Nitazoxanide,Nitazoxanide,Antiviral,active pharmaceutical ingredient,,consult prescribing information
+Triflupromazine,Triflupromazine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB08953, DB14652, DB09275, DB14028 (see DrugBank for full list)",fever
+Dextrothyroxine,Dextrothyroxine,Statin,active pharmaceutical ingredient,,consult prescribing information
+Acetyldigitoxin,Acetyldigitoxin,Other,active pharmaceutical ingredient,"DB01873, DB11459, DB00825, DB14652, DB13456 (see DrugBank for full list)",tachycardia
+Vancomycin,Vancomycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, pain"
+Aminocaproic acid,Aminocaproic acid,Other,active pharmaceutical ingredient,"DB12409, DB13192, DB13244, DB11608, DB13151 (see DrugBank for full list)",hypotension
+Dextromethorphan,Dextromethorphan,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB09198 (see DrugBank for full list)","nausea, vomiting, tachycardia"
+Cisplatin,Cisplatin,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Bentoquatam,Bentoquatam,Other,active pharmaceutical ingredient,"DB09139, DB11789, DB11622, DB04348, DB00564 (see DrugBank for full list)",consult prescribing information
+Anisotropine methylbromide,Anisotropine methylbromide,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Albendazole,Albendazole,Other,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00682, DB14652 (see DrugBank for full list)","headache, fever"
+Trandolapril,Trandolapril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)","headache, dizziness, hypotension"
+Caspofungin,Caspofungin,Antifungal,active pharmaceutical ingredient,"DB01149, DB01076, DB08880, DB00328, DB00682 (see DrugBank for full list)","nausea, rash, swelling"
+Carteolol,Carteolol,Antihypertensive,active pharmaceutical ingredient,"DB00825, DB13400, DB00656, DB08980, DB00178 (see DrugBank for full list)","hypotension, bradycardia"
+Bentiromide,Bentiromide,Supplement,active pharmaceutical ingredient,,consult prescribing information
+Alitretinoin,Alitretinoin,Supplement,active pharmaceutical ingredient,"DB09107, DB13259, DB04839, DB06730, DB00254 (see DrugBank for full list)",consult prescribing information
+Metolazone,Metolazone,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","dizziness, drowsiness"
+Tolnaftate,Tolnaftate,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Oxaliplatin,Oxaliplatin,Anticancer,water,"DB08880, DB00328, DB00682, DB00928, DB01208 (see DrugBank for full list)",bleeding
+Cinchocaine,Cinchocaine,Analgesic,active pharmaceutical ingredient,"DB14719, DB13456, DB01560, DB11891, DB13259 (see DrugBank for full list)",bradycardia
+Lercanidipine,Lercanidipine,Antihypertensive,active pharmaceutical ingredient,"DB12095, DB00887, DB09198, DB00178, DB00204 (see DrugBank for full list)",hypertension
+Foscarnet,Foscarnet,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00825 (see DrugBank for full list)",consult prescribing information
+Erlotinib,Erlotinib,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB11891 (see DrugBank for full list)","nausea, diarrhea, rash, fatigue"
+Cyclophosphamide,Cyclophosphamide,Anticancer,active pharmaceutical ingredient,"DB08880, DB09275, DB00682, DB12095, DB13456 (see DrugBank for full list)","nausea, vomiting, diarrhea, fever"
+Mephenytoin,Mephenytoin,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",consult prescribing information
+Rofecoxib,Rofecoxib,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Chlormerodrin,Chlormerodrin,Diuretic,water,,consult prescribing information
+Cefdinir,Cefdinir,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Guanidine,Guanidine,Diuretic,active pharmaceutical ingredient,"DB00328, DB01004, DB00537, DB00983, DB06637 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Gadoversetamide,Gadoversetamide,Anticancer,active pharmaceutical ingredient,,consult prescribing information
+Toremifene,Toremifene,Statin,active pharmaceutical ingredient,"DB00682, DB00825, DB01208, DB08953, DB12095 (see DrugBank for full list)",consult prescribing information
+Nortriptyline,Nortriptyline,Antidepressant,active pharmaceutical ingredient,"DB09275, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",hypotension
+Vincristine,Vincristine,Anticancer,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Benazepril,Benazepril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)","nausea, headache, dizziness, fatigue, hypotension, hypertension"
+Amoxapine,Amoxapine,Antidepressant,active pharmaceutical ingredient,"DB09275, DB00682, DB14719, DB01560, DB09198 (see DrugBank for full list)",consult prescribing information
+Fluorouracil,Fluorouracil,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB11891, DB09198, DB13259 (see DrugBank for full list)",consult prescribing information
+Pyridostigmine,Pyridostigmine,Other,active pharmaceutical ingredient,"DB06637, DB09262, DB14652, DB00392, DB13759 (see DrugBank for full list)",bradycardia
+Desoximetasone,Desoximetasone,NSAID,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB01208 (see DrugBank for full list)",consult prescribing information
+Azelaic acid,Azelaic acid,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Zafirlukast,Zafirlukast,Respiratory,active pharmaceutical ingredient,"DB00328, DB00682, DB09198, DB06737, DB00916 (see DrugBank for full list)",rash
+Propylthiouracil,Propylthiouracil,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00328, DB08953, DB00928, DB00682 (see DrugBank for full list)",consult prescribing information
+Acetohydroxamic acid,Acetohydroxamic acid,Antibiotic,active pharmaceutical ingredient,DB00898 (see DrugBank for full list),"nausea, vomiting"
+Pentostatin,Pentostatin,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, rash, fatigue"
+Methoxsalen,Methoxsalen,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Piroxicam,Piroxicam,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, drowsiness, pain"
+Lamotrigine,Lamotrigine,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Perflutren,Perflutren,Statin,active pharmaceutical ingredient,"DB00825, DB01208, DB00656, DB11891, DB08980 (see DrugBank for full list)",consult prescribing information
+Zanamivir,Zanamivir,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Bosentan,Bosentan,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB04899, DB08953 (see DrugBank for full list)",headache
+Tigecycline,Tigecycline,Antibiotic,active pharmaceutical ingredient,"DB13686, DB14055, DB00682, DB09275, DB09124 (see DrugBank for full list)","nausea, vomiting, headache"
+Doxapram,Doxapram,Respiratory,active pharmaceutical ingredient,"DB00328, DB13400, DB00656, DB00610, DB06737 (see DrugBank for full list)",tachycardia
+Benzthiazide,Benzthiazide,Antihypertensive,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","nausea, vomiting, fatigue, drowsiness, hypertension"
+Methotrexate,Methotrexate,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)","nausea, vomiting"
+Carbamazepine,Carbamazepine,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Cisatracurium,Cisatracurium,Antihistamine,active pharmaceutical ingredient,"DB14719, DB13456, DB00887, DB01560, DB01545 (see DrugBank for full list)",consult prescribing information
+Succimer,Succimer,Other,water,DB09139 (see DrugBank for full list),consult prescribing information
+Cephalexin,Cephalexin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)","nausea, vomiting, diarrhea, pain"
+Cinnarizine,Cinnarizine,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB11891, DB09198 (see DrugBank for full list)",consult prescribing information
+Fondaparinux,Fondaparinux,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB08953, DB00928 (see DrugBank for full list)",consult prescribing information
+Vinblastine,Vinblastine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB13259 (see DrugBank for full list)",consult prescribing information
+Propranolol,Propranolol,Other,active pharmaceutical ingredient,"DB10713, DB08880, DB00682, DB12095, DB00887 (see DrugBank for full list)","insomnia, hypotension, hypertension, bradycardia"
+Atropine,Atropine,Other,active pharmaceutical ingredient,"DB14719, DB01560, DB11891, DB01545, DB00178 (see DrugBank for full list)","dizziness, fatigue, tachycardia"
+Fenoprofen,Fenoprofen,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)","nausea, vomiting, headache, dizziness, drowsiness, pain"
+Fenfluramine,Fenfluramine,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",tachycardia
+Clonidine,Clonidine,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)","drowsiness, weakness, hypotension, hypertension, bradycardia"
+Sulfamethizole,Sulfamethizole,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00983, DB14055, DB00682, DB00203 (see DrugBank for full list)",consult prescribing information
+Valaciclovir,Valaciclovir,Antiviral,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Carbenicillin,Carbenicillin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB00328, DB00537, DB01208 (see DrugBank for full list)",consult prescribing information
+Mazindol,Mazindol,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Valdecoxib,Valdecoxib,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, bleeding, drowsiness, pain, hypertension"
+Lactulose,Lactulose,Anticancer,lactose,"DB01873, DB11459, DB01345, DB00682, DB01208 (see DrugBank for full list)",diarrhea
+Voriconazole,Voriconazole,Antifungal,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB11891 (see DrugBank for full list)",consult prescribing information
+Levocarnitine,Levocarnitine,Diuretic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)","fever, hypertension, tachycardia"
+Enalapril,Enalapril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)",hypertension
+Nizatidine,Nizatidine,Antihistamine,active pharmaceutical ingredient,"DB14652, DB14649, DB00219, DB00887, DB14489 (see DrugBank for full list)",diarrhea
+Diclofenac,Diclofenac,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)","nausea, vomiting, bleeding, drowsiness, fever, pain"
+Fluticasone propionate,Fluticasone propionate,Respiratory,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Lisuride,Lisuride,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)",consult prescribing information
+Doxazosin,Doxazosin,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB13456, DB00887, DB09198 (see DrugBank for full list)","drowsiness, hypotension"
+Fluocinolone acetonide,Fluocinolone acetonide,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Piperazine,Piperazine,Other,active pharmaceutical ingredient,"DB00656, DB09198, DB00540, DB00737, DB01142 (see DrugBank for full list)",fatigue
+Ethosuximide,Ethosuximide,Anticonvulsant,active pharmaceutical ingredient,"DB12095, DB14719, DB01560, DB11891, DB09198 (see DrugBank for full list)","nausea, vomiting"
+Amiloride,Amiloride,Diuretic,water,"DB01345, DB00328, DB04899, DB00825, DB00928 (see DrugBank for full list)",hypertension
+Oxytetracycline,Oxytetracycline,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB09275, DB00682, DB09124 (see DrugBank for full list)",headache
+Ulobetasol,Ulobetasol,Other,active pharmaceutical ingredient,"DB00107, DB00331, DB09199, DB13675, DB13467 (see DrugBank for full list)",hypertension
+Gadoteridol,Gadoteridol,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Labetalol,Labetalol,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","hypotension, bradycardia"
+Thiopental,Thiopental,Analgesic,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB09198 (see DrugBank for full list)","rash, pain"
+Monobenzone,Monobenzone,Other,water,DB15874 (see DrugBank for full list),consult prescribing information
+Linezolid,Linezolid,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB09198, DB13259 (see DrugBank for full list)",vomiting
+Ivermectin,Ivermectin,Vaccine,active pharmaceutical ingredient,"DB08880, DB00682, DB08953, DB12095, DB14649 (see DrugBank for full list)",consult prescribing information
+Medroxyprogesterone acetate,Medroxyprogesterone acetate,Diuretic,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Cisapride,Cisapride,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Sulindac,Sulindac,NSAID,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)",hypotension
+Cyclothiazide,Cyclothiazide,Antihypertensive,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Nafcillin,Nafcillin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB01208, DB12457, DB13259 (see DrugBank for full list)","nausea, vomiting, diarrhea, pain"
+Chloroquine,Chloroquine,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)","nausea, vomiting, headache, drowsiness, weakness"
+Ethionamide,Ethionamide,Other,active pharmaceutical ingredient,"DB14055, DB00682, DB01583, DB00951, DB13259 (see DrugBank for full list)","nausea, vomiting"
+Metaraminol,Metaraminol,Other,active pharmaceutical ingredient,"DB00328, DB13400, DB00219, DB00656, DB06737 (see DrugBank for full list)",hypotension
+Butorphanol,Butorphanol,Analgesic,active pharmaceutical ingredient,"DB01345, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Bisoprolol,Bisoprolol,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)","hypotension, bradycardia"
+Amodiaquine,Amodiaquine,NSAID,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00825, DB01208 (see DrugBank for full list)","vomiting, headache, drowsiness, hypotension"
+Furazolidone,Furazolidone,Hormone,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB09198 (see DrugBank for full list)","rash, fever"
+Rifabutin,Rifabutin,Antibiotic,active pharmaceutical ingredient,"DB00682, DB08953, DB12095, DB12457, DB09198 (see DrugBank for full list)",consult prescribing information
+Paramethadione,Paramethadione,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)","nausea, dizziness, drowsiness"
+Demeclocycline,Demeclocycline,Antibiotic,active pharmaceutical ingredient,"DB09275, DB00682, DB09124, DB04272, DB13259 (see DrugBank for full list)",fever
+Imatinib,Imatinib,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB11891, DB09198 (see DrugBank for full list)","nausea, vomiting, diarrhea, rash, fatigue, pain"
+Triamcinolone,Triamcinolone,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Oxandrolone,Oxandrolone,Hormone,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB14649, DB09198 (see DrugBank for full list)",consult prescribing information
+Nicardipine,Nicardipine,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",hypertension
+Fluphenazine,Fluphenazine,Antipsychotic,active pharmaceutical ingredient,"DB08953, DB09275, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Testosterone,Testosterone,Hormone,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Efavirenz,Efavirenz,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Bacitracin,Bacitracin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Niacin,Niacin,Statin,active pharmaceutical ingredient,"DB00682, DB00887, DB00656, DB09198, DB00382 (see DrugBank for full list)",hypotension
+Clorazepic acid,Clorazepic acid,Anticonvulsant,water,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Guanabenz,Guanabenz,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB04899, DB13400 (see DrugBank for full list)",hypertension
+Alendronic acid,Alendronic acid,Supplement,active pharmaceutical ingredient,"DB13821, DB00328, DB00887, DB06647, DB00742 (see DrugBank for full list)","nausea, diarrhea, constipation, pain"
+Clofarabine,Clofarabine,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Docosanol,Docosanol,Antibiotic,active pharmaceutical ingredient,,"nausea, headache, dizziness, fever, pain"
+Dexmedetomidine,Dexmedetomidine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Sulfacetamide,Sulfacetamide,Hormone,active pharmaceutical ingredient,"DB05115, DB06770, DB12235, DB12532, DB00281 (see DrugBank for full list)","nausea, vomiting, headache, dizziness"
+Prednisone,Prednisone,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Clofibrate,Clofibrate,Statin,active pharmaceutical ingredient,"DB00682, DB08953, DB12095, DB00887, DB12457 (see DrugBank for full list)",consult prescribing information
+Astemizole,Astemizole,Antihistamine,active pharmaceutical ingredient,"DB01873, DB11459, DB00328, DB00682, DB00825 (see DrugBank for full list)",drowsiness
+Inulin,Inulin,Antidiabetic,starch,,consult prescribing information
+Butoconazole,Butoconazole,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Adenosine,Adenosine,Other,active pharmaceutical ingredient,"DB00825, DB01208, DB00219, DB00656, DB11891 (see DrugBank for full list)",tachycardia
+Simvastatin,Simvastatin,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB08953 (see DrugBank for full list)",consult prescribing information
+Pemetrexed,Pemetrexed,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Mebendazole,Mebendazole,Other,active pharmaceutical ingredient,"DB00252, DB01320, DB00501, DB00563, DB00916 (see DrugBank for full list)","headache, fever"
+Gonadorelin,Gonadorelin,Antidiabetic,active pharmaceutical ingredient,"DB09277, DB09066, DB00089 (see DrugBank for full list)",consult prescribing information
+Dyclonine,Dyclonine,Respiratory,active pharmaceutical ingredient,"DB14719, DB13456, DB01560, DB11891, DB13259 (see DrugBank for full list)",consult prescribing information
+Nystatin,Nystatin,Antibiotic,active pharmaceutical ingredient,"DB01076, DB01229, DB01583, DB06403, DB00973 (see DrugBank for full list)",nausea
+Dextropropoxyphene,Dextropropoxyphene,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Mitotane,Mitotane,Diuretic,active pharmaceutical ingredient,"DB00682, DB14652, DB00825, DB08953, DB09124 (see DrugBank for full list)",consult prescribing information
+Stavudine,Stavudine,Antiviral,active pharmaceutical ingredient,"DB00328, DB09275, DB12710, DB00887, DB00382 (see DrugBank for full list)","pain, swelling"
+Leucovorin,Leucovorin,Diuretic,active pharmaceutical ingredient,"DB08880, DB00328, DB01004, DB01583, DB00213 (see DrugBank for full list)",consult prescribing information
+Dyphylline,Dyphylline,Respiratory,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Pentazocine,Pentazocine,Analgesic,active pharmaceutical ingredient,"DB01345, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Magnesium sulfate,Magnesium sulfate,Anticonvulsant,active pharmaceutical ingredient,"DB14719, DB00887, DB01560, DB09198, DB13259 (see DrugBank for full list)","diarrhea, hypotension"
+Latanoprost,Latanoprost,Other,active pharmaceutical ingredient,"DB00328, DB06737, DB08439, DB00586, DB00784 (see DrugBank for full list)",consult prescribing information
+Estrone,Estrone,Hormone,active pharmaceutical ingredient,"DB05209, DB14905, DB12095, DB06474, DB12457 (see DrugBank for full list)","nausea, vomiting, headache, bleeding"
+Trazodone,Trazodone,Antidepressant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB11891 (see DrugBank for full list)","insomnia, hypotension, bradycardia"
+Mecamylamine,Mecamylamine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB04272, DB00178 (see DrugBank for full list)",hypertension
+Sevelamer,Sevelamer,Diuretic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB01208, DB06272 (see DrugBank for full list)",consult prescribing information
+Acamprosate,Acamprosate,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB01004, DB01583, DB00213 (see DrugBank for full list)",diarrhea
+Metaxalone,Metaxalone,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",pain
+Verapamil,Verapamil,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Trimethobenzamide,Trimethobenzamide,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, vomiting"
+Flumethasone,Flumethasone,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB08953, DB01208, DB15274 (see DrugBank for full list)",rash
+Sulfametopyrazine,Sulfametopyrazine,Respiratory,active pharmaceutical ingredient,"DB00331, DB09199, DB13675, DB01132, DB09198 (see DrugBank for full list)",consult prescribing information
+Nilutamide,Nilutamide,Diuretic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, headache, dizziness"
+Nafarelin,Nafarelin,Antidiabetic,active pharmaceutical ingredient,"DB09277, DB01076, DB00080, DB00537, DB01004 (see DrugBank for full list)",consult prescribing information
+Epinephrine,Epinephrine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB09198, DB00178, DB00204 (see DrugBank for full list)",consult prescribing information
+Sumatriptan,Sumatriptan,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)",headache
+Pirenzepine,Pirenzepine,Gastrointestinal,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Cefixime,Cefixime,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB09255, DB06754, DB09259 (see DrugBank for full list)","nausea, vomiting, diarrhea, pain"
+Chlorpropamide,Chlorpropamide,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB04272, DB09198 (see DrugBank for full list)",consult prescribing information
+Aprepitant,Aprepitant,Anticancer,active pharmaceutical ingredient,"DB00682, DB14652, DB00825, DB08953, DB12095 (see DrugBank for full list)","nausea, vomiting"
+Galantamine,Galantamine,Antipsychotic,active pharmaceutical ingredient,"DB08953, DB14652, DB01208, DB00825, DB12095 (see DrugBank for full list)",consult prescribing information
+Tamoxifen,Tamoxifen,Hormone,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB11891 (see DrugBank for full list)",dizziness
+Benzyl benzoate,Benzyl benzoate,Other,active pharmaceutical ingredient,,consult prescribing information
+Isoflurophate,Isoflurophate,Other,active pharmaceutical ingredient,"DB09262, DB14652, DB00392, DB13759, DB15566 (see DrugBank for full list)","nausea, vomiting, diarrhea, pain, weakness"
+Losartan,Losartan,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB11891 (see DrugBank for full list)","hypotension, hypertension, tachycardia, bradycardia"
+Thioridazine,Thioridazine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB00887, DB01560 (see DrugBank for full list)",constipation
+Moricizine,Moricizine,Other,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB09275, DB14028 (see DrugBank for full list)",vomiting
+Amphotericin B,Amphotericin B,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB04899, DB14652 (see DrugBank for full list)",consult prescribing information
+Midazolam,Midazolam,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Tobramycin,Tobramycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Trovafloxacin,Trovafloxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB00825, DB01208 (see DrugBank for full list)","vomiting, diarrhea"
+Pentosan polysulfate,Pentosan polysulfate,Hormone,active pharmaceutical ingredient,"DB13821, DB00328, DB00682, DB08953, DB00928 (see DrugBank for full list)",consult prescribing information
+Fludrocortisone,Fludrocortisone,Antidiabetic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Mycophenolate mofetil,Mycophenolate mofetil,Antiviral,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Cephaloglycin,Cephaloglycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Flurazepam,Flurazepam,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Moexipril,Moexipril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)","hypotension, hypertension"
+Phentolamine,Phentolamine,Anticancer,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB04899, DB00928 (see DrugBank for full list)","hypertension, tachycardia"
+Fluorescein,Fluorescein,Other,active pharmaceutical ingredient,"DB01149, DB01076, DB08880, DB00328, DB01004 (see DrugBank for full list)",consult prescribing information
+Daunorubicin,Daunorubicin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Furosemide,Furosemide,Antihypertensive,water,"DB00682, DB00887, DB06196, DB09198, DB00204 (see DrugBank for full list)","hypotension, hypertension"
+Ergotamine,Ergotamine,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB01560 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache"
+Tizanidine,Tizanidine,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)",pain
+Nitrofurantoin,Nitrofurantoin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00825 (see DrugBank for full list)",vomiting
+Nicergoline,Nicergoline,Other,active pharmaceutical ingredient,"DB01873, DB11459, DB00328, DB13400, DB13456 (see DrugBank for full list)",consult prescribing information
+Eplerenone,Eplerenone,Diuretic,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB00178 (see DrugBank for full list)",hypotension
+Amprenavir,Amprenavir,Antiviral,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB13760, DB08953 (see DrugBank for full list)",consult prescribing information
+Icodextrin,Icodextrin,Antidiabetic,"starch, water",,consult prescribing information
+Methazolamide,Methazolamide,Diuretic,active pharmaceutical ingredient,"DB01345, DB00328, DB04899, DB00928, DB00682 (see DrugBank for full list)",hypertension
+Naltrexone,Naltrexone,Analgesic,active pharmaceutical ingredient,"DB01345, DB00328, DB08953, DB14028, DB14719 (see DrugBank for full list)",consult prescribing information
+Delavirdine,Delavirdine,Antiviral,active pharmaceutical ingredient,"DB00328, DB00682, DB08953, DB13760, DB00825 (see DrugBank for full list)",rash
+Tamsulosin,Tamsulosin,Hormone,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",hypotension
+Porfimer sodium,Porfimer sodium,Antiviral,active pharmaceutical ingredient,"DB06770, DB00553, DB16183, DB12532, DB06659 (see DrugBank for full list)",consult prescribing information
+Sufentanil,Sufentanil,Analgesic,active pharmaceutical ingredient,"DB12095, DB14719, DB00887, DB01560, DB01545 (see DrugBank for full list)",pain
+Lamivudine,Lamivudine,Antiviral,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, diarrhea, headache, fatigue"
+Ibandronate,Ibandronate,Supplement,active pharmaceutical ingredient,"DB13821, DB00328, DB00825, DB01208, DB00887 (see DrugBank for full list)",consult prescribing information
+Diethylcarbamazine,Diethylcarbamazine,Other,active pharmaceutical ingredient,"DB09262, DB14652, DB00392, DB13759, DB15566 (see DrugBank for full list)",consult prescribing information
+Flurbiprofen,Flurbiprofen,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Oxacillin,Oxacillin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Apomorphine,Apomorphine,Hormone,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)","nausea, hypotension"
+Paroxetine,Paroxetine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",consult prescribing information
+Nedocromil,Nedocromil,Respiratory,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",headache
+Norethisterone,Norethisterone,Antidiabetic,active pharmaceutical ingredient,"DB01873, DB11459, DB00682, DB14652, DB08953 (see DrugBank for full list)",consult prescribing information
+Adefovir dipivoxil,Adefovir dipivoxil,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Azatadine,Azatadine,Antihistamine,active pharmaceutical ingredient,"DB00825, DB01208, DB08329, DB12457, DB00656 (see DrugBank for full list)",drowsiness
+Clodronic acid,Clodronic acid,Supplement,active pharmaceutical ingredient,"DB13821, DB00328, DB00887, DB06647, DB00742 (see DrugBank for full list)",consult prescribing information
+Procaine,Procaine,Antiviral,active pharmaceutical ingredient,"DB00682, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)",bleeding
+Methoxamine,Methoxamine,Other,active pharmaceutical ingredient,"DB00328, DB13400, DB00219, DB00656, DB00610 (see DrugBank for full list)",hypotension
+Imiquimod,Imiquimod,Antibiotic,active pharmaceutical ingredient,"DB16736, DB12095, DB00503, DB15569, DB14921 (see DrugBank for full list)","nausea, headache, fatigue, fever, pain"
+Homatropine methylbromide,Homatropine methylbromide,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",nausea
+Trimipramine,Trimipramine,Antidepressant,active pharmaceutical ingredient,"DB09275, DB00682, DB14719, DB01560, DB11891 (see DrugBank for full list)","vomiting, drowsiness, fever"
+Nitroglycerin,Nitroglycerin,Other,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)","headache, hypotension"
+Rocuronium,Rocuronium,Respiratory,active pharmaceutical ingredient,"DB14719, DB00887, DB01560, DB01545, DB13841 (see DrugBank for full list)",consult prescribing information
+Thiabendazole,Thiabendazole,Antifungal,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB01345, DB00928 (see DrugBank for full list)",consult prescribing information
+Nateglinide,Nateglinide,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Atracurium besylate,Atracurium besylate,Other,active pharmaceutical ingredient,"DB08953, DB14652, DB14028, DB14719, DB12710 (see DrugBank for full list)",hypotension
+Pralidoxime,Pralidoxime,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Risperidone,Risperidone,Antidepressant,active pharmaceutical ingredient,"DB00682, DB09275, DB12095, DB14719, DB00887 (see DrugBank for full list)","tachycardia, bradycardia"
+Naftifine,Naftifine,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Esomeprazole,Esomeprazole,Antibiotic,active pharmaceutical ingredient,"DB00328, DB08953, DB12095, DB14649, DB00887 (see DrugBank for full list)","nausea, headache, drowsiness"
+Meclizine,Meclizine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, vomiting, drowsiness, hypotension"
+Pentamidine,Pentamidine,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB11891 (see DrugBank for full list)","nausea, diarrhea, dizziness, rash, fever, pain"
+Hetacillin,Hetacillin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB00537, DB01208, DB04808 (see DrugBank for full list)",consult prescribing information
+Riluzole,Riluzole,Anticonvulsant,active pharmaceutical ingredient,"DB08880, DB08953, DB00682, DB14028, DB14719 (see DrugBank for full list)",consult prescribing information
+Hydrocortisone,Hydrocortisone,Antibiotic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",hypertension
+Mannitol,Mannitol,Diuretic,water,"DB00682, DB00887, DB06196, DB00178, DB00970 (see DrugBank for full list)",consult prescribing information
+Gadobenic acid,Gadobenic acid,Diuretic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00825 (see DrugBank for full list)",consult prescribing information
+Zileuton,Zileuton,Respiratory,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB08953, DB12095 (see DrugBank for full list)",consult prescribing information
+Modafinil,Modafinil,Other,active pharmaceutical ingredient,"DB00328, DB00682, DB08953, DB14652, DB12095 (see DrugBank for full list)",consult prescribing information
+Deferoxamine,Deferoxamine,Other,water,"DB09139, DB00126, DB08830, DB14486, DB14485 (see DrugBank for full list)",consult prescribing information
+Scopolamine,Scopolamine,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB12095, DB14719, DB12710 (see DrugBank for full list)","hypertension, tachycardia"
+Carbinoxamine,Carbinoxamine,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)","nausea, vomiting"
+Etodolac,Etodolac,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","fever, pain, swelling"
+Prilocaine,Prilocaine,Other,active pharmaceutical ingredient,"DB14719, DB13456, DB01560, DB11891, DB13259 (see DrugBank for full list)",consult prescribing information
+Epinastine,Epinastine,Antihistamine,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB11891 (see DrugBank for full list)",consult prescribing information
+Tranylcypromine,Tranylcypromine,Antidepressant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB09198 (see DrugBank for full list)","dizziness, drowsiness, insomnia, weakness, hypotension"
+Isoflurane,Isoflurane,Other,active pharmaceutical ingredient,"DB12095, DB14719, DB00887, DB01560, DB11891 (see DrugBank for full list)",pain
+Ethotoin,Ethotoin,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)","nausea, drowsiness"
+Tretinoin,Tretinoin,Supplement,active pharmaceutical ingredient,"DB08880, DB00328, DB04899, DB00928, DB14652 (see DrugBank for full list)",consult prescribing information
+Hexachlorophene,Hexachlorophene,Other,active pharmaceutical ingredient,,"vomiting, diarrhea, hypotension"
+Dolasetron,Dolasetron,Anticancer,active pharmaceutical ingredient,"DB00682, DB08953, DB01208, DB00825, DB14028 (see DrugBank for full list)",consult prescribing information
+Clopidogrel,Clopidogrel,Other,active pharmaceutical ingredient,"DB08880, DB00328, DB08953, DB00928, DB14652 (see DrugBank for full list)",vomiting
+Tetracycline,Tetracycline,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Meropenem,Meropenem,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Potassium chloride,Potassium chloride,Supplement,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Irinotecan,Irinotecan,Anticancer,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Methimazole,Methimazole,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00682, DB13456, DB00887, DB06196 (see DrugBank for full list)","headache, fever, pain"
+Metyrosine,Metyrosine,Antihypertensive,active pharmaceutical ingredient,"DB00328, DB08953, DB04899, DB14028, DB14719 (see DrugBank for full list)",fatigue
+Clavulanic acid,Clavulanic acid,Antibiotic,active pharmaceutical ingredient,"DB06770, DB14055, DB00682, DB12235, DB12532 (see DrugBank for full list)",consult prescribing information
+Olopatadine,Olopatadine,Antihistamine,active pharmaceutical ingredient,DB00935 (see DrugBank for full list),consult prescribing information
+Hydrocortamate,Hydrocortamate,NSAID,active pharmaceutical ingredient,"DB14055, DB00682, DB11800, DB00564, DB00188 (see DrugBank for full list)",consult prescribing information
+Alprostadil,Alprostadil,Hormone,active pharmaceutical ingredient,"DB08880, DB00328, DB01004, DB01583, DB00203 (see DrugBank for full list)","hypotension, bradycardia"
+Clidinium,Clidinium,Gastrointestinal,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Malathion,Malathion,Other,active pharmaceutical ingredient,"DB00472, DB12095, DB11932, DB16390, DB00502 (see DrugBank for full list)",consult prescribing information
+Etoposide,Etoposide,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB09198 (see DrugBank for full list)","nausea, vomiting, diarrhea, constipation"
+Hydroflumethiazide,Hydroflumethiazide,Analgesic,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",hypertension
+Tirofiban,Tirofiban,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB08953 (see DrugBank for full list)",pain
+Oxcarbazepine,Oxcarbazepine,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Propiomazine,Propiomazine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB14719, DB01560, DB01545, DB00178 (see DrugBank for full list)","insomnia, fever"
+Roxithromycin,Roxithromycin,Antibiotic,active pharmaceutical ingredient,"DB00682, DB00825, DB01208, DB08953, DB12095 (see DrugBank for full list)","nausea, vomiting, headache, rash, pain"
+Nalidixic acid,Nalidixic acid,Other,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)","nausea, vomiting"
+Phenelzine,Phenelzine,Antidepressant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Propantheline,Propantheline,Gastrointestinal,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Estradiol,Estradiol,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB14905, DB00682, DB12095, DB06474 (see DrugBank for full list)",consult prescribing information
+Mefenamic acid,Mefenamic acid,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)","headache, pain, weakness"
+Cryptenamine,Cryptenamine,Other,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)",hypertension
+Marimastat,Marimastat,Anticancer,active pharmaceutical ingredient,,consult prescribing information
+Acyclovir,Acyclovir,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Gadopentetic acid,Gadopentetic acid,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Perindopril,Perindopril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB00887, DB06196, DB00178 (see DrugBank for full list)","headache, dizziness, fatigue, hypotension"
+Uracil mustard,Uracil mustard,Anticancer,active pharmaceutical ingredient,"DB06770, DB12532, DB00281, DB09107, DB08987 (see DrugBank for full list)",consult prescribing information
+Tripelennamine,Tripelennamine,Antihistamine,active pharmaceutical ingredient,"DB06698, DB01149, DB00983, DB01429, DB00203 (see DrugBank for full list)","headache, drowsiness, hypotension, tachycardia"
+Haloprogin,Haloprogin,Antifungal,active pharmaceutical ingredient,"DB03410, DB13136, DB00682, DB14055, DB00946 (see DrugBank for full list)",consult prescribing information
+Primidone,Primidone,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Sulfasalazine,Sulfasalazine,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Candesartan cilexetil,Candesartan cilexetil,Antihypertensive,water,"DB01345, DB00328, DB04899, DB00825, DB00682 (see DrugBank for full list)",consult prescribing information
+Tolazoline,Tolazoline,Antihistamine,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)",hypertension
+Gentamicin,Gentamicin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",nausea
+Tazarotene,Tazarotene,Other,active pharmaceutical ingredient,"DB01076, DB08880, DB14055, DB01583, DB04216 (see DrugBank for full list)","nausea, headache, fatigue"
+Fenoldopam,Fenoldopam,Antihypertensive,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB04899, DB00928 (see DrugBank for full list)",hypotension
+Halazepam,Halazepam,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Alfentanil,Alfentanil,Analgesic,active pharmaceutical ingredient,"DB12095, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Colistin,Colistin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",dizziness
+Dicyclomine,Dicyclomine,Antihistamine,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)","nausea, vomiting, headache, dizziness"
+Minaprine,Minaprine,Antidepressant,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB09198 (see DrugBank for full list)",drowsiness
+Pentoxifylline,Pentoxifylline,NSAID,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB13456, DB00887 (see DrugBank for full list)","fever, hypotension"
+Proparacaine,Proparacaine,Other,active pharmaceutical ingredient,"DB01873, DB11459, DB13821, DB03946, DB00928 (see DrugBank for full list)",consult prescribing information
+Indapamide,Indapamide,Antihypertensive,water,"DB00682, DB12095, DB00887, DB06196, DB09198 (see DrugBank for full list)","nausea, vomiting, weakness, hypotension"
+Tropicamide,Tropicamide,Other,active pharmaceutical ingredient,"DB09262, DB11089, DB00392, DB13759, DB09020 (see DrugBank for full list)",consult prescribing information
+Biperiden,Biperiden,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",tachycardia
+Ribavirin,Ribavirin,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",insomnia
+Phenylbutazone,Phenylbutazone,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Fentanyl,Fentanyl,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",consult prescribing information
+Meloxicam,Meloxicam,NSAID,active pharmaceutical ingredient,"DB01194, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)","nausea, vomiting, bleeding, fever"
+Orciprenaline,Orciprenaline,Respiratory,active pharmaceutical ingredient,"DB00328, DB14652, DB13400, DB14649, DB00219 (see DrugBank for full list)","nausea, headache, dizziness, fatigue, insomnia, hypotension"
+Rosoxacin,Rosoxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)",consult prescribing information
+Propofol,Propofol,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Acetazolamide,Acetazolamide,Anticonvulsant,water,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Tadalafil,Tadalafil,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB06196, DB00178 (see DrugBank for full list)","headache, dizziness, pain"
+Carprofen,Carprofen,NSAID,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)",dizziness
+Disulfiram,Disulfiram,Respiratory,active pharmaceutical ingredient,"DB13821, DB00328, DB00682, DB00825, DB01208 (see DrugBank for full list)","drowsiness, hypotension"
+Ethynodiol diacetate,Ethynodiol diacetate,Hormone,active pharmaceutical ingredient,"DB00682, DB14652, DB08953, DB12095, DB14649 (see DrugBank for full list)",consult prescribing information
+Enprofylline,Enprofylline,Respiratory,active pharmaceutical ingredient,,consult prescribing information
+Levomenthol,Levomenthol,Other,active pharmaceutical ingredient,"DB01345, DB00328, DB08953, DB01208, DB12095 (see DrugBank for full list)",consult prescribing information
+Natamycin,Natamycin,Antibiotic,active pharmaceutical ingredient,"DB06770, DB12235, DB12532, DB00281, DB08987 (see DrugBank for full list)",consult prescribing information
+Cinoxacin,Cinoxacin,Other,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB01208, DB00825 (see DrugBank for full list)",consult prescribing information
+Fosfomycin,Fosfomycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",diarrhea
+Phenmetrazine,Phenmetrazine,Other,active pharmaceutical ingredient,"DB00328, DB13400, DB00219, DB00656, DB00610 (see DrugBank for full list)","hypertension, tachycardia"
+Trifluoperazine,Trifluoperazine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB14719, DB01560 (see DrugBank for full list)",fever
+Phensuximide,Phensuximide,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Cefaclor,Cefaclor,Antibiotic,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Mifepristone,Mifepristone,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB09198, DB11891 (see DrugBank for full list)",consult prescribing information
+Brompheniramine,Brompheniramine,Antihistamine,active pharmaceutical ingredient,"DB12095, DB14719, DB01560, DB11891, DB01545 (see DrugBank for full list)",weakness
+Loperamide,Loperamide,Analgesic,active pharmaceutical ingredient,"DB08880, DB00328, DB01345, DB00825, DB01208 (see DrugBank for full list)",diarrhea
+Clocortolone,Clocortolone,Other,active pharmaceutical ingredient,"DB00331, DB09199, DB13675, DB13467, DB00951 (see DrugBank for full list)",consult prescribing information
+Tolazamide,Tolazamide,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB06251 (see DrugBank for full list)",consult prescribing information
+Hydroxypropyl cellulose,Hydroxypropyl cellulose,Other,water,,consult prescribing information
+Dobutamine,Dobutamine,Other,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB01066 (see DrugBank for full list)",consult prescribing information
+Oxazepam,Oxazepam,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)",consult prescribing information
+Donepezil,Donepezil,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)","nausea, vomiting, weakness, hypotension, bradycardia"
+Nalbuphine,Nalbuphine,Analgesic,active pharmaceutical ingredient,"DB01345, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Clofazimine,Clofazimine,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB00825, DB01208, DB14649 (see DrugBank for full list)",vomiting
+Flurandrenolide,Flurandrenolide,Antibiotic,active pharmaceutical ingredient,"DB12095, DB00331, DB09199, DB13675, DB13467 (see DrugBank for full list)",consult prescribing information
+Cysteamine,Cysteamine,Other,active pharmaceutical ingredient,"DB00585, DB13760, DB01390, DB00213, DB01377 (see DrugBank for full list)",vomiting
+Levamisole,Levamisole,Anticancer,active pharmaceutical ingredient,"DB00518, DB00602 (see DrugBank for full list)",consult prescribing information
+Methylphenobarbital,Methylphenobarbital,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","headache, pain"
+Perphenazine,Perphenazine,Antipsychotic,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB14719, DB01560 (see DrugBank for full list)",consult prescribing information
+Dacarbazine,Dacarbazine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Pseudoephedrine,Pseudoephedrine,Respiratory,active pharmaceutical ingredient,"DB00328, DB08953, DB13760, DB13400, DB12710 (see DrugBank for full list)","nausea, vomiting, headache, pain, weakness, tachycardia"
+Temozolomide,Temozolomide,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Levorphanol,Levorphanol,Analgesic,active pharmaceutical ingredient,"DB01345, DB08953, DB14028, DB14719, DB12710 (see DrugBank for full list)","nausea, dizziness, rash, pain, hypotension"
+Aminolevulinic acid,Aminolevulinic acid,Anticancer,active pharmaceutical ingredient,"DB06770, DB12532, DB00281, DB09107, DB08987 (see DrugBank for full list)",consult prescribing information
+Chlorphenesin,Chlorphenesin,Antihistamine,active pharmaceutical ingredient,"DB00243, DB11800, DB15685, DB11791, DB12457 (see DrugBank for full list)","nausea, drowsiness, pain"
+Terbinafine,Terbinafine,Antifungal,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB08953, DB12095 (see DrugBank for full list)","nausea, vomiting, headache, dizziness, rash, pain"
+Penicillamine,Penicillamine,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Diflunisal,Diflunisal,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","nausea, vomiting, diarrhea, drowsiness, tachycardia"
+Vardenafil,Vardenafil,Hormone,active pharmaceutical ingredient,"DB01873, DB11459, DB08953, DB00825, DB01208 (see DrugBank for full list)","pain, hypertension"
+Ranitidine,Ranitidine,Antihistamine,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Tacrolimus,Tacrolimus,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB00887 (see DrugBank for full list)","insomnia, hypertension"
+Benzphetamine,Benzphetamine,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB04272 (see DrugBank for full list)",consult prescribing information
+Ritodrine,Ritodrine,Hormone,active pharmaceutical ingredient,"DB00328, DB14652, DB13400, DB14649, DB00219 (see DrugBank for full list)",consult prescribing information
+Benzonatate,Benzonatate,Analgesic,active pharmaceutical ingredient,"DB00805, DB01043, DB00585, DB00392, DB01035 (see DrugBank for full list)",consult prescribing information
+Dorzolamide,Dorzolamide,Hormone,active pharmaceutical ingredient,"DB09238, DB14026, DB13400, DB11720, DB08952 (see DrugBank for full list)",hypertension
+Suprofen,Suprofen,Analgesic,active pharmaceutical ingredient,"DB00328, DB14026, DB13225, DB06737, DB06448 (see DrugBank for full list)","nausea, vomiting, bleeding, fever, pain, swelling"
+Terbutaline,Terbutaline,Respiratory,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB11891, DB00178 (see DrugBank for full list)","nausea, headache, dizziness, fatigue, insomnia, pain"
+Conivaptan,Conivaptan,Diuretic,water,"DB00682, DB12095, DB13456, DB00887, DB06196 (see DrugBank for full list)",consult prescribing information
+Loteprednol etabonate,Loteprednol etabonate,NSAID,active pharmaceutical ingredient,,pain
+Guaifenesin,Guaifenesin,Anticonvulsant,active pharmaceutical ingredient,,"nausea, vomiting"
+Flupentixol,Flupentixol,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB01560, DB11891 (see DrugBank for full list)",consult prescribing information
+Eprosartan,Eprosartan,Antihypertensive,active pharmaceutical ingredient,"DB01345, DB00328, DB04899, DB00825, DB13400 (see DrugBank for full list)",consult prescribing information
+Sirolimus,Sirolimus,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB06196 (see DrugBank for full list)",consult prescribing information
+Chlorhexidine,Chlorhexidine,Antiviral,active pharmaceutical ingredient,DB16709 (see DrugBank for full list),nausea
+Emtricitabine,Emtricitabine,Antiviral,active pharmaceutical ingredient,"DB06608, DB01004, DB00537, DB00243, DB01035 (see DrugBank for full list)",consult prescribing information
+Chlorothiazide,Chlorothiazide,Analgesic,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Quinapril,Quinapril,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB08880, DB00328, DB04899, DB01345 (see DrugBank for full list)","hypotension, hypertension"
+Clomifene,Clomifene,Hormone,active pharmaceutical ingredient,"DB00080, DB11672, DB00203, DB11800, DB06695 (see DrugBank for full list)",consult prescribing information
+Isosorbide dinitrate,Isosorbide dinitrate,Other,active pharmaceutical ingredient,"DB04899, DB13400, DB00887, DB00742, DB08980 (see DrugBank for full list)",hypotension
+Risedronic acid,Risedronic acid,Supplement,active pharmaceutical ingredient,"DB13821, DB00328, DB13760, DB00887, DB06647 (see DrugBank for full list)","rash, pain"
+Pemirolast,Pemirolast,Other,water,,consult prescribing information
+Omapatrilat,Omapatrilat,Diuretic,active pharmaceutical ingredient,"DB10713, DB01345, DB00328, DB04899, DB00825 (see DrugBank for full list)","diarrhea, dizziness, hypotension, hypertension"
+Bumetanide,Bumetanide,Diuretic,water,"DB08880, DB00682, DB06196, DB09198, DB00178 (see DrugBank for full list)","dizziness, weakness"
+Mechlorethamine,Mechlorethamine,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB14652 (see DrugBank for full list)",bleeding
+Granisetron,Granisetron,Anticancer,active pharmaceutical ingredient,"DB00682, DB08953, DB01208, DB00825, DB14028 (see DrugBank for full list)",consult prescribing information
+Dienestrol,Dienestrol,Hormone,active pharmaceutical ingredient,"DB05209, DB14905, DB06474, DB06647, DB11959 (see DrugBank for full list)","nausea, vomiting, bleeding"
+Sulfapyridine,Sulfapyridine,Hormone,active pharmaceutical ingredient,"DB00328, DB00682, DB09198, DB06737, DB01142 (see DrugBank for full list)",consult prescribing information
+Oxybuprocaine,Oxybuprocaine,Antihistamine,active pharmaceutical ingredient,"DB14719, DB13456, DB01560, DB11891, DB13259 (see DrugBank for full list)",consult prescribing information
+Iron Dextran,Iron Dextran,Supplement,active pharmaceutical ingredient,"DB00537, DB01208, DB13760, DB00213, DB11443 (see DrugBank for full list)",consult prescribing information
+Testolactone,Testolactone,Anticancer,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Benzylpenicilloyl polylysine,Benzylpenicilloyl polylysine,Antibiotic,active pharmaceutical ingredient,"DB00682, DB13760, DB01208, DB00656, DB00610 (see DrugBank for full list)",swelling
+Rimexolone,Rimexolone,Antidiabetic,active pharmaceutical ingredient,"DB12095, DB11800, DB00331, DB09199, DB13675 (see DrugBank for full list)",consult prescribing information
+Triazolam,Triazolam,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)","drowsiness, insomnia"
+Ethanol,Ethanol,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB12095, DB14719 (see DrugBank for full list)","nausea, vomiting"
+Remifentanil,Remifentanil,Analgesic,active pharmaceutical ingredient,"DB14719, DB00887, DB01560, DB01545, DB00178 (see DrugBank for full list)",consult prescribing information
+Didanosine,Didanosine,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",diarrhea
+Methdilazine,Methdilazine,Antihistamine,active pharmaceutical ingredient,"DB06698, DB00996, DB06637, DB12080, DB08329 (see DrugBank for full list)",drowsiness
+Etacrynic acid,Etacrynic acid,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Ondansetron,Ondansetron,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",consult prescribing information
+Bimatoprost,Bimatoprost,Other,active pharmaceutical ingredient,"DB00328, DB09238, DB13400, DB11720, DB08952 (see DrugBank for full list)",hypertension
+Tiagabine,Tiagabine,Anticonvulsant,active pharmaceutical ingredient,"DB00328, DB08953, DB14028, DB12095, DB14719 (see DrugBank for full list)",drowsiness
+Cocaine,Cocaine,Analgesic,active pharmaceutical ingredient,"DB12095, DB14719, DB13456, DB01560, DB11891 (see DrugBank for full list)",hypertension
+Quinidine,Quinidine,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB13456, DB00887 (see DrugBank for full list)",tachycardia
+Zonisamide,Zonisamide,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",bradycardia
+Paricalcitol,Paricalcitol,Antidiabetic,active pharmaceutical ingredient,"DB01149, DB00537, DB08953, DB14652, DB01070 (see DrugBank for full list)",consult prescribing information
+Tinidazole,Tinidazole,Hormone,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Repaglinide,Repaglinide,Antidiabetic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB08953 (see DrugBank for full list)",consult prescribing information
+Anileridine,Anileridine,Analgesic,active pharmaceutical ingredient,"DB11387, DB00818, DB01189, DB01355, DB13453 (see DrugBank for full list)","dizziness, pain"
+Phenformin,Phenformin,Antidiabetic,active pharmaceutical ingredient,"DB00328, DB08953, DB14652, DB01208, DB14649 (see DrugBank for full list)",consult prescribing information
+Amantadine,Amantadine,Antiviral,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB11891, DB00204 (see DrugBank for full list)","hypertension, tachycardia"
+Metronidazole,Metronidazole,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB00825, DB01208, DB14652 (see DrugBank for full list)",consult prescribing information
+Dinoprostone,Dinoprostone,Hormone,active pharmaceutical ingredient,"DB08880, DB00328, DB14649, DB00887, DB09198 (see DrugBank for full list)",vomiting
+Almotriptan,Almotriptan,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Spectinomycin,Spectinomycin,Antibiotic,active pharmaceutical ingredient,"DB06770, DB14055, DB00682, DB12235, DB12532 (see DrugBank for full list)",consult prescribing information
+Ketotifen,Ketotifen,Antihistamine,active pharmaceutical ingredient,"DB06698, DB09022, DB00852, DB12080, DB12625 (see DrugBank for full list)","hypotension, tachycardia"
+Buprenorphine,Buprenorphine,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",hypotension
+Levosimendan,Levosimendan,Other,active pharmaceutical ingredient,"DB04899, DB00825, DB01208, DB13400, DB00887 (see DrugBank for full list)",consult prescribing information
+Ceforanide,Ceforanide,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Cyclobenzaprine,Cyclobenzaprine,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB09275, DB08953, DB14028 (see DrugBank for full list)","drowsiness, tachycardia"
+Phenoxybenzamine,Phenoxybenzamine,Other,active pharmaceutical ingredient,"DB00328, DB04899, DB13400, DB00887, DB00742 (see DrugBank for full list)","vomiting, dizziness, hypotension, hypertension, tachycardia"
+Famotidine,Famotidine,NSAID,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00825, DB01208 (see DrugBank for full list)",consult prescribing information
+Azacitidine,Azacitidine,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB01345 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Misoprostol,Misoprostol,NSAID,active pharmaceutical ingredient,"DB13749, DB00107, DB01282, DB01377, DB08938 (see DrugBank for full list)","diarrhea, fever, pain, hypotension"
+Colesevelam,Colesevelam,Statin,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB06272, DB00887 (see DrugBank for full list)","nausea, vomiting, diarrhea, constipation"
+Metacycline,Metacycline,Antibiotic,active pharmaceutical ingredient,"DB09275, DB00682, DB09124, DB04272, DB13259 (see DrugBank for full list)",consult prescribing information
+Tipranavir,Tipranavir,Antiviral,active pharmaceutical ingredient,"DB00682, DB12095, DB13456, DB09198, DB00204 (see DrugBank for full list)",fatigue
+Mesoridazine,Mesoridazine,Antipsychotic,active pharmaceutical ingredient,"DB00682, DB09275, DB14719, DB01560, DB11891 (see DrugBank for full list)",consult prescribing information
+Maprotiline,Maprotiline,Antidepressant,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)","vomiting, hypotension, tachycardia"
+Oxymetazoline,Oxymetazoline,Respiratory,active pharmaceutical ingredient,"DB00328, DB13400, DB00219, DB00656, DB00610 (see DrugBank for full list)",consult prescribing information
+Salicylic acid,Salicylic acid,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Diethylpropion,Diethylpropion,Other,active pharmaceutical ingredient,"DB14719, DB01560, DB04272, DB01545, DB00178 (see DrugBank for full list)",consult prescribing information
+Salmeterol,Salmeterol,Respiratory,active pharmaceutical ingredient,"DB12095, DB00887, DB09198, DB11891, DB00178 (see DrugBank for full list)","headache, pain, hypotension, hypertension, tachycardia"
+Meclofenamic acid,Meclofenamic acid,NSAID,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)",consult prescribing information
+Methantheline,Methantheline,Gastrointestinal,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","dizziness, drowsiness, fever, weakness"
+Hexafluronium,Hexafluronium,Other,active pharmaceutical ingredient,"DB08953, DB14652, DB14028, DB14719, DB12710 (see DrugBank for full list)",consult prescribing information
+Cycrimine,Cycrimine,Other,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)",consult prescribing information
+Zalcitabine,Zalcitabine,Antiviral,active pharmaceutical ingredient,"DB01004, DB00328, DB00887, DB00586, DB10805 (see DrugBank for full list)",consult prescribing information
+Demecarium,Demecarium,Other,active pharmaceutical ingredient,"DB09262, DB14652, DB00392, DB13759, DB15566 (see DrugBank for full list)","nausea, vomiting, diarrhea, bradycardia"
+Acetylsalicylic acid,Acetylsalicylic acid,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB06251 (see DrugBank for full list)","headache, fever, pain"
+Phenprocoumon,Phenprocoumon,Anticoagulant,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB13456, DB09198 (see DrugBank for full list)",bleeding
+Fulvestrant,Fulvestrant,Hormone,active pharmaceutical ingredient,"DB00328, DB00564, DB15690, DB09107, DB00398 (see DrugBank for full list)",consult prescribing information
+Mezlocillin,Mezlocillin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB00537, DB01208, DB04808 (see DrugBank for full list)","rash, fever"
+Felbamate,Felbamate,Anticonvulsant,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB11891 (see DrugBank for full list)",consult prescribing information
+Fexofenadine,Fexofenadine,Antihistamine,active pharmaceutical ingredient,"DB08880, DB00328, DB12095, DB00887, DB12457 (see DrugBank for full list)",consult prescribing information
+Isoniazid,Isoniazid,Other,active pharmaceutical ingredient,"DB00682, DB13456, DB00887, DB06196, DB09198 (see DrugBank for full list)",rash
+Naratriptan,Naratriptan,Analgesic,active pharmaceutical ingredient,"DB00328, DB00682, DB08953, DB14028, DB13400 (see DrugBank for full list)",consult prescribing information
+Rizatriptan,Rizatriptan,Analgesic,active pharmaceutical ingredient,"DB00682, DB14719, DB00887, DB01560, DB06196 (see DrugBank for full list)","vomiting, dizziness"
+Netilmicin,Netilmicin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Hydrocodone,Hydrocodone,Analgesic,active pharmaceutical ingredient,"DB01345, DB08953, DB14028, DB12095, DB14719 (see DrugBank for full list)","pain, hypotension, bradycardia"
+Norgestimate,Norgestimate,Hormone,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB08953, DB12095 (see DrugBank for full list)",consult prescribing information
+Carboplatin,Carboplatin,Anticancer,active pharmaceutical ingredient,"DB13821, DB08880, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Methylprednisolone,Methylprednisolone,Antibiotic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Pindolol,Pindolol,Antihypertensive,active pharmaceutical ingredient,"DB10713, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)","hypotension, hypertension, bradycardia"
+Mepivacaine,Mepivacaine,Other,active pharmaceutical ingredient,"DB00682, DB14719, DB13456, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Zaleplon,Zaleplon,Other,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","nausea, headache, dizziness, drowsiness, insomnia, pain"
+Bromfenac,Bromfenac,Analgesic,active pharmaceutical ingredient,"DB00328, DB14026, DB13225, DB06737, DB13501 (see DrugBank for full list)",consult prescribing information
+Apraclonidine,Apraclonidine,Other,active pharmaceutical ingredient,"DB00805, DB00983, DB04017, DB00203, DB09243 (see DrugBank for full list)","hypotension, bradycardia"
+Ethiodized oil,Ethiodized oil,Anticancer,active pharmaceutical ingredient,DB00041 (see DrugBank for full list),consult prescribing information
+Telmisartan,Telmisartan,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB04899, DB00825, DB01345 (see DrugBank for full list)",consult prescribing information
+Desloratadine,Desloratadine,Antihistamine,water,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)",swelling
+Methyldopa,Methyldopa,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB01066 (see DrugBank for full list)",hypotension
+Alosetron,Alosetron,Supplement,active pharmaceutical ingredient,"DB08880, DB00328, DB08953, DB00682, DB14028 (see DrugBank for full list)",pain
+Dactinomycin,Dactinomycin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Selenium Sulfide,Selenium Sulfide,Antifungal,active pharmaceutical ingredient,,consult prescribing information
+Azelastine,Azelastine,Antihistamine,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB01560 (see DrugBank for full list)",drowsiness
+Ezetimibe,Ezetimibe,Statin,active pharmaceutical ingredient,"DB01149, DB08880, DB00328, DB04216, DB00203 (see DrugBank for full list)",consult prescribing information
+Edetic acid,Edetic acid,Other,active pharmaceutical ingredient,"DB13821, DB00328, DB08953, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Dipyridamole,Dipyridamole,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB00328, DB00682, DB04899, DB00928 (see DrugBank for full list)",hypotension
+Telithromycin,Telithromycin,Antibiotic,active pharmaceutical ingredient,"DB00682, DB14652, DB01208, DB00825, DB08953 (see DrugBank for full list)","nausea, vomiting, diarrhea, headache, dizziness, pain"
+Ethinylestradiol,Ethinylestradiol,Hormone,active pharmaceutical ingredient,"DB08880, DB14905, DB00682, DB12095, DB06474 (see DrugBank for full list)","nausea, vomiting, fatigue, bleeding, drowsiness, pain"
+Lomefloxacin,Lomefloxacin,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB14652, DB01208 (see DrugBank for full list)",rash
+Cyclopentolate,Cyclopentolate,Other,active pharmaceutical ingredient,"DB09262, DB11089, DB00392, DB13759, DB09020 (see DrugBank for full list)","dizziness, drowsiness, tachycardia"
+Ramelteon,Ramelteon,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Physostigmine,Physostigmine,Other,active pharmaceutical ingredient,"DB09262, DB14652, DB00392, DB13759, DB15566 (see DrugBank for full list)","nausea, vomiting, diarrhea, pain, weakness"
+Isotretinoin,Isotretinoin,Supplement,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","vomiting, headache, dizziness, pain"
+Formoterol,Formoterol,Respiratory,active pharmaceutical ingredient,"DB00682, DB00887, DB11891, DB09198, DB00178 (see DrugBank for full list)","headache, hypotension, tachycardia"
+Nandrolone phenpropionate,Nandrolone phenpropionate,Anticoagulant,active pharmaceutical ingredient,"DB14055, DB00682, DB14652, DB01583, DB15566 (see DrugBank for full list)",consult prescribing information
+Dimenhydrinate,Dimenhydrinate,Antihistamine,active pharmaceutical ingredient,"DB08953, DB00825, DB01208, DB14028, DB14719 (see DrugBank for full list)","nausea, vomiting, drowsiness"
+Glycopyrronium,Glycopyrronium,Respiratory,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","nausea, vomiting, dizziness, tachycardia"
+Cytarabine,Cytarabine,Antiviral,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB13400 (see DrugBank for full list)","rash, fever, pain"
+Dopamine,Dopamine,Diuretic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB00204 (see DrugBank for full list)","nausea, vomiting, hypotension"
+Rivastigmine,Rivastigmine,Other,active pharmaceutical ingredient,"DB00825, DB14652, DB14649, DB00219, DB08980 (see DrugBank for full list)",consult prescribing information
+Exemestane,Exemestane,Hormone,active pharmaceutical ingredient,"DB01149, DB00537, DB08953, DB11672, DB15335 (see DrugBank for full list)",consult prescribing information
+Oxaprozin,Oxaprozin,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB00178, DB06251 (see DrugBank for full list)",pain
+Methyl aminolevulinate,Methyl aminolevulinate,Anticancer,active pharmaceutical ingredient,"DB00755, DB15575 (see DrugBank for full list)",pain
+Azathioprine,Azathioprine,Diuretic,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",bleeding
+Neomycin,Neomycin,Antibiotic,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Auranofin,Auranofin,NSAID,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","vomiting, rash"
+Gabapentin,Gabapentin,Anticonvulsant,active pharmaceutical ingredient,"DB08953, DB14028, DB14719, DB12710, DB08329 (see DrugBank for full list)","dizziness, drowsiness, pain"
+Doxorubicin,Doxorubicin,Antibiotic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)",consult prescribing information
+Frovatriptan,Frovatriptan,Analgesic,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB01560, DB09198 (see DrugBank for full list)",consult prescribing information
+Hydrochlorothiazide,Hydrochlorothiazide,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB09198 (see DrugBank for full list)",consult prescribing information
+Cyclacillin,Cyclacillin,Antibiotic,active pharmaceutical ingredient,"DB14055, DB00682, DB00537, DB01208, DB04808 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Levobupivacaine,Levobupivacaine,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB13456 (see DrugBank for full list)",consult prescribing information
+Cromoglicic acid,Cromoglicic acid,Respiratory,active pharmaceutical ingredient,"DB00935, DB06709 (see DrugBank for full list)",nausea
+Ganciclovir,Ganciclovir,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Hydroxyurea,Hydroxyurea,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)",consult prescribing information
+Letrozole,Letrozole,Hormone,active pharmaceutical ingredient,"DB08953, DB12095, DB00887, DB13259, DB00916 (see DrugBank for full list)",consult prescribing information
+Tioconazole,Tioconazole,Antifungal,active pharmaceutical ingredient,"DB01076, DB00346, DB09039, DB01394, DB00682 (see DrugBank for full list)",consult prescribing information
+Busulfan,Busulfan,Anticancer,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)","nausea, vomiting, diarrhea, dizziness, fatigue, bleeding"
+Ketoprofen,Ketoprofen,Analgesic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)","nausea, vomiting, diarrhea, drowsiness, pain"
+Edrophonium,Edrophonium,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB14652 (see DrugBank for full list)","nausea, vomiting, diarrhea, bradycardia"
+Metyrapone,Metyrapone,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, weakness, hypotension"
+Cinacalcet,Cinacalcet,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00682, DB08953, DB12095, DB15131 (see DrugBank for full list)",consult prescribing information
+Clobetasol propionate,Clobetasol propionate,Supplement,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB01208 (see DrugBank for full list)",hypertension
+Balsalazide,Balsalazide,NSAID,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Glyburide,Glyburide,Antidiabetic,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB00887, DB09198 (see DrugBank for full list)",consult prescribing information
+Minocycline,Minocycline,Antibiotic,active pharmaceutical ingredient,"DB00328, DB08953, DB09275, DB00682, DB14028 (see DrugBank for full list)",dizziness
+Guanfacine,Guanfacine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)","drowsiness, hypotension, bradycardia"
+Bethanechol,Bethanechol,Other,active pharmaceutical ingredient,"DB00392, DB04808, DB08952, DB01400, DB13503 (see DrugBank for full list)","nausea, vomiting"
+Isosorbide mononitrate,Isosorbide mononitrate,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB04899, DB00928 (see DrugBank for full list)",hypotension
+Trichlormethiazide,Trichlormethiazide,Diuretic,water,"DB00682, DB00887, DB06196, DB09198, DB00178 (see DrugBank for full list)",consult prescribing information
+Phylloquinone,Phylloquinone,Anticoagulant,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)",consult prescribing information
+Felodipine,Felodipine,Antihypertensive,active pharmaceutical ingredient,"DB00682, DB12095, DB00887, DB09198, DB11891 (see DrugBank for full list)","hypotension, bradycardia"
+Mycophenolic acid,Mycophenolic acid,Antifungal,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Amlexanox,Amlexanox,Respiratory,active pharmaceutical ingredient,,pain
+Ketoconazole,Ketoconazole,Antidiabetic,active pharmaceutical ingredient,"DB00682, DB12095, DB13456, DB11891, DB09198 (see DrugBank for full list)","nausea, fatigue"
+Methoxyflurane,Methoxyflurane,Analgesic,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB01560, DB09198 (see DrugBank for full list)",pain
+Irbesartan,Irbesartan,Antihypertensive,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB04899, DB00825 (see DrugBank for full list)","hypotension, hypertension, tachycardia, bradycardia"
+Topotecan,Topotecan,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB00887, DB06196, DB13259 (see DrugBank for full list)",consult prescribing information
+Ethinamate,Ethinamate,Other,active pharmaceutical ingredient,,"insomnia, weakness"
+Probenecid,Probenecid,Diuretic,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB09198, DB00204 (see DrugBank for full list)",consult prescribing information
+Mercaptopurine,Mercaptopurine,Diuretic,active pharmaceutical ingredient,"DB01873, DB11459, DB08880, DB00328, DB00682 (see DrugBank for full list)","nausea, vomiting, diarrhea"
+Procainamide,Procainamide,Other,active pharmaceutical ingredient,"DB00682, DB00887, DB06196, DB11891, DB00204 (see DrugBank for full list)",tachycardia
+Tolterodine,Tolterodine,Hormone,active pharmaceutical ingredient,"DB00682, DB12095, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Selegiline,Selegiline,Other,active pharmaceutical ingredient,"DB08880, DB00682, DB12095, DB14719, DB00887 (see DrugBank for full list)",consult prescribing information
+Fenofibrate,Fenofibrate,Statin,active pharmaceutical ingredient,"DB00682, DB12095, DB13456, DB00887, DB06196 (see DrugBank for full list)",vomiting
+Thalidomide,Thalidomide,Anticancer,active pharmaceutical ingredient,"DB08880, DB00682, DB14719, DB00887, DB01560 (see DrugBank for full list)",consult prescribing information
+Melphalan,Melphalan,Anticancer,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB15274 (see DrugBank for full list)","vomiting, diarrhea"
+Memantine,Memantine,Other,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB14652 (see DrugBank for full list)",consult prescribing information
+Gatifloxacin,Gatifloxacin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB14652, DB08953, DB01208 (see DrugBank for full list)",consult prescribing information
+Rifampicin,Rifampicin,Antibiotic,active pharmaceutical ingredient,"DB00328, DB00682, DB00825, DB13760, DB08953 (see DrugBank for full list)","nausea, vomiting"
+Lubiprostone,Lubiprostone,Analgesic,water,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","constipation, pain"
+Fluocinonide,Fluocinonide,Antibiotic,active pharmaceutical ingredient,"DB08880, DB00328, DB00682, DB00928, DB01208 (see DrugBank for full list)",consult prescribing information
+Abacavir,Abacavir,Antiviral,active pharmaceutical ingredient,"DB13821, DB01345, DB00328, DB00682, DB00928 (see DrugBank for full list)","nausea, vomiting, headache, fatigue"

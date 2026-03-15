@@ -1,0 +1,500 @@
+{
+  "urticaria": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "dairy",
+      "eggs",
+      "penicillin",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "angioedema": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin",
+      "nsaid",
+      "ace_inhibitor"
+    ],
+    "severity": "severe"
+  },
+  "contact dermatitis": {
+    "allergens": [
+      "latex",
+      "nickel",
+      "fragrance",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "atopic dermatitis": {
+    "allergens": [
+      "dairy",
+      "eggs",
+      "gluten",
+      "soy",
+      "peanuts"
+    ],
+    "severity": "moderate"
+  },
+  "steven johnson": {
+    "allergens": [
+      "sulfa",
+      "penicillin",
+      "nsaid",
+      "cephalosporin"
+    ],
+    "severity": "critical"
+  },
+  "erythema": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "pruritus": {
+    "allergens": [
+      "peanuts",
+      "dairy",
+      "soy",
+      "penicillin",
+      "nsaid",
+      "latex"
+    ],
+    "severity": "mild"
+  },
+  "exanthem": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "nsaid",
+      "cephalosporin"
+    ],
+    "severity": "moderate"
+  },
+  "rhinitis": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "latex",
+      "pollen"
+    ],
+    "severity": "mild"
+  },
+  "bronchospasm": {
+    "allergens": [
+      "nsaid",
+      "aspirin",
+      "shellfish",
+      "latex"
+    ],
+    "severity": "severe"
+  },
+  "laryngeal edema": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin",
+      "latex"
+    ],
+    "severity": "critical"
+  },
+  "nasal congestion": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "sinusitis": {
+    "allergens": [
+      "dairy",
+      "gluten"
+    ],
+    "severity": "mild"
+  },
+  "epistaxis": {
+    "allergens": [
+      "nsaid",
+      "aspirin"
+    ],
+    "severity": "moderate"
+  },
+  "abdominal cramps": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "soy"
+    ],
+    "severity": "moderate"
+  },
+  "dyspepsia": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "gastroenteritis": {
+    "allergens": [
+      "shellfish",
+      "eggs",
+      "dairy"
+    ],
+    "severity": "moderate"
+  },
+  "celiac reaction": {
+    "allergens": [
+      "gluten"
+    ],
+    "severity": "severe"
+  },
+  "irritable bowel": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "soy",
+      "eggs"
+    ],
+    "severity": "moderate"
+  },
+  "rectal bleeding": {
+    "allergens": [
+      "nsaid",
+      "dairy",
+      "gluten"
+    ],
+    "severity": "severe"
+  },
+  "dysphagia": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin"
+    ],
+    "severity": "severe"
+  },
+  "oral allergy": {
+    "allergens": [
+      "peanuts",
+      "tree nuts",
+      "shellfish",
+      "kiwi"
+    ],
+    "severity": "moderate"
+  },
+  "hypotension": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin",
+      "nsaid"
+    ],
+    "severity": "severe"
+  },
+  "tachycardia": {
+    "allergens": [
+      "nsaid",
+      "opioid",
+      "sulfites"
+    ],
+    "severity": "moderate"
+  },
+  "bradycardia": {
+    "allergens": [
+      "nsaid",
+      "statin"
+    ],
+    "severity": "moderate"
+  },
+  "arrhythmia": {
+    "allergens": [
+      "nsaid",
+      "statin",
+      "sulfites"
+    ],
+    "severity": "severe"
+  },
+  "hypertension": {
+    "allergens": [
+      "nsaid",
+      "statin"
+    ],
+    "severity": "moderate"
+  },
+  "migraine": {
+    "allergens": [
+      "gluten",
+      "dairy",
+      "sulfites",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "peripheral neuropathy": {
+    "allergens": [
+      "gluten",
+      "nsaid",
+      "statin"
+    ],
+    "severity": "moderate"
+  },
+  "seizure": {
+    "allergens": [
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "severe"
+  },
+  "confusion": {
+    "allergens": [
+      "gluten",
+      "dairy",
+      "opioid"
+    ],
+    "severity": "moderate"
+  },
+  "tremor": {
+    "allergens": [
+      "gluten",
+      "nsaid",
+      "statin"
+    ],
+    "severity": "mild"
+  },
+  "numbness": {
+    "allergens": [
+      "gluten",
+      "nsaid",
+      "statin"
+    ],
+    "severity": "mild"
+  },
+  "tingling": {
+    "allergens": [
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "myalgia": {
+    "allergens": [
+      "nsaid",
+      "opioid",
+      "statin"
+    ],
+    "severity": "mild"
+  },
+  "arthralgia": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "myopathy": {
+    "allergens": [
+      "statin",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "rhabdomyolysis": {
+    "allergens": [
+      "statin",
+      "nsaid"
+    ],
+    "severity": "severe"
+  },
+  "renal impairment": {
+    "allergens": [
+      "nsaid",
+      "sulfa",
+      "penicillin"
+    ],
+    "severity": "severe"
+  },
+  "proteinuria": {
+    "allergens": [
+      "nsaid",
+      "sulfa"
+    ],
+    "severity": "moderate"
+  },
+  "haematuria": {
+    "allergens": [
+      "nsaid",
+      "sulfa",
+      "penicillin"
+    ],
+    "severity": "moderate"
+  },
+  "hepatotoxicity": {
+    "allergens": [
+      "nsaid",
+      "sulfa",
+      "penicillin",
+      "statin"
+    ],
+    "severity": "severe"
+  },
+  "jaundice": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "nsaid"
+    ],
+    "severity": "severe"
+  },
+  "elevated liver": {
+    "allergens": [
+      "nsaid",
+      "sulfa",
+      "statin"
+    ],
+    "severity": "moderate"
+  },
+  "anaemia": {
+    "allergens": [
+      "nsaid",
+      "sulfa",
+      "penicillin"
+    ],
+    "severity": "moderate"
+  },
+  "thrombocytopenia": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "nsaid"
+    ],
+    "severity": "severe"
+  },
+  "neutropenia": {
+    "allergens": [
+      "sulfa",
+      "penicillin",
+      "cephalosporin"
+    ],
+    "severity": "severe"
+  },
+  "bleeding tendency": {
+    "allergens": [
+      "nsaid",
+      "aspirin"
+    ],
+    "severity": "moderate"
+  },
+  "anaphylaxis": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin",
+      "latex",
+      "eggs",
+      "tree nuts"
+    ],
+    "severity": "critical"
+  },
+  "anaphylactic shock": {
+    "allergens": [
+      "peanuts",
+      "shellfish",
+      "penicillin",
+      "latex"
+    ],
+    "severity": "critical"
+  },
+  "serum sickness": {
+    "allergens": [
+      "penicillin",
+      "cephalosporin",
+      "sulfa"
+    ],
+    "severity": "severe"
+  },
+  "drug fever": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "cephalosporin"
+    ],
+    "severity": "moderate"
+  },
+  "lupus like": {
+    "allergens": [
+      "sulfa",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "malaise": {
+    "allergens": [
+      "penicillin",
+      "sulfa",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "asthenia": {
+    "allergens": [
+      "dairy",
+      "gluten",
+      "opioid"
+    ],
+    "severity": "mild"
+  },
+  "oedema": {
+    "allergens": [
+      "nsaid",
+      "statin",
+      "ace_inhibitor"
+    ],
+    "severity": "moderate"
+  },
+  "weight changes": {
+    "allergens": [
+      "gluten",
+      "dairy",
+      "nsaid"
+    ],
+    "severity": "mild"
+  },
+  "mood disturbance": {
+    "allergens": [
+      "gluten",
+      "dairy"
+    ],
+    "severity": "mild"
+  },
+  "psychosis": {
+    "allergens": [
+      "gluten",
+      "nsaid"
+    ],
+    "severity": "moderate"
+  },
+  "cognitive impairment": {
+    "allergens": [
+      "gluten",
+      "dairy",
+      "opioid"
+    ],
+    "severity": "mild"
+  },
+  "sleep disturbance": {
+    "allergens": [
+      "gluten",
+      "dairy",
+      "nsaid"
+    ],
+    "severity": "mild"
+  }
+}

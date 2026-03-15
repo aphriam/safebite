@@ -1,0 +1,756 @@
+{
+  "ibuprofen": {
+    "allergens": [
+      "nsaid",
+      "dairy"
+    ],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "aspirin": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "naproxen": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "diclofenac": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "celecoxib": {
+    "allergens": [
+      "sulfa",
+      "nsaid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "meloxicam": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "NSAID",
+    "source": "OpenFDA"
+  },
+  "indomethacin": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "paracetamol": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Unknown",
+    "source": "not_found"
+  },
+  "acetaminophen": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "tramadol": {
+    "allergens": [
+      "opioid",
+      "dairy"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "insomnia",
+      "constipation",
+      "itching"
+    ],
+    "drug_class": "Analgesic",
+    "source": "OpenFDA"
+  },
+  "codeine": {
+    "allergens": [
+      "opioid",
+      "dairy"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "morphine": {
+    "allergens": [
+      "sulfa",
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "headache",
+      "dizziness",
+      "constipation",
+      "dry mouth",
+      "palpitations"
+    ],
+    "drug_class": "Analgesic",
+    "source": "OpenFDA"
+  },
+  "amoxicillin": {
+    "allergens": [
+      "penicillin",
+      "cephalosporin"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "fever"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "penicillin": {
+    "allergens": [
+      "penicillin",
+      "cephalosporin"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "fever",
+      "palpitations"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "ciprofloxacin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "itching"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "azithromycin": {
+    "allergens": [
+      "penicillin"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antibiotic",
+    "source": "OpenFDA"
+  },
+  "doxycycline": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "rash"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "metronidazole": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "cefalexin": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Unknown",
+    "source": "not_found"
+  },
+  "cefuroxime": {
+    "allergens": [
+      "penicillin",
+      "cephalosporin"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "bleeding"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "erythromycin": {
+    "allergens": [],
+    "side_effects": [
+      "itching"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "clarithromycin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "cetirizine": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "loratadine": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "fexofenadine": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "levocetirizine": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "chlorphenamine": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Unknown",
+    "source": "not_found"
+  },
+  "promethazine": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "dizziness",
+      "fatigue",
+      "insomnia",
+      "drowsiness",
+      "dry mouth",
+      "blurred vision"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "atorvastatin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "diarrhea",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia",
+      "swelling"
+    ],
+    "drug_class": "Statin",
+    "source": "OpenFDA"
+  },
+  "simvastatin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "headache",
+      "dizziness",
+      "insomnia",
+      "constipation",
+      "fever",
+      "swelling"
+    ],
+    "drug_class": "Statin",
+    "source": "OpenFDA"
+  },
+  "warfarin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "rash"
+    ],
+    "drug_class": "Anticoagulant",
+    "source": "OpenFDA"
+  },
+  "amlodipine": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Antihypertensive",
+    "source": "OpenFDA"
+  },
+  "metoprolol": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Antihypertensive",
+    "source": "OpenFDA"
+  },
+  "lisinopril": {
+    "allergens": [
+      "penicillin",
+      "sulfa"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antihypertensive",
+    "source": "OpenFDA"
+  },
+  "enalapril": {
+    "allergens": [
+      "sulfa"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antihypertensive",
+    "source": "OpenFDA"
+  },
+  "losartan": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "ramipril": {
+    "allergens": [
+      "sulfa"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "metformin": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "rash",
+      "constipation"
+    ],
+    "drug_class": "Antidiabetic",
+    "source": "OpenFDA"
+  },
+  "glipizide": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "constipation",
+      "drowsiness"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "omeprazole": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "pantoprazole": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antidiabetic",
+    "source": "OpenFDA"
+  },
+  "lansoprazole": {
+    "allergens": [
+      "penicillin"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antidiabetic",
+    "source": "OpenFDA"
+  },
+  "ondansetron": {
+    "allergens": [
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "metoclopramide": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia",
+      "drowsiness"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "sertraline": {
+    "allergens": [
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Antihistamine",
+    "source": "OpenFDA"
+  },
+  "fluoxetine": {
+    "allergens": [
+      "nsaid",
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Antihistamine",
+    "source": "OpenFDA"
+  },
+  "amitriptyline": {
+    "allergens": [
+      "dairy"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "escitalopram": {
+    "allergens": [
+      "nsaid",
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "venlafaxine": {
+    "allergens": [
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Antihistamine",
+    "source": "OpenFDA"
+  },
+  "gabapentin": {
+    "allergens": [
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "fatigue",
+      "insomnia",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "pregabalin": {
+    "allergens": [
+      "opioid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "carbamazepine": {
+    "allergens": [],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "constipation"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "levetiracetam": {
+    "allergens": [],
+    "side_effects": [
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "fatigue",
+      "insomnia",
+      "constipation",
+      "blurred vision"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "prednisolone": {
+    "allergens": [],
+    "side_effects": [
+      "headache",
+      "rash"
+    ],
+    "drug_class": "Other",
+    "source": "OpenFDA"
+  },
+  "salbutamol": {
+    "allergens": [],
+    "side_effects": [],
+    "drug_class": "Unknown",
+    "source": "not_found"
+  },
+  "montelukast": {
+    "allergens": [
+      "nsaid"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "diarrhea",
+      "headache",
+      "dizziness",
+      "rash",
+      "fatigue",
+      "insomnia"
+    ],
+    "drug_class": "Bronchodilator",
+    "source": "OpenFDA"
+  }
+}
